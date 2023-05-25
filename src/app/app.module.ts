@@ -37,7 +37,7 @@ import { SpinnerComponent } from './shared/spinner.component';
     ReactiveFormsModule,
     HttpClientModule,
     NgbModule,
-    RouterModule.forRoot(Approutes, { useHash: false, relativeLinkResolution: 'legacy' }),
+    RouterModule.forRoot(Approutes),
   ],
   providers: [
     {
