@@ -15,6 +15,7 @@ import { TableComponent } from "./table/table.component";
 import { ListReousrceTypesComponent } from './resource-types/list-reousrce-types/list-reousrce-types.component';
 import { ResourceTypeAttributeDetailsComponent } from './resource-types/resource-type-attribute-details/resource-type-attribute-details.component';
 import { ListResourcesComponent } from './resources/list-resources/list-resources.component';
+import { CreateResourceTypeComponent } from './resource-types/create-resource-type/create-resource-type.component';
 
 @NgModule({
   imports: [
@@ -34,7 +35,8 @@ import { ListResourcesComponent } from './resources/list-resources/list-resource
     TableComponent,
     ListReousrceTypesComponent,
     ResourceTypeAttributeDetailsComponent,
-    ListResourcesComponent
+    ListResourcesComponent,
+    CreateResourceTypeComponent
   ]
 })
 export class ComponentsModule { }

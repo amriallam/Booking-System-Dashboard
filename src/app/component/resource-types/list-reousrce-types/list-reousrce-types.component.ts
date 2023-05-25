@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ResourceType } from '../../models/resource-type';
+import { ResourceType } from '../../models/ResourceType';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ResourceTypeAttributeDetailsComponent } from '../resource-type-attribute-details/resource-type-attribute-details.component';
 
