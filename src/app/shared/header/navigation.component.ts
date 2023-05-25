@@ -1,11 +1,11 @@
 import { Component, AfterViewInit, EventEmitter, Output } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
-declare var $: any;
+import { CreateResourceTypeComponent } from 'src/app/component/resource-types/create-resource-type/create-resource-type.component';
 
 @Component({
   selector: 'app-navigation',
-  templateUrl: './navigation.component.html'
+  templateUrl: 'navigation.component.html',
+  styleUrls: ['navigation.component.scss']
 })
 export class NavigationComponent implements AfterViewInit {
   @Output() toggleSidebar = new EventEmitter<void>();
@@ -13,7 +13,7 @@ export class NavigationComponent implements AfterViewInit {
 
   public showSearch = false;
 
-  constructor(private modalService: NgbModal) {
+  constructor(private modal: NgbModal) {
   }
 
   // This is for Notifications
@@ -108,6 +108,10 @@ export class NavigationComponent implements AfterViewInit {
     code: 'de',
     icon: 'de'
   }]
+
+  createResourceType() {
+    const modelRef = this.modal.open(CreateResourceTypeComponent, { centered: true, scrollable: true });
+  }
 
   ngAfterViewInit() { }
 }

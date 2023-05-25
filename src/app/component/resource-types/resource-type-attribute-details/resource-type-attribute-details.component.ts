@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AttributeMetadata } from '../../models/AttributeMetadata';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { AttributeMetadata } from '../../models/AttributeMetadata';
 import { ResourceType } from '../../models/ResourceType';
+
 
 @Component({
   selector: 'app-resource-type-attribute-details',
