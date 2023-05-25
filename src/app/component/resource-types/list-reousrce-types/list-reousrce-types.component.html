@@ -1,12 +1,13 @@
 <div class="row">
-  <ng-container *ngFor='let tr of trow'>
+  <ng-container *ngFor='let rt of ResourceTypes'>
     <div class="col-lg-3 col-md-6">
       <div class="card">
         <img class="card-img-top img-responsive" src="assets/images/bg/bg1.jpg" alt="Card image cap" />
         <div class="card-body">
-          <h4 class="card-title">{{tr.Name}} ({{tr.Quantity}})</h4>
-          <p class="card-text"> {{tr.Description}} </p>
-          <a href="javascript:void(0)" class="btn btn-primary">Show Resources</a>
+          <h4 class="card-title">{{rt.Name}} ({{rt.Quantity}})</h4>
+          <p class="card-text"> {{rt.Description}} </p>
+          <a (click)="openModal(rt)" class="btn btn-primary me-2">Attributes</a>
+          <a [routerLink]="'/component/resources/'+rt.Id" class="btn btn-primary">Resources</a>
         </div>
       </div>
     </div>

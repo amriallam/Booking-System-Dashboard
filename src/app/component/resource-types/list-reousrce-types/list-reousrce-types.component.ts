@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ResourceType } from '../../models/resource-type';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ResourceTypeAttributeDetailsComponent } from '../resource-type-attribute-details/resource-type-attribute-details.component';
 
 @Component({
   selector: 'app-list-reousrce-types',
@@ -7,7 +9,9 @@ import { ResourceType } from '../../models/resource-type';
 })
 export class ListReousrceTypesComponent implements OnInit {
 
-  trow: ResourceType[] = [
+  constructor(private modal: NgbModal) { }
+
+  ResourceTypes: ResourceType[] = [
     { Id: "1", Name: "Maid", Description: "Maid rental for cleaning differnet households", Quantity: 30, thumbnail: "" },
     { Id: "2", Name: "Car", Description: "Car rental for devliery service", Quantity: 20, thumbnail: "" },
     { Id: "3", Name: "Room", Description: "Hotel room rental in a hotel", Quantity: 40, thumbnail: "" },
@@ -15,5 +19,10 @@ export class ListReousrceTypesComponent implements OnInit {
   ];
 
   ngOnInit(): void { }
+
+  openModal(ResourceType: ResourceType) {
+    const modelRef = this.modal.open(ResourceTypeAttributeDetailsComponent, { centered: true })
+    modelRef.componentInstance.ResourceType = ResourceType;
+  }
 
 }

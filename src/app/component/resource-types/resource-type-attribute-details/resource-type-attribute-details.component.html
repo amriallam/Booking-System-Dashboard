@@ -1,1 +1,24 @@
-<p>resource-type-attribute-details works!</p>
+<div class="card rounded-2 m-0">
+  <div class="card-body">
+    <div class="d-flex justify-content-between">
+      <h4 class="card-title d-inline">{{ResourceType.Name}}</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+    </div>
+    <div class="table-responsive">
+      <table class="table align-middle text-nowrap table-hover">
+        <thead>
+          <tr>
+            <th class="text-dark font-medium fs-4">Name</th>
+            <th class="text-dark font-medium fs-4">Type</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor='let attr of ResourceTypeAttributes'>
+            <td class="fs-4">{{attr.AttributeName}}</td>
+            <td> <h5 class="mb-0 fw-normal">{{attr.AttributeType}}</h5> </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

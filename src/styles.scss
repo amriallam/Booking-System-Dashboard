@@ -2,8 +2,12 @@
 
 @import url('https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800');
 
-body{
+body {
   width: 100vw;
   height: 100vh;
   background-color: #f2f4f5;
+}
+
+* {
+  user-select: none;
 }
