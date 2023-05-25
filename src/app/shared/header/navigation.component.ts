@@ -110,7 +110,7 @@ export class NavigationComponent implements AfterViewInit {
   }]
 
   createResourceType() {
-    const modelRef = this.modal.open(CreateResourceTypeComponent, { centered: true, scrollable: true });
+    const modelRef = this.modal.open(CreateResourceTypeComponent, { centered: true });
   }
 
   ngAfterViewInit() { }
