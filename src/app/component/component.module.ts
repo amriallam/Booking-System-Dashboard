@@ -13,6 +13,8 @@ import { ButtonsComponent } from './buttons/buttons.component';
 import { CardsComponent } from './card/card.component';
 import { TableComponent } from "./table/table.component";
 import { ListReousrceTypesComponent } from './resource-types/list-reousrce-types/list-reousrce-types.component';
+import { ResourceTypeAttributeDetailsComponent } from './resource-types/resource-type-attribute-details/resource-type-attribute-details.component';
+import { ListResourcesComponent } from './resources/list-resources/list-resources.component';
 
 @NgModule({
   imports: [
@@ -30,7 +32,9 @@ import { ListReousrceTypesComponent } from './resource-types/list-reousrce-types
     ButtonsComponent,
     CardsComponent,
     TableComponent,
-    ListReousrceTypesComponent
+    ListReousrceTypesComponent,
+    ResourceTypeAttributeDetailsComponent,
+    ListResourcesComponent
   ]
 })
 export class ComponentsModule { }
