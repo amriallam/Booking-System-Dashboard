@@ -9,13 +9,19 @@
   <!-- create new -->
   <!-- ============================================================== -->
   <li class="nav-item d-none d-md-block" ngbDropdown placement="bottom-end">
-    <a ngbDropdownToggle class="nav-link waves-effect waves-dark" href="javascript:void(0)" data-toggle="dropdown"
-      aria-haspopup="true" aria-expanded="false">
+    <a
+      ngbDropdownToggle
+      class="nav-link waves-effect waves-dark"
+      href="javascript:void(0)"
+      data-toggle="dropdown"
+      aria-haspopup="true"
+      aria-expanded="false"
+    >
       <span>Create</span>
     </a>
     <div ngbDropdownMenu>
       <a class="dropdown-item" (click)="createResourceType()">Resource Type</a>
-      <a class="dropdown-item">Resource</a>
+      <a class="dropdown-item" (click)="createResource()">Resource</a>
       <!-- <div class="dropdown-divider"></div>
       <a class="dropdown-item" href="#">Something else here</a> -->
     </div>
@@ -23,7 +29,6 @@
   <li class="nav-item">
     <a class="nav-link waves-effect waves-dark" href="/about"> About </a>
   </li>
-
 </ul>
 <!-- ============================================================== -->
 <!-- Right side toggle and nav items -->
@@ -33,9 +38,20 @@
   <!-- User profile and search -->
   <!-- ============================================================== -->
   <li class="nav-item" ngbDropdown placement="bottom-end">
-    <a ngbDropdownToggle class="nav-link waves-effect waves-dark pro-pic" href="javascript:void(0)"
-      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      <img src="assets/images/users/user1.jpg" alt="user" class="rounded-circle" width="31" />
+    <a
+      ngbDropdownToggle
+      class="nav-link waves-effect waves-dark pro-pic"
+      href="javascript:void(0)"
+      data-toggle="dropdown"
+      aria-haspopup="true"
+      aria-expanded="false"
+    >
+      <img
+        src="assets/images/users/user1.jpg"
+        alt="user"
+        class="rounded-circle"
+        width="31"
+      />
       <span class="ms-2">Steve Jobs</span>
     </a>
     <div class="dropdown-menu-right" ngbDropdownMenu>

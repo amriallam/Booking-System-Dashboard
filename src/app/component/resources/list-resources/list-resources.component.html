@@ -1,1 +1,37 @@
-<p>list-resources works!</p>
+<div class="card">
+  <div class="card-body">
+    <h4 class="card-title">Resources</h4>
+    <div class="table-responsive">
+      <table
+        class="table table-responsive align-middle text-nowrap table-bordered"
+      >
+        <thead>
+          <tr>
+            <th class="text-dark font-medium fs-4">ID</th>
+            <th class="text-dark font-medium fs-4">Name</th>
+            <th class="text-dark font-medium fs-4">Resource Type</th>
+            <th class="text-dark font-medium fs-4">Price</th>
+            <th class="text-dark font-medium fs-4">Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let re of Resources">
+            <td>1</td>
+            <td>Dummy</td>
+            <td>Dummy</td>
+            <td>200$</td>
+            <button class="btn btn-success me-2">
+              <a (click)="openModal(re)">Attributes</a>
+            </button>
+          </tr>
+        </tbody>
+      </table>
+      <mat-paginator
+        [pageSizeOptions]="[5, 10, 20]"
+        showFirstLastButtons
+        aria-label="Select page of periodic elements"
+      >
+      </mat-paginator>
+    </div>
+  </div>
+</div>
