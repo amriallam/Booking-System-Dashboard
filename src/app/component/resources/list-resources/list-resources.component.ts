@@ -2,16 +2,13 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 import { Resource } from "../../models/Resource";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { ResourceDetailsComponent } from "../resource-details/resource-details.component";
-import { MatPaginator, MatPaginatorModule } from "@angular/material/paginator";
 
 @Component({
   selector: "app-list-resources",
   templateUrl: "./list-resources.component.html",
-  standalone: true,
-  imports: [MatPaginatorModule],
 })
 export class ListResourcesComponent implements OnInit {
-  constructor(private modal: NgbModal) {}
+  constructor(private modal: NgbModal) { }
   Resources: Resource[] = [
     {
       Id: "1",
@@ -39,7 +36,7 @@ export class ListResourcesComponent implements OnInit {
     },
   ];
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
   openModal(Resource: Resource) {
     const modelRef = this.modal.open(ResourceDetailsComponent, {
       centered: true,

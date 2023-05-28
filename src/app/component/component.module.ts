@@ -18,7 +18,7 @@ import { ListResourcesComponent } from './resources/list-resources/list-resource
 import { CreateResourceTypeComponent } from './resource-types/create-resource-type/create-resource-type.component';
 import { CreateResourceComponent } from './resources/create-resource/create-resource.component';
 import { ResourceDetailsComponent } from './resources/resource-details/resource-details.component';
-
+import { MatPaginatorModule } from "@angular/material/paginator";
 @NgModule({
   imports: [
     CommonModule,
@@ -26,6 +26,7 @@ import { ResourceDetailsComponent } from './resources/resource-details/resource-
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
+    MatPaginatorModule,
   ],
   declarations: [
     NgbdpaginationBasicComponent,
