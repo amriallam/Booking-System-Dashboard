@@ -10,14 +10,11 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 export class CreateResourceTypeComponent {
   form: FormGroup;
   ResourceTypeName: string;
-  TitleEdit: boolean;
   constructor(private formBuilder: FormBuilder, public activeModal: NgbActiveModal) {
     this.form = formBuilder.group({});
     this.ResourceTypeName = 'New Resource Type';
-    this.TitleEdit = false;
   }
 
-  ToggleTitleEdit() { this.TitleEdit = !this.TitleEdit; }
 
   ngOnInit() {
     this.form = this.formBuilder.group({

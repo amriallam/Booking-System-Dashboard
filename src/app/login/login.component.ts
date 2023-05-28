@@ -28,11 +28,11 @@ export class LoginComponent {
     });
   }
 
-  login() {
+  async login() {
     if (this.loginForm.valid) {
       const username = this.loginForm.value.username;
       const password = this.loginForm.value.password;
-      if (this.userService.login(username, password)) {
+      if (await this.userService.login(username, password)) {
         this.router.navigateByUrl('/dashboard');
         this.toastrService.success("Welcome back, Amr", "Successfully logged in")
       }

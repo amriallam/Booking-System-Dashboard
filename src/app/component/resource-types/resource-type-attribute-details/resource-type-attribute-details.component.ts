@@ -7,11 +7,12 @@ import { ResourceType } from '../../models/ResourceType';
 @Component({
   selector: 'app-resource-type-attribute-details',
   templateUrl: './resource-type-attribute-details.component.html',
+  styleUrls: ["./resource-type-attribute-details.component.scss"]
 })
 export class ResourceTypeAttributeDetailsComponent implements OnInit {
   @Input() public ResourceType: ResourceType;
   ResourceTypeAttributes: AttributeMetadata[];
-
+  TitleEdit: boolean;
   constructor(public activeModal: NgbActiveModal) {
     this.ResourceTypeAttributes = [
       { Id: "1", AttributeName: "Name", AttributeType: "String" },
@@ -19,6 +20,7 @@ export class ResourceTypeAttributeDetailsComponent implements OnInit {
       { Id: "3", AttributeName: "Date of Birth", AttributeType: "Date" }
     ];
     this.ResourceType = new ResourceType("", "", "", 0, "");
+    this.TitleEdit = false;
   }
 
   ngOnInit(): void { }
@@ -27,4 +29,8 @@ export class ResourceTypeAttributeDetailsComponent implements OnInit {
     this.activeModal.close();
   }
 
+  ToggleTitleEdit() { this.TitleEdit = !this.TitleEdit; }
+  SaveTitleEdit() {
+    this.ToggleTitleEdit();
+  }
 }

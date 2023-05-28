@@ -2,14 +2,18 @@ import { HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http'
 import { Injectable } from '@angular/core';
 import { UserService } from './user.service';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthInterceptor implements HttpInterceptor {
 
   constructor(private auth: UserService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
+
     // Get the auth token from the service.
     const authToken = this.auth.getAuthorizationToken();
+    if (!!!authToken) return next.handle(req);
 
     // Clone the request and replace the original headers with
     // cloned headers, updated with the authorization.

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-
+import { jwtVerify } from 'jose';
 interface LoginDTO {
   username: string;
   password: string;
@@ -11,24 +11,26 @@ interface LoginDTO {
 export class UserService {
 
   users: LoginDTO[];
-  isAuthanticated: boolean;
 
   constructor() {
-    this.isAuthanticated = false;
     this.users = [{ username: 'admin', password: "admin" }];
   }
-  login(username: string, password: string) {
-    if (!!this.users.find(e => e.username === username && e.password === password)) {
-      this.isAuthanticated = true;
+  async login(username: string, password: string) {
+    let foundUser = this.users.find(e => e.username === username && e.password === password);
+    if (!!foundUser) {
+      localStorage.setItem('token', JSON.stringify(username));
       return true
     }
-    else
-      return false;
+    return false;
   }
+
   logout() {
-    this.isAuthanticated = false;
+    localStorage.removeItem('token');
   }
+
+  // Use At Intecerptor
   getAuthorizationToken() {
-    return "Amr"
+    return localStorage.getItem('token')
   }
+
 }

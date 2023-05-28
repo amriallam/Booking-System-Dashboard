@@ -1,7 +1,28 @@
-import { CanActivateChildFn, Router } from '@angular/router';
-import { UserService } from './user.service';
 import { inject } from '@angular/core';
+import { CanActivateFn, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { JWTSecretKey } from './../../environments/environment'
+import { jwtVerify } from 'jose';
 
-export const authGuard: CanActivateChildFn = (childRoute, state) => {
-  return true;
-}
+export const authGuard: CanActivateFn = async (route, state) => {
+  var router = inject(Router);
+  var toastService = inject(ToastrService)
+
+  const secret = new TextEncoder().encode(JWTSecretKey);
+
+  // const token = localStorage.getItem("token") ==> From Backend
+
+  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.B5Hhm9FDqJ0WJTrrQDKZQ7Q3yQ2BuZMwR3RclEpP9zs"
+
+  if (!!token) {
+    try {
+      await jwtVerify(token, secret);
+      return true;
+    }
+    catch {
+      toastService.error("Invalid Secretkey or Token", "Invalid Authorization")
+      return false;
+    }
+  }
+  return router.createUrlTree(["login"])
+};

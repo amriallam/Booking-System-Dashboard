@@ -1,6 +1,8 @@
 import { Component, AfterViewInit, EventEmitter, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CreateResourceTypeComponent } from 'src/app/component/resource-types/create-resource-type/create-resource-type.component';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-navigation',
@@ -13,7 +15,7 @@ export class NavigationComponent implements AfterViewInit {
 
   public showSearch = false;
 
-  constructor(private modal: NgbModal) {
+  constructor(private modal: NgbModal, private userService: UserService, private router: Router) {
   }
 
   // This is for Notifications
@@ -111,6 +113,11 @@ export class NavigationComponent implements AfterViewInit {
 
   createResourceType() {
     const modelRef = this.modal.open(CreateResourceTypeComponent, { centered: true });
+  }
+
+  logout() {
+    localStorage.removeItem('toke');
+    this.router.navigateByUrl('/login');
   }
 
   ngAfterViewInit() { }
