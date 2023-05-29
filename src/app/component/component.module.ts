@@ -16,6 +16,8 @@ import { ListReousrceTypesComponent } from './resource-types/list-reousrce-types
 import { ResourceTypeAttributeDetailsComponent } from './resource-types/resource-type-attribute-details/resource-type-attribute-details.component';
 import { ListResourcesComponent } from './resources/list-resources/list-resources.component';
 import { CreateResourceTypeComponent } from './resource-types/create-resource-type/create-resource-type.component';
+import { ListRolesComponent } from './roles/list-roles/list-roles.component';
+import { ListScheduleComponent } from './schedule/list-schedule/list-schedule.component';
 
 @NgModule({
   imports: [
@@ -36,7 +38,9 @@ import { CreateResourceTypeComponent } from './resource-types/create-resource-ty
     ListReousrceTypesComponent,
     ResourceTypeAttributeDetailsComponent,
     ListResourcesComponent,
-    CreateResourceTypeComponent
+    CreateResourceTypeComponent,
+    ListRolesComponent,
+    ListScheduleComponent
   ]
 })
 export class ComponentsModule { }

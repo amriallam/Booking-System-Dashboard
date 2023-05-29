@@ -9,6 +9,8 @@ import { ButtonsComponent } from './buttons/buttons.component';
 import { CardsComponent } from './card/card.component';
 import { TableComponent } from './table/table.component';
 import { ListReousrceTypesComponent } from './resource-types/list-reousrce-types/list-reousrce-types.component';
+import { ListRolesComponent } from './roles/list-roles/list-roles.component';
+import { ListScheduleComponent } from './schedule/list-schedule/list-schedule.component';
 
 
 export const ComponentsRoutes: Routes = [
@@ -50,6 +52,14 @@ export const ComponentsRoutes: Routes = [
       {
         path: 'resourcetypes',
         component: ListReousrceTypesComponent
+      },
+      {
+        path: 'roles',
+        component: ListRolesComponent
+      },
+      {
+        path: 'schedules',
+        component: ListScheduleComponent
       }
     ]
   }

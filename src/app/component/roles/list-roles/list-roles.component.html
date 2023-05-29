@@ -1,0 +1,34 @@
+<div class="card">
+  <div class="card-body">
+    <h4 class="card-title">System Roles</h4>
+    <h5 class="card-subtitle text-muted">Overview of the current system roles</h5>
+    <div class="table-responsive">
+      <table class="table align-middle text-nowrap">
+        <thead>
+          <tr>
+            <th class="text-dark font-medium fs-4">Id</th>
+            <th class="text-dark font-medium fs-4">Name</th>
+            <th class="text-dark font-medium fs-4">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor='let role of Roles'>
+            <td>
+              <span class="text-muted">{{role.id}}</span>
+            </td>
+            <td>
+              <h5 class="mb-0 font-medium">{{role.name}}</h5>
+            </td>
+            <td>
+              <div class="d-flex gap-2">
+                <button class="btn btn-primary">Users</button>
+                <button *ngIf="role.name.toLowerCase()!='admin'" class="btn btn-warning">Permissions</button>
+                <button *ngIf="role.name.toLowerCase()!='admin'" class="btn btn-danger">Delete</button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
