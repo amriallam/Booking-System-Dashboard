@@ -25,7 +25,7 @@
                 'text-bg-success': ticket.status.toLowerCase()=='solved',
               }">{{ticket.status}}</span>
             </td>
-            <td> {{ticket.handelrId || "None"}} </td>
+            <td> {{ticket.handlerId | nullString }} </td>
             <td class="d-flex gap-2">
               <button [disabled]="ticket.status.toLowerCase()=='solved'" class="btn btn-primary">Resolve</button>
               <button class="btn btn-danger">View</button>

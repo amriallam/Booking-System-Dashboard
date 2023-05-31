@@ -27,6 +27,7 @@ import { ListTicketsComponent } from './ticket/list-tickets/list-tickets.compone
 import { AppService } from '../shared/service/app.service';
 
 import * as moment from 'moment';
+import { NullStringPipe } from '../shared/pipes/null-string.pipe';
 
 @NgModule({
   imports: [
@@ -57,6 +58,7 @@ import * as moment from 'moment';
     ListScheduleComponent,
     ListFaqComponent,
     ListTicketsComponent,
+    NullStringPipe
   ],
   providers: [
     AppService,

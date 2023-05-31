@@ -15,6 +15,7 @@ import { NavigationComponent } from './shared/header/navigation.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
+import { NullStringPipe } from './shared/pipes/null-string.pipe';
 
 
 @NgModule({
@@ -34,7 +35,7 @@ import { LoginComponent } from './login/login.component';
     HttpClientModule,
     NgbModule,
     ToastrModule.forRoot(),
-    RouterModule.forRoot(Approutes),
+    RouterModule.forRoot(Approutes)
   ],
   providers: [
     {

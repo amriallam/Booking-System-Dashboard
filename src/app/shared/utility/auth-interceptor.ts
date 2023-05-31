@@ -4,9 +4,9 @@ import { UserService } from '../service/user.service';
 import { jwtVerify } from 'jose';
 import { EncodedJWTSecretKey } from 'src/environments/environment';
 
-// @Injectable({
-//   providedIn: 'root'
-// })
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthInterceptor implements HttpInterceptor {
 
   constructor(private auth: UserService) { }
