@@ -1,0 +1,38 @@
+<div class="card">
+  <div class="card-body">
+    <!-- <h4 class="card-title">Tickets</h4> -->
+    <div class="table-responsive">
+      <table class="table align-middle text-nowrap">
+        <thead>
+        <tr>
+          <th class="text-dark font-medium fs-4">Title</th>
+          <th class="text-dark font-medium fs-4">Category</th>
+          <th class="text-dark font-medium fs-4">Date</th>
+          <th class="text-dark font-medium fs-4">Status</th>
+          <th class="text-dark font-medium fs-4">Handler</th>
+          <th class="text-dark font-medium fs-4">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor='let ticket of tickets'>
+            <td> {{ticket.title}} </td>
+            <td> {{ticket.category}} </td>
+            <td> {{ticket.date.toLocaleDateString()}} </td>
+            <td>
+              <span class="badge" [ngClass]="{
+                'text-bg-light': ticket.status.toLowerCase()=='unhandled',
+                'text-bg-warning': ticket.status.toLowerCase()=='pending',
+                'text-bg-success': ticket.status.toLowerCase()=='solved',
+              }">{{ticket.status}}</span>
+            </td>
+            <td> {{ticket.handelrId || "None"}} </td>
+            <td class="d-flex gap-2">
+              <button [disabled]="ticket.status.toLowerCase()=='solved'" class="btn btn-primary">Resolve</button>
+              <button class="btn btn-danger">View</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

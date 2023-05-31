@@ -7,7 +7,7 @@ import {
 import { CalendarSchedulerEvent, CalendarSchedulerEventAction, CalendarSchedulerViewComponent, DAYS_IN_WEEK, SchedulerDateFormatter, SchedulerEventTimesChangedEvent, SchedulerViewDay, SchedulerViewHour, SchedulerViewHourSegment, addPeriod, endOfPeriod, startOfPeriod, subPeriod } from 'angular-calendar-scheduler';
 import { addMonths, endOfDay } from 'date-fns';
 import { Subject } from 'rxjs';
-import { AppService } from 'src/app/services/app.service';
+import { AppService } from 'src/app/shared/service/app.service';
 
 
 @Component({

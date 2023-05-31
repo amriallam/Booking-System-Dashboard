@@ -18,13 +18,15 @@ import { CardsComponent } from './card/card.component';
 import { TableComponent } from "./table/table.component";
 import { ListReousrceTypesComponent } from './resource-types/list-reousrce-types/list-reousrce-types.component';
 import { ResourceTypeAttributeDetailsComponent } from './resource-types/resource-type-attribute-details/resource-type-attribute-details.component';
-import { ListResourcesComponent } from './resources/list-resources/list-resources.component';
+import { ListResourcesComponent } from './resources/list-resource/list-resources.component';
 import { CreateResourceTypeComponent } from './resource-types/create-resource-type/create-resource-type.component';
 import { ListRolesComponent } from './roles/list-roles/list-roles.component';
 import { ListScheduleComponent } from './schedule/list-schedule/list-schedule.component';
+import { ListFaqComponent } from './faq/list-faq/list-faq.component';
+import { ListTicketsComponent } from './ticket/list-tickets/list-tickets.component';
+import { AppService } from '../shared/service/app.service';
 
 import * as moment from 'moment';
-import { AppService } from '../services/app.service';
 
 @NgModule({
   imports: [
@@ -52,7 +54,9 @@ import { AppService } from '../services/app.service';
     ListResourcesComponent,
     CreateResourceTypeComponent,
     ListRolesComponent,
-    ListScheduleComponent
+    ListScheduleComponent,
+    ListFaqComponent,
+    ListTicketsComponent,
   ],
   providers: [
     AppService,

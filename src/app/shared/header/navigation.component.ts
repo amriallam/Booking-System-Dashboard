@@ -2,7 +2,7 @@ import { Component, AfterViewInit, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CreateResourceTypeComponent } from 'src/app/component/resource-types/create-resource-type/create-resource-type.component';
-import { UserService } from 'src/app/services/user.service';
+import { UserService } from 'src/app/shared/service/user.service';
 
 @Component({
   selector: 'app-navigation',

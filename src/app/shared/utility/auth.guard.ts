@@ -1,14 +1,12 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { JWTSecretKey } from './../../environments/environment'
+import { EncodedJWTSecretKey } from '../../../environments/environment'
 import { jwtVerify } from 'jose';
 
 export const authGuard: CanActivateFn = async (route, state) => {
   var router = inject(Router);
   var toastService = inject(ToastrService)
-
-  const secret = new TextEncoder().encode(JWTSecretKey);
 
   // const token = localStorage.getItem("token") ==> From Backend
 
@@ -16,7 +14,7 @@ export const authGuard: CanActivateFn = async (route, state) => {
 
   if (!!token) {
     try {
-      await jwtVerify(token, secret);
+      await jwtVerify(token, EncodedJWTSecretKey);
       return true;
     }
     catch {

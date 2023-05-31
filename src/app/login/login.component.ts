@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UserService } from '../services/user.service';
+import { UserService } from '../shared/service/user.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { SignJWT } from "jose"
+import { EncodedJWTSecretKey } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -23,21 +25,24 @@ export class LoginComponent {
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      username: ['', Validators.required],
+      email: ['', Validators.required, Validators.email],
       password: ['', Validators.required]
     });
   }
 
   async login() {
     if (this.loginForm.valid) {
-      const username = this.loginForm.value.username;
+      const email = this.loginForm.value.email;
       const password = this.loginForm.value.password;
-      if (await this.userService.login(username, password)) {
-        this.router.navigateByUrl('/dashboard');
-        this.toastrService.success("Welcome back, Amr", "Successfully logged in")
-      }
-      else
-        this.toastrService.error("Incorrect username or password", "Login failed")
+      this.router.navigateByUrl('/dashboard');
+      this.toastrService.success("Welcome back, Amr", "Successfully logged in")
+      this.userService.login({ email, password }).subscribe({
+        next: async (data) => {
+          var clientToken = await new SignJWT({ sub: data.token }).sign(EncodedJWTSecretKey)
+          localStorage.setItem('token', clientToken);
+        },
+        error: () => this.toastrService.error("Incorrect email or password", "Login failed")
+      })
     }
   }
 }

@@ -23,7 +23,7 @@ import { LoginComponent } from './login/login.component';
     FullComponent,
     NavigationComponent,
     SidebarComponent,
-    LoginComponent
+    LoginComponent,
   ],
   imports: [
     CommonModule,
@@ -42,6 +42,6 @@ import { LoginComponent } from './login/login.component';
       useClass: PathLocationStrategy,
     }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
