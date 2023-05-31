@@ -1,0 +1,80 @@
+<div class="card rounded-2 m-0">
+  <div class="card-body">
+    <div class="d-flex justify-content-between">
+      <h4 class="card-title d-inline">
+        <input
+          *ngIf="TitleEdit; else NativeTitle"
+          class="form-control shadow-none w-75 d-inline me-2"
+          type="text"
+          [(ngModel)]="ResourceTypeName"
+        />
+        <ng-template #NativeTitle>
+          {{ ResourceName }}
+        </ng-template>
+        <i (click)="ToggleTitleEdit()" class="ms-1 fs-4 bi bi-pencil-fill"></i>
+      </h4>
+      <button
+        type="button"
+        class="btn-close"
+        aria-label="Close"
+        (click)="closeModal()"
+      ></button>
+    </div>
+    <div class="table-responsive">
+      <table
+        class="table align-middle text-nowrap table-hover"
+        [formGroup]="form"
+      >
+        <thead>
+          <tr>
+            <th class="text-dark font-medium fs-4">Field Name</th>
+            <th class="text-dark font-medium fs-4">Field Type</th>
+            <th class="text-dark font-medium fs-4">Actions</th>
+          </tr>
+        </thead>
+        <tbody formArrayName="fields">
+          <tr
+            *ngFor="let field of formFields.controls; let i = index"
+            [formGroupName]="i"
+          >
+            <td class="col-4">
+              <input
+                class="form-control"
+                formControlName="input"
+                placeholder="Field Name"
+                required
+              />
+            </td>
+            <td class="col-4">
+              <select class="form-select" formControlName="selectOption">
+                <option value="Number">Number</option>
+                <option value="Text">Text</option>
+                <option value="Boolean">Boolean</option>
+                <option value="Date">Date</option>
+              </select>
+            </td>
+            <td class="col-4">
+              <button
+                *ngIf="i === formFields.controls.length - 1"
+                class="btn btn-warning"
+                (click)="addFields()"
+              >
+                Add
+              </button>
+              <button
+                *ngIf="i !== formFields.controls.length - 1"
+                class="btn btn-danger"
+                (click)="removeField(i)"
+              >
+                Remove
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-primary col-2">Create</button>
+    </div>
+  </div>
+</div>

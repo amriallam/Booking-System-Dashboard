@@ -90,6 +90,14 @@ export const ROUTES: RouteInfo[] = [
     submenu: []
   },
   {
+    path: '/component/resource',
+    title: 'Resource',
+    icon: 'bi bi-menu-button-wide',
+    class: '',
+    extralink: false,
+    submenu: []
+  },
+  {
     path: '/component/schedule',
     title: 'Schedules',
     icon: 'bi bi-clock',

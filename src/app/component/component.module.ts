@@ -18,12 +18,14 @@ import { CardsComponent } from './card/card.component';
 import { TableComponent } from "./table/table.component";
 import { ListReousrceTypesComponent } from './resource-types/list-reousrce-types/list-reousrce-types.component';
 import { ResourceTypeAttributeDetailsComponent } from './resource-types/resource-type-attribute-details/resource-type-attribute-details.component';
-import { ListResourcesComponent } from './resources/list-resource/list-resources.component';
 import { CreateResourceTypeComponent } from './resource-types/create-resource-type/create-resource-type.component';
 import { ListRolesComponent } from './roles/list-roles/list-roles.component';
 import { ListScheduleComponent } from './schedule/list-schedule/list-schedule.component';
 import { ListFaqComponent } from './faq/list-faq/list-faq.component';
 import { ListTicketsComponent } from './ticket/list-tickets/list-tickets.component';
+import { ListResourcesComponent } from './resources/list-resources/list-resources.component';
+import { CreateResourceComponent } from './resources/create-resource/create-resource.component';
+import { ResourceDetailsComponent } from './resources/resource-details/resource-details.component';
 import { AppService } from '../shared/service/app.service';
 
 import * as moment from 'moment';
@@ -50,10 +52,15 @@ import { NullStringPipe } from '../shared/pipes/null-string.pipe';
     ButtonsComponent,
     CardsComponent,
     TableComponent,
+
+    CreateResourceTypeComponent,
     ListReousrceTypesComponent,
     ResourceTypeAttributeDetailsComponent,
+
     ListResourcesComponent,
-    CreateResourceTypeComponent,
+    CreateResourceComponent,
+    ResourceDetailsComponent,
+
     ListRolesComponent,
     ListScheduleComponent,
     ListFaqComponent,

@@ -13,6 +13,7 @@ import { ListRolesComponent } from './roles/list-roles/list-roles.component';
 import { ListScheduleComponent } from './schedule/list-schedule/list-schedule.component';
 import { ListTicketsComponent } from './ticket/list-tickets/list-tickets.component';
 import { ListFaqComponent } from './faq/list-faq/list-faq.component';
+import { ListResourcesComponent } from './resources/list-resources/list-resources.component';
 
 
 export const ComponentsRoutes: Routes = [
@@ -54,6 +55,10 @@ export const ComponentsRoutes: Routes = [
       {
         path: 'resourcetype',
         component: ListReousrceTypesComponent
+      },
+      {
+        path: 'resource',
+        component: ListResourcesComponent
       },
       {
         path: 'role',
