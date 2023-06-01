@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Ticket } from 'src/app/shared/interface/ticket';
+import { Ticket } from '../../models/ticket';
 
 
 @Component({

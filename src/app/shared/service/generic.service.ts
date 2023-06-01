@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { DatabaseDomain } from 'src/environments/environment';
-import { DataResponse } from '../interface/data-response';
+import { DataResponse } from '../../component/models/data-response';
 
 @Injectable({
   providedIn: 'root'
