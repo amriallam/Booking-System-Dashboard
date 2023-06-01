@@ -53,24 +53,8 @@ export const ComponentsRoutes: Routes = [
         component: ButtonsComponent
       },
       {
-        path: 'resourcetype',
-        component: ListReousrceTypesComponent
-      },
-      {
-        path: 'resource',
-        component: ListResourcesComponent
-      },
-      {
         path: 'role',
         component: ListRolesComponent
-      },
-      {
-        path: 'schedule',
-        component: ListScheduleComponent
-      },
-      {
-        path: 'ticket',
-        component: ListTicketsComponent
       },
       {
         path: 'faq',

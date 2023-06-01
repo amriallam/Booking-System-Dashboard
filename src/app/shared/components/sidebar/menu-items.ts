@@ -1,16 +1,16 @@
 import { RouteInfo } from './sidebar.metadata';
 
 export const ROUTES: RouteInfo[] = [
+  {
+    path: 'dashboard',
+    title: 'Dashboard',
+    icon: 'bi bi-speedometer2',
+    class: '',
+    extralink: false,
+    submenu: []
+  },
   // {
-  //   path: '/dashboard',
-  //   title: 'Dashboard',
-  //   icon: 'bi bi-speedometer2',
-  //   class: '',
-  //   extralink: false,
-  //   submenu: []
-  // },
-  // {
-  //   path: '/component/alert',
+  //   path: 'alert',
   //   title: 'Alert',
   //   icon: 'bi bi-bell',
   //   class: '',
@@ -18,7 +18,7 @@ export const ROUTES: RouteInfo[] = [
   //   submenu: []
   // },
   // {
-  //   path: '/component/badges',
+  //   path: 'badges',
   //   title: 'Badges',
   //   icon: 'bi bi-patch-check',
   //   class: '',
@@ -26,7 +26,7 @@ export const ROUTES: RouteInfo[] = [
   //   submenu: []
   // },
   // {
-  //   path: '/component/buttons',
+  //   path: 'buttons',
   //   title: 'Button',
   //   icon: 'bi bi-hdd-stack',
   //   class: '',
@@ -34,7 +34,7 @@ export const ROUTES: RouteInfo[] = [
   //   submenu: []
   // },
   // {
-  //   path: '/component/card',
+  //   path: 'card',
   //   title: 'Card',
   //   icon: 'bi bi-card-text',
   //   class: '',
@@ -42,7 +42,7 @@ export const ROUTES: RouteInfo[] = [
   //   submenu: []
   // },
   // {
-  //   path: '/component/dropdown',
+  //   path: 'dropdown',
   //   title: 'Dropdown',
   //   icon: 'bi bi-menu-app',
   //   class: '',
@@ -50,7 +50,7 @@ export const ROUTES: RouteInfo[] = [
   //   submenu: []
   // },
   // {
-  //   path: '/component/pagination',
+  //   path: 'pagination',
   //   title: 'Pagination',
   //   icon: 'bi bi-dice-1',
   //   class: '',
@@ -58,7 +58,7 @@ export const ROUTES: RouteInfo[] = [
   //   submenu: []
   // },
   // {
-  //   path: '/component/nav',
+  //   path: 'nav',
   //   title: 'Nav',
   //   icon: 'bi bi-pause-btn',
   //   class: '',
@@ -66,7 +66,7 @@ export const ROUTES: RouteInfo[] = [
   //   submenu: []
   // },
   // {
-  //   path: '/component/table',
+  //   path: 'table',
   //   title: 'Table',
   //   icon: 'bi bi-layout-split',
   //   class: '',
@@ -82,7 +82,7 @@ export const ROUTES: RouteInfo[] = [
   //   submenu: []
   // },
   {
-    path: '/component/resourcetype',
+    path: 'resourcetype',
     title: 'Resources Types',
     icon: 'bi bi-menu-app',
     class: '',
@@ -90,7 +90,7 @@ export const ROUTES: RouteInfo[] = [
     submenu: []
   },
   {
-    path: '/component/resource',
+    path: 'resource',
     title: 'Resource',
     icon: 'bi bi-menu-button-wide',
     class: '',
@@ -98,7 +98,7 @@ export const ROUTES: RouteInfo[] = [
     submenu: []
   },
   {
-    path: '/component/schedule',
+    path: 'schedule',
     title: 'Schedules',
     icon: 'bi bi-clock',
     class: '',
@@ -106,7 +106,7 @@ export const ROUTES: RouteInfo[] = [
     submenu: []
   },
   {
-    path: '/component/role',
+    path: 'role',
     title: 'System Roles',
     icon: 'bi bi-people',
     class: '',
@@ -114,7 +114,7 @@ export const ROUTES: RouteInfo[] = [
     submenu: []
   },
   {
-    path: '/component/ticket',
+    path: 'ticket',
     title: 'Tickets',
     icon: 'bi bi-ticket',
     class: '',
@@ -122,7 +122,7 @@ export const ROUTES: RouteInfo[] = [
     submenu: []
   },
   {
-    path: '/component/faq',
+    path: 'faq',
     title: 'FAQ',
     icon: 'bi bi-question',
     class: '',
