@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Role } from './role';
+import { Role } from '../../models/role';
 
 @Component({
   selector: 'app-list-roles',

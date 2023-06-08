@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Login } from '../interface/login';
-import { LoginResponse } from '../interface/logn-response';
 import { apiUrl } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { LoginResponse } from 'src/app/component/models/logn-response';
+import { Login } from 'src/app/component/models/login';
 
 
 @Injectable({

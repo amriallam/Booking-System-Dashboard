@@ -4,15 +4,15 @@ import { CommonModule, LocationStrategy, PathLocationStrategy } from '@angular/c
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr'
 
 import { Approutes } from './app-routing.module';
 
-import { FullComponent } from './layouts/full/full.component';
-import { NavigationComponent } from './shared/header/navigation.component';
-import { SidebarComponent } from './shared/sidebar/sidebar.component';
+import { FullComponent } from './layouts/full.component';
+import { NavigationComponent } from './shared/components/header/navigation.component';
+import { SidebarComponent } from './shared/components/sidebar/sidebar.component';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 

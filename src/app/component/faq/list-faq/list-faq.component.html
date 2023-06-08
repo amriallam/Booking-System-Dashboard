@@ -1,1 +1,14 @@
-<p>list-faq works!</p>
+<div class="d-flex flex-column gap-2" ngbAccordion [closeOthers]="true">
+	<div ngbAccordionItem *ngFor="let faq of faqs" >
+		<h2 ngbAccordionHeader>
+			<button class="bg-light" ngbAccordionButton>{{ faq.question }}</button>
+		</h2>
+		<div class="card" ngbAccordionCollapse>
+			<div ngbAccordionBody>
+				<ng-template>
+          {{faq.answer}}
+				</ng-template>
+			</div>
+		</div>
+	</div>
+</div>
