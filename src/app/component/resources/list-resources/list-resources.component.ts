@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { ResourceDetailsComponent } from "../resource-details/resource-details.component";
 import { Resource } from "../../models/Resouce";
@@ -10,6 +10,7 @@ import { Resource } from "../../models/Resouce";
 export class ListResourcesComponent implements OnInit {
 
   constructor(private modal: NgbModal) { }
+  searchResourceType: string = "";
   Resources: Resource[] = [
     {
       Id: "1",
@@ -45,5 +46,17 @@ export class ListResourcesComponent implements OnInit {
       centered: true,
     });
     modelRef.componentInstance.ResourceType = Resource;
+  }
+  getResourceTypes(): string[] {
+    return Array.from(new Set(this.Resources.map((resource) => resource.ResourceType)));
+  }
+  getResources(): Resource[] {
+    if (this.searchResourceType) {
+      return this.Resources.filter((resource) =>
+        resource.ResourceType.toLowerCase().includes(this.searchResourceType.toLowerCase())
+      );
+    } else {
+      return this.Resources;
+    }
   }
 }

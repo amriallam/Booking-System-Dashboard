@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Login } from '../interface/login';
 import { LoginResponse } from '../interface/logn-response';
-import { DatabaseDomain } from 'src/environments/environment';
+import { apiUrl } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 
 
@@ -10,7 +10,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class UserService {
 
-  baseUrl: string = DatabaseDomain;
+  baseUrl: string = apiUrl;
 
   constructor(private http: HttpClient) { }
 

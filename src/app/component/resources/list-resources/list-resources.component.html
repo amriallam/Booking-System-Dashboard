@@ -2,6 +2,15 @@
   <div class="card-body">
     <h4 class="card-title">Booking Resources</h4>
     <h5 class="card-subtitle text-muted">Overview of the current available resources</h5>
+
+    <!-- Add the filter by resource type select box -->
+    <div class="mb-3">
+      <select class="form-select" [(ngModel)]="searchResourceType" placeholder="Search by resource type">
+        <option value="">All</option>
+        <option *ngFor="let resourceType of getResourceTypes()" [value]="resourceType">{{ resourceType }}</option>
+      </select>
+    </div>
+
     <div class="table-responsive">
       <table class="table align-middle text-nowrap">
         <thead>
@@ -14,13 +23,15 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let resource of Resources | slice: (page-1) * pageSize : page * pageSize" >
-            <td>{{resource.Id}}</td>
-            <td>{{resource.Name}}</td>
-            <td>{{resource.ResourceType}}</td>
-            <td>{{resource.Price}}</td>
+          <tr *ngFor="let resource of getResources() | slice: (page-1) * pageSize : page * pageSize">
+            <td>{{ resource.Id }}</td>
+            <td>{{ resource.Name }}</td>
+            <td>{{ resource.ResourceType }}</td>
+            <td>{{ resource.Price }}</td>
             <td class="d-flex gap-2">
-              <button class="btn btn-primary"> <a (click)="openModal(re)">Details</a> </button>
+              <button class="btn btn-primary">
+                <a (click)="openModal(resource)">Details</a>
+              </button>
               <button class="btn btn-warning">Schedule</button>
               <button class="btn btn-success">Update</button>
               <button class="btn btn-danger">Delete</button>
@@ -29,10 +40,10 @@
         </tbody>
       </table>
       <ngb-pagination
-      [collectionSize]="Resources.length"
-      [(page)]="page"
-      [(pageSize)]="pageSize"
-    ></ngb-pagination>
+        [collectionSize]="getResources().length"
+        [(page)]="page"
+        [(pageSize)]="pageSize"
+      ></ngb-pagination>
     </div>
   </div>
 </div>
