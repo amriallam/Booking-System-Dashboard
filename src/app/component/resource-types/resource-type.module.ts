@@ -6,7 +6,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListReousrceTypesComponent } from './list-reousrce-types/list-reousrce-types.component';
 import { ResourceTypeAttributeDetailsComponent } from './resource-type-attribute-details/resource-type-attribute-details.component';
 import { CreateResourceTypeComponent } from './create-resource-type/create-resource-type.component';
-
+import { ResourceTypeService } from '../../services/resource-type.service';
+import { EditResourceTypeComponent } from './edit-resource-type/edit-resource-type.component';
 const routes: Routes = [
   { path: "", component: ListReousrceTypesComponent }
 ];
@@ -16,13 +17,15 @@ const routes: Routes = [
   declarations: [
     ListReousrceTypesComponent,
     ResourceTypeAttributeDetailsComponent,
-    CreateResourceTypeComponent
+    CreateResourceTypeComponent,
+    EditResourceTypeComponent
   ],
   imports: [
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
     RouterModule.forChild(routes),
+    
   ]
 })
 export class ResourceTypeModule { }

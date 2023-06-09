@@ -3,7 +3,7 @@ import { Routes } from '@angular/router';
 import { FullComponent } from './layouts/full.component';
 import { LoginComponent } from './login/login.component';
 import { authGuard } from './shared/utility/auth.guard';
-
+import { EditResourceTypeComponent } from './component/resource-types/edit-resource-type/edit-resource-type.component';
 
 export const Approutes: Routes = [
   {
@@ -27,6 +27,10 @@ export const Approutes: Routes = [
       {
         path: 'resourcetype',
         loadChildren: () => import('./component/resource-types/resource-type.module').then(m => m.ResourceTypeModule)
+      },
+      {
+        path: 'editresourcetype/:id',
+        component: EditResourceTypeComponent
       },
       {
         path: 'resource',

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { ResourceTypeService } from "../../../services/resource-type.service";
 
 @Component({
   selector: 'app-create-resource-type',
@@ -10,11 +11,22 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 export class CreateResourceTypeComponent {
   form: FormGroup;
   ResourceTypeName: string;
-  constructor(private formBuilder: FormBuilder, public activeModal: NgbActiveModal) {
+  constructor(private formBuilder: FormBuilder, public activeModal: NgbActiveModal,
+    private ResourceTypeService: ResourceTypeService) {
     this.form = formBuilder.group({});
     this.ResourceTypeName = 'New Resource Type';
   }
 
+  createResourceType() {
+    this.ResourceTypeService.createResourceType(
+      // add parameters to the function called data
+      // pass the data parameter to the post function
+      // return the result of the post function
+      JSON.stringify(this.ResourceTypeName)
+    ).subscribe((response: any) => {
+      console.log(response);
+    });
+    }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
