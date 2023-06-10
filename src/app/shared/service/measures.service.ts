@@ -6,6 +6,7 @@ import { ResourceMeasure } from 'src/app/component/models/ResourceMeasure';
 import { DataResponseObeject } from 'src/app/component/models/data-response-object';
 import { Subject } from 'rxjs';
 import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
+import { ResouceTypeSoldPerMonth } from 'src/app/component/models/resouce-type-sold-per-month';
 
 @Injectable({
   providedIn: 'root'
@@ -39,6 +40,10 @@ export class MeasuresService {
 
   getTop5SellingResources(fromDate: string, toDate: string) {
     return this.http.get<DataResponse<ResourceMeasure>>(`${apiUrl + this.reportController}Top5Resources?startDate=${fromDate}&endDate=${toDate}`)
+  }
+
+  GetResourceTypesSalesPerMonth(fromDate: string, toDate: string) {
+    return this.http.get<DataResponse<ResouceTypeSoldPerMonth>>(`${apiUrl + this.reportController}ResTypeSoldPerMonth?startDate=${fromDate}&endDate=${toDate}`)
   }
 
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { isThisSecond } from 'date-fns';
 import {
   ApexAxisChartSeries,
   ApexChart,
@@ -11,7 +12,7 @@ import {
   ApexTheme,
   ApexGrid
 } from 'ng-apexcharts';
-
+import { MeasuresService } from 'src/app/shared/service/measures.service';
 export type salesChartOptions = {
   series: ApexAxisChartSeries;
   chart: ApexChart;
@@ -32,25 +33,13 @@ export type salesChartOptions = {
   templateUrl: './sales-ratio.component.html'
 })
 export class SalesRatioComponent implements OnInit {
-
+  categoriesData: number[] = [];
+  seriesData: { name: string, data: number[] }[] = []
   @ViewChild("chart") chart: ChartComponent = Object.create(null);
   public salesChartOptions: Partial<salesChartOptions>;
-  constructor() {
+  constructor(private measureService: MeasuresService) {
     this.salesChartOptions = {
-      series: [
-        {
-          name: "Iphone 13",
-          data: [24.5, 28.3, 42.7, 32, 34.9, 48.6, 40],
-        },
-        {
-          name: "Oneplue 9",
-          data: [8.9, 5.8, 21.9, 5.8, 16.5, 6.5, 14.5],
-        },
-        {
-          name: "Huwaei",
-          data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-        },
-      ],
+      series: this.seriesData,
       chart: {
         fontFamily: 'Rubik,sans-serif',
         height: 250,
@@ -66,7 +55,7 @@ export class SalesRatioComponent implements OnInit {
         }
       },
       dataLabels: {
-        enabled: false
+        enabled: true
       },
       colors: ["#137eff", "#6c757d", "#7b1aff", "#1e5eff", "#0073ff", "#00a5ff"],
       stroke: {
@@ -80,20 +69,7 @@ export class SalesRatioComponent implements OnInit {
         size: 3
       },
       xaxis: {
-        categories: [
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6",
-          "7",
-          "8",
-          "9",
-          "10",
-          "11",
-          "12",
-        ],
+        categories: this.categoriesData,
       },
       tooltip: {
         theme: 'light'
@@ -102,6 +78,11 @@ export class SalesRatioComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const yearStart = `${new Date().getFullYear()}-01-01`;
+    const yearEnd = `${new Date().getFullYear() + 1}-01-01`;
+    this.measureService.GetResourceTypesSalesPerMonth(yearStart, yearEnd).subscribe(data => {
+      console.log(data.data);
+    })
   }
 
 }
