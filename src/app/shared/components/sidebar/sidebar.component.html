@@ -1,6 +1,6 @@
-<nav class="sidebar-nav">
+<nav class="sidebar-nav my-2">
   <div class="sidebar-scroller">
-    <ul id="sidebarnav" class="sidebar-nav-items">
+    <ul id="sidebarnav">
       <li class="sidebar-item" [class.active]="showMenu === sidebarnavItem.title"
         *ngFor="let sidebarnavItem of sidebarnavItems"
         [routerLinkActive]="sidebarnavItem.submenu.length != 0 ? '' : 'active'">

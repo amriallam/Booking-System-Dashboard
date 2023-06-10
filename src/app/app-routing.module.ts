@@ -37,17 +37,17 @@ export const Approutes: Routes = [
         loadChildren: () => import('./component/ticket/ticket.module').then(m => m.TicketModule)
       },
       {
+        path: 'schedule',
+        loadChildren: () => import('./component/schedule/schedule.module').then(m => m.ScheduleModule)
+      },
+      {
         path: 'role',
         loadChildren: () => import('./component/roles/role.module').then(m => m.RoleModule)
       },
       {
         path: 'faq',
         loadChildren: () => import('./component/faq/faq.module').then(m => m.FaqModule)
-      },
-      {
-        path: 'schedule',
-        loadChildren: () => import('./component/schedule/schedule.module').then(m => m.ScheduleModule)
-      },
+      }
     ]
   },
   {

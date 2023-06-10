@@ -1,11 +1,9 @@
-.sidebar-nav {
-  height: 100%;
-  overflow-y: auto;
-}
-
 .sidebar-scroller {
-  overflow-y: auto;
+  max-height: 90vh;
+  overflow-y: hidden;
   overflow-x:hidden;
+  scrollbar-width: thin;
+  scrollbar-color: #6969dd #e0e0e0 ;
 }
 
 

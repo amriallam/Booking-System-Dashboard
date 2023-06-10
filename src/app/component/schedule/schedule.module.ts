@@ -1,33 +1,34 @@
-import { DataService } from "./data.service";
-import { FormsModule } from "@angular/forms";
-import { NgModule } from "@angular/core";
-import { DayPilotModule } from "@daypilot/daypilot-lite-angular";
-import { HttpClientModule } from "@angular/common/http";
-import { ScheduleComponent } from "./view-schedule/schedule.component";
-import { RouterModule, Routes } from "@angular/router";
-import { DetailComponent } from './detail/detail.component';
-import { CommonModule } from "@angular/common";
-import { ConfimMoveComponent } from './confim-move/confim-move.component';
-
+import { LOCALE_ID, NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Routes, RouterModule } from "@angular/router";
+import { ListScheduleComponent } from './list-schedule/list-schedule.component';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { SchedulerModule } from 'angular-calendar-scheduler';
+import { CalendarModule, DateAdapter, MOMENT } from 'angular-calendar';
+import { AppService } from 'src/app/shared/service/app.service';
+import * as moment from 'moment';
 
 const routes: Routes = [
-  { path: "", component: ScheduleComponent }
+  { path: "", component: ListScheduleComponent }
 ];
 
 @NgModule({
   declarations: [
-    ScheduleComponent,
-    DetailComponent,
-    ConfimMoveComponent
+    ListScheduleComponent
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    FormsModule,
-    HttpClientModule,
-    DayPilotModule
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory
+    }),
+    SchedulerModule.forRoot({ locale: 'en', headerDateFormat: 'daysRange', logEnabled: true }),
   ],
-  exports: [ScheduleComponent, DetailComponent],
-  providers: [DataService]
+  providers: [
+    AppService,
+    { provide: LOCALE_ID, useValue: 'en-US' },
+    { provide: MOMENT, useValue: moment }
+  ],
 })
 export class ScheduleModule { }
