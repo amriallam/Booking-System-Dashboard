@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ServiceStatus } from '../../models/ServiceStatus';
 import { Service } from '../../models/Service';
@@ -18,10 +18,11 @@ export class UpdateServiceComponent {
   updateService?: Service;
   service?:Service ;
   constructor(private formBuilder: FormBuilder,
-    private serviceService : ServiceService,
+    @Inject(ServiceService) private serviceService : ServiceService,
     public activeModal: NgbActiveModal
     ) {
     this.addServiceForm = this.formBuilder.group({
+      id: [''],
       name: ['', Validators.required],
       description: ['', [Validators.required]],
       status: ['', [Validators.required]],
@@ -29,7 +30,10 @@ export class UpdateServiceComponent {
   }
   ngOnInit(){
     this.serviceService.getById(+this.serviceId).subscribe(res =>
-      this.service= res.data[0]
+      {
+        this.service= res.data[0];
+        this.addServiceForm.setValue(this.service);
+      }
       )
   }
   onSubmit() {

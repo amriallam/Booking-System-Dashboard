@@ -11,7 +11,7 @@ import { DetailsServiceComponent } from './details-service/details-service.compo
 import { ReactiveFormsModule } from '@angular/forms';
 
 const routes : Routes =[
-  {path:"", component: FilterServiceComponent}
+  {path:"", component: ListServiceComponent}
 ]
 
 @NgModule({

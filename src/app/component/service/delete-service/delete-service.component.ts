@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
 import { Service } from '../../models/Service';
 import { ActivatedRoute } from '@angular/router';
 import { ServiceService } from 'src/app/shared/service/service.service';
@@ -16,7 +16,7 @@ export class DeleteServiceComponent {
 
   service: Service | undefined;
   constructor(private route: ActivatedRoute,
-                private serviceService :ServiceService,
+                @Inject(ServiceService) private serviceService :ServiceService,
                 private activeModal : NgbActiveModal){}
   ngOnInit(){
     this.serviceService.getById(+this.serviceId).subscribe(res =>{

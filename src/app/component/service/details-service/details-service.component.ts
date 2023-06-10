@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Inject, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ServiceService } from 'src/app/shared/service/service.service';
 import { Service } from '../../models/Service';
@@ -13,7 +13,7 @@ export class DetailsServiceComponent {
   @Input() serviceId: string = '';
   service: Service | undefined;
   constructor(private route: ActivatedRoute,
-                private serviceService :ServiceService,
+                @Inject(ServiceService) private serviceService :ServiceService,
                 private activeModal : NgbActiveModal){}
   ngOnInit(){
     this.serviceService.getById(+this.serviceId).subscribe(res =>{

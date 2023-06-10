@@ -1,23 +1,23 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ServiceService } from 'src/app/shared/service/service.service';
 import { ServiceStatus } from '../../models/ServiceStatus';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Service } from '../../models/Service';
-import { compareAsc } from 'date-fns';
+import { ServiceService } from 'src/app/shared/service/service.service';
 
 @Component({
   selector: 'app-create-service',
   templateUrl: './create-service.component.html',
-  styleUrls: ['./create-service.component.scss']
+  styleUrls: ['./create-service.component.css']
 })
 export class CreateServiceComponent {
   @Output() serviceAdded: EventEmitter<void> = new EventEmitter<void>();
   addServiceForm: FormGroup ;
   serviceStatus : ServiceStatus =0;
+  
   service?:Service ;
   constructor(private formBuilder: FormBuilder,
-    private serviceService : ServiceService,
+    @Inject(ServiceService) private serviceService : ServiceService,
     public activeModal: NgbActiveModal
     ) {
     this.addServiceForm = this.formBuilder.group({
@@ -39,6 +39,7 @@ export class CreateServiceComponent {
     {
       console.log(this.service);
       this.serviceService.AddService(this.service).subscribe(res=>{
+        
         this.serviceAdded.emit();
         location.reload();
       })

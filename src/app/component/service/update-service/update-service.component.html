@@ -2,7 +2,7 @@
     <div class="card-body">
       <div class="d-flex justify-content-between">
         <h4 class="card-title d-inline">
-            Add Service
+            Update Service
         </h4>
         <button
           type="button"
@@ -12,6 +12,9 @@
         ></button>
       </div>
       <form [formGroup]="addServiceForm" (ngSubmit)="onSubmit()">
+        <div>
+          <input hidden formControlName="id"  value={{service?.id}} />
+        </div>
           <div class="m-3">
             <input type="text" id="name" formControlName="name" class="form-control" placeholder="Name" value={{service?.name}}>
             <div *ngIf="getControl('name')?.errors && getControl('name')?.touched">

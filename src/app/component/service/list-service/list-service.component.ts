@@ -1,7 +1,6 @@
-import { Component , OnInit , OnChanges, Input } from '@angular/core';
+import { Component , OnInit , OnChanges, Input, Inject } from '@angular/core';
 import { ServiceService } from 'src/app/shared/service/service.service';
 import { Service } from '../../models/Service';
-import { right } from '@popperjs/core';
 import { ServiceStatus } from '../../models/ServiceStatus';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { UpdateServiceComponent } from '../update-service/update-service.component';
@@ -11,28 +10,37 @@ import { DetailsServiceComponent } from '../details-service/details-service.comp
 @Component({
   selector: 'app-list-service',
   templateUrl: './list-service.component.html',
-  styleUrls: ['./list-service.component.scss']
+  styleUrls: ['./list-service.component.css']
 })
 export class ListServiceComponent {
   services : Service[]=[];
-  @Input() name: string = '';
-  constructor(private serviceService :ServiceService ,private modal: NgbModal){
-
-  }
+  selectedStatus? : ServiceStatus ;
+  dataExist:boolean = true;
+  constructor(@Inject(ServiceService) private serviceService :ServiceService ,private modal: NgbModal){}
   ngOnInit(){
+    this.loadServices();
   }
   ngOnChanges() {
-    if(this.name ==""){
+    this.loadServices();
+  }
+  loadServices(){
+    if(this.selectedStatus ==null){
       this.serviceService.getAll().subscribe((res)=>{
         this.services= res.data;
+        if(this.services==null ||this.services.length ==0){
+          this.dataExist = false;
+        }
       })
     }
     else{
-      this.serviceService.getServiceByName(this.name).subscribe((res)=>{
+      this.serviceService.getByResourceType(this.selectedStatus).subscribe((res)=>{
         this.services= res.data;
-        console.log(res)
+        if(this.services.length ==0){
+          this.dataExist = false;
+        }
       })
     }
+    
   }
 
   openDetailsModal(service :Service){
