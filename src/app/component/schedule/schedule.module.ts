@@ -6,7 +6,6 @@ import { ScheduleComponent } from "./view-schedule/schedule.component";
 import { RouterModule, Routes } from "@angular/router";
 import { DetailComponent } from './detail/detail.component';
 import { CommonModule } from "@angular/common";
-import { ConfimMoveComponent } from './confim-move/confim-move.component';
 
 
 const routes: Routes = [
@@ -16,8 +15,6 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     ScheduleComponent,
-    DetailComponent,
-    ConfimMoveComponent
   ],
   imports: [
     CommonModule,
@@ -26,6 +23,6 @@ const routes: Routes = [
     HttpClientModule,
     DayPilotModule
   ],
-  exports: [ScheduleComponent, DetailComponent]
+  exports: [ScheduleComponent]
 })
 export class ScheduleModule { }
