@@ -40,7 +40,7 @@
               </div>
             </div>
 
-            <div class="m-3">
+            <!-- <div class="m-3">
               <select class="form-select" formControlName="resourceType" multiple >
                 <option value="" disabled>select resource Type </option>
                 <option *ngFor="let type of resourceTypes " [value]="type.id">{{type.name}}</option>
@@ -48,7 +48,7 @@
               <div *ngIf="getControl('resourceType')?.errors && getControl('resourceType')?.touched">
                 <small class="text-danger d-flex align-items-center fs-5" *ngIf="getControl('resourceType')?.errors?.['required']">Please select a resourceType</small>
               </div>
-            </div> 
+            </div>  -->
           <button class="btn btn-info text-center w-100 my-3" type="submit">Update</button>
       </form>
 

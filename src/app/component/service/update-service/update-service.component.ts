@@ -5,6 +5,7 @@ import { Service } from '../../models/Service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ServiceService } from 'src/app/shared/service/service.service';
 import { ResourceType } from '../../models/ResourceType';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-update-service',
@@ -22,14 +23,15 @@ export class UpdateServiceComponent {
   service?:Service ;
   constructor(private formBuilder: FormBuilder,
     @Inject(ServiceService) private serviceService : ServiceService,
-    public activeModal: NgbActiveModal
+    public activeModal: NgbActiveModal,
+    private toastr: ToastrService
     ) {
     this.addServiceForm = this.formBuilder.group({
       id: [''],
       name: ['', Validators.required],
       description: ['', [Validators.required]],
       status: ['', [Validators.required]],
-      resourceType: ['',[Validators.required]]
+      // resourceType: ['',[Validators.required]]
     });
   }
   ngOnInit(){
@@ -40,12 +42,11 @@ export class UpdateServiceComponent {
       });
       this.serviceService.GetResourceType().subscribe(res =>{
         this.resourceTypes= res.data;
-        console.log(this.resourceTypes);
+        // console.log(this.resourceTypes);
       });
   }
   onSubmit() {
     if (this.addServiceForm.invalid) {
-      alert("knjdv");
       return;
 
     }
@@ -58,6 +59,7 @@ export class UpdateServiceComponent {
     {
       this.serviceService.UpdateService(+this.serviceId , this.updateService).subscribe(res=>{
         this.serviceAdded.emit();
+        this.showToast();
         location.reload();
       })
     }
@@ -73,5 +75,8 @@ export class UpdateServiceComponent {
   }
   closeModal(){
     this.activeModal.close();
+  }
+  showToast() {
+    this.toastr.success('update , Done!', 'Success');
   }
 }
