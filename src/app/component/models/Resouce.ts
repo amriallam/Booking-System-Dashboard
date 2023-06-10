@@ -1,8 +1,10 @@
 export class Resource {
   constructor(
-    public Id: string,
-    public Name: string,
-    public ResourceType: string,
-    public Price: number
+    public id: string,
+    public name: string,
+    public resourceTypeId: number,
+    public price: number,
+    public resourceTypeName: string,
+    public attributes: []
   ) { }
 }

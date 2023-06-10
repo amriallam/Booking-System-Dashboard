@@ -20,7 +20,7 @@
           <h4 class="card-title">{{rt.name}} </h4>
           <!-- <p class="card-text"> {{rt.Description}} </p> -->
           <a (click)="openModal(rt)" class="btn btn-primary me-2 mb-2">Attributes</a>
-          <a [routerLink]="'/component/resources/'+rt.Id" class="btn btn-primary  me-2 mb-2">Resources</a>
+          <a [routerLink]="'/resourcetype/'+ rt.id +'/resources'" class="btn btn-primary  me-2 mb-2">Resources</a>
           <a [routerLink]="'/editresourcetype/' + rt.id" class="btn btn-info me-2 mb-2">Edit</a>
           <a class="btn btn-danger me-2 mb-2"
             (click)="deleteResourceType(rt.id)"

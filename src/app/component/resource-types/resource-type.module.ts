@@ -8,6 +8,7 @@ import { ResourceTypeAttributeDetailsComponent } from './resource-type-attribute
 import { CreateResourceTypeComponent } from './create-resource-type/create-resource-type.component';
 import { ResourceTypeService } from '../../services/resource-type.service';
 import { EditResourceTypeComponent } from './edit-resource-type/edit-resource-type.component';
+import { ResourceTypeAttributeCreateComponent } from './resource-type-attribute-create/resource-type-attribute-create.component';
 const routes: Routes = [
   { path: "", component: ListReousrceTypesComponent }
 ];
@@ -18,7 +19,8 @@ const routes: Routes = [
     ListReousrceTypesComponent,
     ResourceTypeAttributeDetailsComponent,
     CreateResourceTypeComponent,
-    EditResourceTypeComponent
+    EditResourceTypeComponent,
+    ResourceTypeAttributeCreateComponent
   ],
   imports: [
     FormsModule,

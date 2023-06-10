@@ -37,6 +37,7 @@ export class ListReousrceTypesComponent implements OnInit {
       centered: true,
     });
     modelRef.componentInstance.ResourceType = ResourceType;
+    
   }
 
   createResourceType() {
