@@ -7,21 +7,20 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-details-service',
   templateUrl: './details-service.component.html',
-  // styleUrls: ['./details-service.component.scss']
 })
 export class DetailsServiceComponent {
-  @Input() serviceId: string = '';
+  @Input() serviceId: number = 0;
   service: Service | undefined;
   constructor(private route: ActivatedRoute,
                 @Inject(ServiceService) private serviceService :ServiceService,
                 private activeModal : NgbActiveModal){}
   ngOnInit(){
-    this.serviceService.getById(+this.serviceId).subscribe(res =>{
+    this.serviceService.getById(this.serviceId).subscribe(res =>{
         this.service=res.data[0]
     })
   }
   reloadServiceList(){
-    this.serviceService.getById(+this.serviceId).subscribe(res =>{
+    this.serviceService.getById(this.serviceId).subscribe(res =>{
       this.service=res.data[0]
   })
   }

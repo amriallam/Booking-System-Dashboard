@@ -4,6 +4,7 @@ import { ServiceStatus } from '../../models/ServiceStatus';
 import { Service } from '../../models/Service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ServiceService } from 'src/app/shared/service/service.service';
+import { ResourceType } from '../../models/ResourceType';
 
 @Component({
   selector: 'app-update-service',
@@ -15,6 +16,8 @@ export class UpdateServiceComponent {
   @Output() serviceAdded: EventEmitter<void> = new EventEmitter<void>();
   addServiceForm: FormGroup ;
   serviceStatus: ServiceStatus = ServiceStatus.Active;
+  resourceTypes : ResourceType[]=[];
+
   updateService?: Service;
   service?:Service ;
   constructor(private formBuilder: FormBuilder,
@@ -26,6 +29,7 @@ export class UpdateServiceComponent {
       name: ['', Validators.required],
       description: ['', [Validators.required]],
       status: ['', [Validators.required]],
+      resourceType: ['',[Validators.required]]
     });
   }
   ngOnInit(){
@@ -33,8 +37,11 @@ export class UpdateServiceComponent {
       {
         this.service= res.data[0];
         this.addServiceForm.setValue(this.service);
-      }
-      )
+      });
+      this.serviceService.GetResourceType().subscribe(res =>{
+        this.resourceTypes= res.data;
+        console.log(this.resourceTypes);
+      });
   }
   onSubmit() {
     if (this.addServiceForm.invalid) {
