@@ -9,9 +9,6 @@
         </h4>
       </div> -->
 
-      <h4 class="card-title d-inline">
-        {{schedule.id}}
-      </h4>
       <!--
       <ng-template #EditTitleTrue>
         <h4 class="card-title d-inline">
@@ -27,26 +24,13 @@
     <div class="table-responsive">
       <table class="table align-middle text-nowrap table-hover">
         <thead>
-          <th class="text-dark font-medium fs-4"></th>
-          <th class="text-dark font-medium fs-4"></th>
-          <th class="text-dark font-medium fs-4"></th>
+          <th *ngFor="let key of objectKeys(schedule)"
+            class="text-dark font-medium fs-4"></th>
         </thead>
         <tbody>
-          <tr>
-            <td>Day</td>
-            <td>{{schedule.start.value.split("T")[0]}}</td>
-          </tr>
-          <tr>
-            <td>Start Time</td>
-            <td>{{schedule.start.value.split("T")[1]}}</td>
-          </tr>
-          <tr>
-            <td>End Time</td>
-            <td>{{schedule.end.value.split("T")[1]}}</td>
-          </tr>
-          <tr>
-            <td>Description</td>
-            <td>{{schedule.text}}</td>
+          <tr *ngFor="let key of objectKeys(schedule)">
+            <td>{{key}}</td>
+            <td>{{schedule[key]}}</td>
           </tr>
         </tbody>
       </table>

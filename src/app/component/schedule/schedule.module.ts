@@ -1,4 +1,3 @@
-import { DataService } from "./data.service";
 import { FormsModule } from "@angular/forms";
 import { NgModule } from "@angular/core";
 import { DayPilotModule } from "@daypilot/daypilot-lite-angular";
@@ -27,7 +26,6 @@ const routes: Routes = [
     HttpClientModule,
     DayPilotModule
   ],
-  exports: [ScheduleComponent, DetailComponent],
-  providers: [DataService]
+  exports: [ScheduleComponent, DetailComponent]
 })
 export class ScheduleModule { }

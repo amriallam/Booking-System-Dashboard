@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { apiUrl } from 'src/environments/environment';
 import { Schedule } from 'src/app/component/models/schedule';
 import { DataResponse } from 'src/app/component/models/data-response';
+import { BookingItem } from 'src/app/component/models/BookingItem';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +18,12 @@ export class ScheduleService {
     )
   }
 
-  GetAll() {
+  GetAllSchedules() {
     return this.http.get<DataResponse<Schedule>>(apiUrl + "ScheduleItem/GetAll")
+  }
+
+  GetAllBookings() {
+    return this.http.get<DataResponse<BookingItem>>("https://localhost:7158/api/ClientBooking")
   }
 
   EditScheduleItem(scheduleId: number, day: string, newStartHour: number, newStartMinute: number, newEndHour: number, newEndMinute: number) {

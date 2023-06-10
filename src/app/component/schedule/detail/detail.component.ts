@@ -7,7 +7,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./detail.component.scss']
 })
 export class DetailComponent {
-
+  objectKeys = Object.keys;
   schedule: any;
   TitleEdit: boolean = false;
   constructor(private modalref: NgbActiveModal) { }
@@ -23,4 +23,5 @@ export class DetailComponent {
   closeModal() {
     this.modalref.close()
   }
+
 }

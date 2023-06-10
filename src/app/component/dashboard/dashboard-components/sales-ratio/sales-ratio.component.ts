@@ -46,19 +46,29 @@ export class SalesRatioComponent implements OnInit {
           name: "Oneplue 9",
           data: [8.9, 5.8, 21.9, 5.8, 16.5, 6.5, 14.5],
         },
+        {
+          name: "Huwaei",
+          data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+        },
       ],
       chart: {
         fontFamily: 'Rubik,sans-serif',
         height: 250,
-        type: 'line',
+        type: 'area',
+        stacked: false,
+        zoom: {
+          type: "x",
+          enabled: true,
+          autoScaleYaxis: true
+        },
         toolbar: {
-          show: false
+          autoSelected: "zoom"
         }
       },
       dataLabels: {
         enabled: false
       },
-      colors: ["#137eff", "#6c757d"],
+      colors: ["#137eff", "#6c757d", "#7b1aff", "#1e5eff", "#0073ff", "#00a5ff"],
       stroke: {
         curve: 'smooth',
         width: '2',
@@ -79,10 +89,14 @@ export class SalesRatioComponent implements OnInit {
           "6",
           "7",
           "8",
+          "9",
+          "10",
+          "11",
+          "12",
         ],
       },
       tooltip: {
-        theme: 'dark'
+        theme: 'light'
       }
     };
   }

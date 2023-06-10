@@ -1,7 +1,5 @@
-export class DataResponse<T> {
-  constructor(
-    public statusCode: number,
-    public message: string,
-    public data: T[]
-  ) { }
+export interface DataResponse<T> {
+  statusCode: number,
+  message: string,
+  data: T[]
 }

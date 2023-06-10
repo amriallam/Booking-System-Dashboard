@@ -1,8 +1,6 @@
-export class Schedule {
-  constructor(
-    public scheduleId: number,
-    public day: string,
-    public startTime: string,
-    public endTime: string,
-  ) { }
+export interface Schedule {
+  scheduleId: number,
+  day: string,
+  startTime: string,
+  endTime: string,
 }
