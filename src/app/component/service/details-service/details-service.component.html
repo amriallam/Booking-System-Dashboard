@@ -1,0 +1,29 @@
+
+
+<div class="card rounded-2 m-0">
+  <div class="card-body">
+    <div class="d-flex justify-content-between">
+      <h4 class="card-title d-inline">
+          Details for Service
+      </h4>
+      <button
+        type="button"
+        class="btn-close"
+        aria-label="Close"
+        (click)="closeModal()"
+      ></button>
+    </div>
+    <section class="">
+          <div class="card text-center">
+            <div class="card-body">
+              <h4 class="card-title">
+                {{ service?.name }}
+              </h4>
+              <p class="card-text">
+                {{ service?.description }}
+              </p>
+            </div>
+          </div>
+    </section>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+<div class="m-3 row">
+
+    <select class="form-select" [(ngModel)]="searchServiceName" placeholder="Search by Service Name">
+      <option value="">All</option>
+      <option *ngFor="let name of names " [value]="name">{{name}}</option>
+    </select>
+
+<section class="mt-2">
+  <app-list-service [name]="searchServiceName" ></app-list-service>
+</section>
