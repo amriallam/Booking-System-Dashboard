@@ -23,14 +23,14 @@ export class ResourceDetailsComponent implements OnInit {
   getResourceDetails(id: number) {
     this.ResourceDetailsService.getResourceDetails(id).subscribe((response: any) => {
       this.newDetails = response.data;
-      console.log(this.newDetails);
+      // console.log(this.newDetails);
       return this.newDetails;
     });
   }
 
   ngOnInit(): void {
-    console.log(this.ResourceType);
-    console.log(this.ResourceType.id);
+    // console.log(this.ResourceType);
+    // console.log(this.ResourceType.id);
     this.getResourceDetails(this.ResourceType.id);
   }
 

@@ -2,7 +2,7 @@ import { Component, Input } from "@angular/core";
 import { FormArray, FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 import { ResourceTypeService } from "../../../services/resource-type.service";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute,Router } from "@angular/router";
 import { ListTicketsComponent } from "../../ticket/list-tickets/list-tickets.component";
 
 @Component({
@@ -19,7 +19,8 @@ export class EditResourceTypeComponent {
   constructor(
     private formBuilder: FormBuilder,
     private ResourceTypeService: ResourceTypeService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {
     this.form = formBuilder.group({});
     this.ResourceTypeName = "New Resource Type";
@@ -35,6 +36,7 @@ export class EditResourceTypeComponent {
     this.ResourceTypeService.updateResourceType(id, newData).subscribe(
       (response) => {
         alert("Resource Type Updated");
+        this.router.navigate(["/resourcetype"]);
       }
     );
   }
@@ -45,7 +47,7 @@ export class EditResourceTypeComponent {
     });
     this.route.params.subscribe((params) => {
       this.selectedCardID = params["id"];
-      console.log(this.selectedCardID); // Do something with the ID
+      // console.log(this.selectedCardID); // Do something with the ID
     });
   }
 

@@ -33,7 +33,7 @@ export class ResourceTypeAttributeDetailsComponent implements OnInit {
       // check the response
       if (response.data) {
         this.newDetails = response.data;
-        console.log(this.newDetails);
+        // console.log(this.newDetails);
         return this.newDetails;
       }else{
         this.newDetails = ['No data found']
@@ -48,7 +48,7 @@ export class ResourceTypeAttributeDetailsComponent implements OnInit {
   ngOnInit(): void { 
 
     // console.log(ResourceType);
-    console.log(this.ResourceType);
+    // console.log(this.ResourceType);
     this.getResourceTypeAttributes(this.ResourceType.id);
 
   }

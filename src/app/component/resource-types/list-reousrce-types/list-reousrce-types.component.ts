@@ -24,7 +24,7 @@ export class ListReousrceTypesComponent implements OnInit {
   getAllResourceTypes() {
     this.ResourceTypeService.getResourceTypes().subscribe((response: any) => {
       this.ResourceTypes = response.data;
-      console.log(this.ResourceTypes);
+      // console.log(this.ResourceTypes);
     });
   }
 
@@ -48,11 +48,12 @@ export class ListReousrceTypesComponent implements OnInit {
 
   deleteResourceType(id: number) {
     this.ResourceTypeService.deleteResourceType(id).subscribe((response) => {
-      console.log(response);
+      // console.log(response);
       this.getAllResourceTypes();
     });
   }
 
+  
 
 
   matchesSearchTerm(rt: any): boolean {

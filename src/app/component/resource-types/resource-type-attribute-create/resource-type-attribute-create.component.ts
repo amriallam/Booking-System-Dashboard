@@ -32,10 +32,10 @@ export class ResourceTypeAttributeCreateComponent {
       }
      
     ).subscribe((response: any) => {
-      console.log(this.resourceTypeId);
-      console.log(this.createResourceTypeAttr.value);
+      // console.log(this.resourceTypeId);
+      // console.log(this.createResourceTypeAttr.value);
 
-      console.log(response);
+      // console.log(response);
       alert("Resource Type Attribute Created Successfully");
       this.router.navigate(["/resourcetype"]);
     });

@@ -33,7 +33,7 @@ export class UpdateResourceComponent {
         this.resourceId,
         this.updateResourceTypeData
       ).subscribe((response: any) => {
-        console.log(this.updateResourceTypeData);
+        // console.log(this.updateResourceTypeData);
         // console.log(response);
         alert("Resource updated successfully");
         this.router.navigate([ "/resourcetype", this.resourceTypeId, "resources" ]);
@@ -42,6 +42,6 @@ export class UpdateResourceComponent {
   }
 
   ngOnInit(): void {
-    console.log(this.resourceId);
+    // console.log(this.resourceId);
   }
 }

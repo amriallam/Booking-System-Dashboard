@@ -1,10 +1,11 @@
 export class ResourceType {
   constructor(
-    public Id: string,
-    public Name: string,
-    public Description: string,
-    public Quantity: number,
-    public thumbnail: string) { }
+    public id: string,
+    public name: string,
+    // public Description: string,
+    // public Quantity: number,
+    // public thumbnail: string
+    ) { }
 }
 
 

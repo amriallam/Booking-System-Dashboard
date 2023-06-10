@@ -49,15 +49,15 @@ export class ListResourcesComponent implements OnInit {
   getAllResourceTypes() {
     this.ResourseService.getAllResources().subscribe((response: any) => {
       this.Resources = response.data;
-      console.log(this.Resources);
+      // console.log(this.Resources);
       this.filterResourcesByRtID(this.resourceTypeID);
     });
   }
 
   filterResourcesByRtID(id: number) {
     id = +this.urlResourceTypeID;
-    console.log(id);
-    console.log(this.Resources.filter((resource) => resource.resourceTypeId === id));
+    // console.log(id);
+    // console.log(this.Resources.filter((resource) => resource.resourceTypeId === id));
     this.filteredResources = this.Resources.filter((resource) => resource.resourceTypeId === id);
   }
 
@@ -82,8 +82,8 @@ export class ListResourcesComponent implements OnInit {
       centered: true,
     });
     modelRef.componentInstance.ResourceType = Resource;
-    console.log('Resource from listing');
-    console.log(Resource);
+    // console.log('Resource from listing');
+    // console.log(Resource);
   }
 
   // getResourceTypes(): string[] {

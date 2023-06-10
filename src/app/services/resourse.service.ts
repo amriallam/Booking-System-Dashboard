@@ -32,7 +32,7 @@ export class ResourseService {
   }
 
   updateResource(id: number, resource: any): Observable<any> {
-    console.log(resource);
+    // console.log(resource);
     return this.http.put(`${this.baseurl}/${id}`, JSON.stringify(resource), this.httpOptions);
   }
 

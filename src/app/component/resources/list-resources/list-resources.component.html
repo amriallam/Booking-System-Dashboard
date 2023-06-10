@@ -4,13 +4,17 @@
     <h5 class="card-subtitle text-muted">Overview of the current available resources</h5>
 
     <!-- Add the filter by resource type select box -->
-    <div class="mb-3">
+    <!-- <div class="mb-3">
       <select class="form-select" [(ngModel)]="searchResourceType" placeholder="Search by resource type">
         <option value="">All</option>
-        <!-- <option *ngFor="let resourceType of getResourceTypes()" [value]="resourceType">{{ resourceType }}</option> -->
+        <option *ngFor="let resourceType of getResourceTypes()" [value]="resourceType">{{ resourceType }}</option> 
       </select>
-    </div>
-    <div>
+    </div> -->
+    
+    <div class="border p-3 my-3">
+      <h3>
+        Add New Resource Form
+        </h3>
       <form class="d-flex flex-column gap-2" [formGroup]="newResourceType">
 
         <div class="d-flex gap-2">
@@ -27,6 +31,7 @@
     </div>
 
     <div class="table-responsive">
+      <h3>Resources List</h3>
       <table class="table align-middle text-nowrap">
         <thead>
           <tr>
@@ -34,7 +39,9 @@
             <th class="text-dark font-medium fs-4">Name</th>
             <th class="text-dark font-medium fs-4">Resource Type</th>
             <th class="text-dark font-medium fs-4">Price</th>
-            <th class="text-dark font-medium fs-4"></th>
+            <th class="text-dark font-medium fs-4">
+              Actions
+            </th>
           </tr>
         </thead>
         <tbody>
