@@ -1,0 +1,55 @@
+<div class="card rounded-2 m-0">
+  <div class="card-body">
+    <div class="d-flex justify-content-between">
+
+      <!-- <div *ngIf="!TitleEdit; else EditTitleTrue">
+        <h4 class="card-title d-inline">
+          {{schedule.id}}
+          <i (click)="ToggleTitleEdit()" class="ms-1 fs-4 bi bi-pencil-fill"></i>
+        </h4>
+      </div> -->
+
+      <h4 class="card-title d-inline">
+        {{schedule.id}}
+      </h4>
+      <!--
+      <ng-template #EditTitleTrue>
+        <h4 class="card-title d-inline">
+          <input class="form-control shadow-none w-75 d-inline me-2" type="text"
+            [(ngModel)]="schedule.id">
+          <button (click)="SaveTitleEdit()" class="btn btn-primary">Save</button>
+        </h4>
+      </ng-template> -->
+
+      <button type="button" class="btn-close" aria-label="Close"
+        (click)="closeModal()"></button>
+    </div>
+    <div class="table-responsive">
+      <table class="table align-middle text-nowrap table-hover">
+        <thead>
+          <th class="text-dark font-medium fs-4"></th>
+          <th class="text-dark font-medium fs-4"></th>
+          <th class="text-dark font-medium fs-4"></th>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Day</td>
+            <td>{{schedule.start.value.split("T")[0]}}</td>
+          </tr>
+          <tr>
+            <td>Start Time</td>
+            <td>{{schedule.start.value.split("T")[1]}}</td>
+          </tr>
+          <tr>
+            <td>End Time</td>
+            <td>{{schedule.end.value.split("T")[1]}}</td>
+          </tr>
+          <tr>
+            <td>Description</td>
+            <td>{{schedule.text}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

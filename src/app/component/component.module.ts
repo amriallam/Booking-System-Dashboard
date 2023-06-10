@@ -23,7 +23,6 @@ import { TableComponent } from "./table/table.component";
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
-
   ],
   declarations: [
     NgbdpaginationBasicComponent,

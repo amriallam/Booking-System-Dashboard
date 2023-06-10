@@ -18,8 +18,8 @@ import {
 
 @Injectable()
 export class AppService {
-  getEvents(actions: CalendarSchedulerEventAction[]): Promise<CalendarSchedulerEvent[]> {
-    const events = [
+  getEvents(actions: CalendarSchedulerEventAction[]) {
+    return [
       <CalendarSchedulerEvent>{
         id: '1',
         start: addDays(startOfHour(new Date()), 1),
@@ -259,7 +259,5 @@ export class AppService {
         isDisabled: false
       }
     ];
-
-    return new Promise(resolve => setTimeout(() => resolve(events), 3000));
   }
 }

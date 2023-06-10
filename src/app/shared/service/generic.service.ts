@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { DatabaseDomain } from 'src/environments/environment';
+import { apiUrl } from 'src/environments/environment';
 import { DataResponse } from '../../component/models/data-response';
 
 @Injectable({
@@ -9,7 +9,7 @@ import { DataResponse } from '../../component/models/data-response';
 })
 export class GenericService {
 
-  baseUrl: string = DatabaseDomain;
+  baseUrl: string = apiUrl;
 
   constructor(private http: HttpClient) { }
 
