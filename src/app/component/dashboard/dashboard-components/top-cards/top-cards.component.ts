@@ -19,22 +19,22 @@ export class TopCardsComponent implements OnInit {
       {
         bgcolor: 'success',
         icon: 'bi bi-coin',
-        subtitle: 'Weekly Earning'
+        subtitle: 'Earning'
       },
       {
         bgcolor: 'danger',
         icon: 'bi bi-arrow-counterclockwise',
-        subtitle: 'Weekly Refunds'
+        subtitle: 'Refunds'
       },
       {
         bgcolor: 'warning',
         icon: 'bi bi-people',
-        subtitle: 'Weekly Users Registered'
+        subtitle: 'Users Registered'
       },
       {
         bgcolor: 'info',
         icon: 'bi bi-bag',
-        subtitle: 'Weekly Bookings'
+        subtitle: 'Bookings'
       },
 
     ]
