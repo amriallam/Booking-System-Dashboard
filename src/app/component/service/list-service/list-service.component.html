@@ -1,0 +1,40 @@
+
+<select class="form-control" [(ngModel)]="selectedStatus" (ngModelChange)="loadServices()">
+  <option value="" selected>All</option>
+  <option value="0" active>Active</option>
+  <option value="1">Inactive</option>
+  <option value="2">Pending Approval</option>
+</select>
+
+<div class="card">
+  <div class="card-body">
+    <h4 class="card-title">Services</h4>
+    <div class="table-responsive">
+      <table class="table align-middle text-nowrap" *ngIf="dataExist">
+          <thead>
+            <tr>
+              <th class="text-dark font-medium fs-4">No</th>
+              <th class="text-dark font-medium fs-4">Name</th>
+              <th class="text-dark font-medium fs-4">status </th>
+              <th class="text-dark font-medium fs-4"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let service of services , let i = index">
+              <td>{{i+1 }}</td>
+              <td>{{ service.name }}</td>
+              <td>{{ getServiceStatusText(service.status) }}</td>
+              <td class="d-flex gap-2">
+                <a class="btn btn-primary" (click)="openDetailsModal(service)">Details</a>
+                <a class="btn btn-primary" (click)="openUpdateModal(service)">Update</a>
+                <a class="btn btn-danger" (click)="openDeleteModal(service)">Delete</a>
+              </td>
+            </tr>
+          </tbody>
+      </table>
+      <div class="alert alert-info text-center " role="alert" *ngIf="!dataExist">
+        There is no data Available 
+      </div>
+    </div>
+  </div>
+</div>

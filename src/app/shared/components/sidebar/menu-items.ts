@@ -74,6 +74,14 @@ export const ROUTES: RouteInfo[] = [
   //   submenu: []
   // },
   {
+    path: 'service',
+    title: 'Servics',
+    icon: 'bi bi-menu-app',
+    class: '',
+    extralink: false,
+    submenu: []
+  },
+  {
     path: 'resourcetype',
     title: 'Resources Types',
     icon: 'bi bi-menu-app',

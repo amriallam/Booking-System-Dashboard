@@ -17,7 +17,7 @@ const routes: Routes = [
   declarations: [
     ListResourcesComponent,
     CreateResourceComponent,
-    ResourceDetailsComponent
+    ResourceDetailsComponent,
   ],
   imports: [
     NgbModule,

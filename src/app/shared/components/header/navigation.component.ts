@@ -2,6 +2,7 @@ import { Component, AfterViewInit, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CreateResourceTypeComponent } from 'src/app/component/resource-types/create-resource-type/create-resource-type.component';
+import { CreateServiceComponent } from 'src/app/component/service/create-service/create-service.component';
 import { UserService } from 'src/app/shared/service/user.service';
 
 @Component({
@@ -110,7 +111,9 @@ export class NavigationComponent implements AfterViewInit {
     code: 'de',
     icon: 'de'
   }]
-
+  createService(){
+    const modelRef = this.modal.open(CreateServiceComponent, { centered: true });
+  }
   createResourceType() {
     const modelRef = this.modal.open(CreateResourceTypeComponent, { centered: true });
   }

@@ -1,0 +1,13 @@
+/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800");
+body {
+  width: 100vw;
+  height: 100vh;
+  background-color: #f2f4f5;
+}
+
+* {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}/*# sourceMappingURL=styles.css.map */

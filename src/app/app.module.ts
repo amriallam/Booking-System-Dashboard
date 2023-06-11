@@ -17,7 +17,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RetryInterceptor } from './shared/utility/retry.interceptor';
 
-
+ 
 @NgModule({
   declarations: [
     AppComponent,

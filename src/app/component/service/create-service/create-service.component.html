@@ -1,0 +1,56 @@
+<div class="card rounded-2 m-0">
+    <div class="card-body">
+      <div class="d-flex justify-content-between">
+        <h4 class="card-title d-inline">
+            Add Service
+        </h4>
+        <button
+          type="button"
+          class="btn-close"
+          aria-label="Close"
+          (click)="closeModal()"
+        ></button>
+      </div>
+      <form [formGroup]="addServiceForm" (ngSubmit)="onSubmit()">
+          <div class="m-3">
+            <input type="text" id="name" formControlName="name" class="form-control" placeholder="Name">
+            <div *ngIf="getControl('name')?.errors && getControl('name')?.touched">
+              <small class="text-danger d-flex align-items-center fs-5" *ngIf="getControl('name')?.errors?.['required']"> Please Enter name</small>
+            </div>
+          </div>
+        
+          <div class="m-3">
+            <input type="description" id="description" formControlName="description" class="form-control" placeholder="Decription">
+            <div *ngIf="getControl('description')?.errors && getControl('description')?.touched">
+              <small class=" text-danger d-flex align-items-center fs-5" *ngIf="getControl('description')?.errors?.['required']"> Please Enter description</small>
+            </div>
+          </div>
+      
+          <div class="m-3">
+              <select id="status" formControlName="status" class="form-control"  >
+                <option value="" disabled>select status</option>
+                <option value="0" >Active</option>
+                <option value="1">Inactive</option>
+                <option value="2">Pending Approval</option>
+              </select>
+              <div *ngIf="getControl('status')?.errors && getControl('status')?.touched">
+                <small class="text-danger d-flex align-items-center fs-5" *ngIf="getControl('status')?.errors?.['required']">Please select a status</small>
+              </div>
+            </div>
+
+            <div class="m-3">
+              <select class="form-select" formControlName="resourceType" multiple >
+                <option value="" disabled>select resource Type </option>
+                <option *ngFor="let type of resourceTypes " [value]="type.id">{{type.name}}</option>
+              </select>
+              <div *ngIf="getControl('resourceType')?.errors && getControl('resourceType')?.touched">
+                <small class="text-danger d-flex align-items-center fs-5" *ngIf="getControl('resourceType')?.errors?.['required']">Please select a resourceType</small>
+              </div>
+            </div> 
+            
+          <button class="btn btn-info text-center w-100 my-3" type="submit">Add</button>
+      </form>
+
+    </div>
+</div>
+  
