@@ -1,0 +1,30 @@
+.container {
+  display: flex;
+  flex-direction: row;
+}
+
+.navigator {
+  margin-right: 10px;
+}
+
+.content {
+  flex-grow: 1;
+}
+
+.buttons {
+  margin-bottom: 10px;
+}
+
+button {
+  background-color: #3c78d8;
+  color: white;
+  border: 0;
+  padding: .5rem 1rem;
+  font-size: 14px;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+button.selected {
+  background-color: #1c4587;
+}

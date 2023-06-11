@@ -11,7 +11,7 @@ import {
   ApexTheme,
   ApexGrid
 } from 'ng-apexcharts';
-
+import { MeasuresService } from 'src/app/shared/service/measures.service';
 export type salesChartOptions = {
   series: ApexAxisChartSeries;
   chart: ApexChart;
@@ -27,38 +27,41 @@ export type salesChartOptions = {
   grid: ApexGrid;
 };
 
+interface Result {
+  [key: string]: {
+    name: string;
+    data: number[];
+  };
+}
+
 @Component({
   selector: 'app-sales-ratio',
   templateUrl: './sales-ratio.component.html'
 })
 export class SalesRatioComponent implements OnInit {
-
   @ViewChild("chart") chart: ChartComponent = Object.create(null);
   public salesChartOptions: Partial<salesChartOptions>;
-  constructor() {
+  constructor(private measureService: MeasuresService) {
     this.salesChartOptions = {
-      series: [
-        {
-          name: "Iphone 13",
-          data: [24.5, 28.3, 42.7, 32, 34.9, 48.6, 40],
-        },
-        {
-          name: "Oneplue 9",
-          data: [8.9, 5.8, 21.9, 5.8, 16.5, 6.5, 14.5],
-        },
-      ],
+      series: [],
       chart: {
         fontFamily: 'Rubik,sans-serif',
         height: 250,
-        type: 'line',
+        type: 'area',
+        stacked: false,
+        zoom: {
+          type: "x",
+          enabled: true,
+          autoScaleYaxis: true
+        },
         toolbar: {
-          show: false
+          autoSelected: "zoom"
         }
       },
       dataLabels: {
-        enabled: false
+        enabled: true
       },
-      colors: ["#137eff", "#6c757d"],
+      colors: ["#137eff", "#6c757d", "#7b1aff", "#1e5eff", "#0073ff", "#00a5ff"],
       stroke: {
         curve: 'smooth',
         width: '2',
@@ -70,24 +73,49 @@ export class SalesRatioComponent implements OnInit {
         size: 3
       },
       xaxis: {
-        categories: [
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6",
-          "7",
-          "8",
-        ],
+        categories: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
       },
       tooltip: {
-        theme: 'dark'
+        theme: 'light'
       }
     };
   }
 
   ngOnInit(): void {
+    let currentYear = new Date().getFullYear();
+    const yearStart = `${currentYear}-01-01`;
+    const yearEnd = `${currentYear}-12-31`;
+    this.updateSeries(yearStart, yearEnd);
+    this.measureService.dateSubject.subscribe((value) => {
+      let fromDate = `${value.fromDate.year}-01-01}`;
+      let toDate = `${value.toDate.year}-12-31`;
+      this.updateSeries(fromDate, toDate);
+    });
   }
 
+  private updateSeries(yearStart: string, yearEnd: string,) {
+    this.measureService.GetResourceTypesSalesPerMonth(yearStart, yearEnd).subscribe(data => {
+      const result: Result = {};
+      data.data.forEach(item => {
+        const resourceType = item.resourceType;
+        const month = item.month;
+        const totalPrice = item.totalPrice;
+
+        if (!result[resourceType]) {
+          result[resourceType] = {
+            name: resourceType,
+            data: []
+          };
+        }
+
+        while (result[resourceType].data.length < month) {
+          result[resourceType].data.push(0);
+        }
+
+        result[resourceType].data.push(totalPrice);
+      });
+      this.salesChartOptions.series = Object.values(result);
+    })
+  }
 }
+

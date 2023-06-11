@@ -3,7 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { Router, RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr'
@@ -15,6 +15,7 @@ import { NavigationComponent } from './shared/components/header/navigation.compo
 import { SidebarComponent } from './shared/components/sidebar/sidebar.component';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
+import { RetryInterceptor } from './shared/utility/retry.interceptor';
 
 
 @NgModule({
@@ -37,9 +38,14 @@ import { LoginComponent } from './login/login.component';
     RouterModule.forRoot(Approutes)
   ],
   providers: [
+    // {
+    //   provide: LocationStrategy,
+    //   useClass: PathLocationStrategy,
+    // },
     {
-      provide: LocationStrategy,
-      useClass: PathLocationStrategy,
+      provide: HTTP_INTERCEPTORS,
+      useClass: RetryInterceptor,
+      multi: true
     }
   ],
   bootstrap: [AppComponent],
