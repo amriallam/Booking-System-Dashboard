@@ -89,14 +89,14 @@ export const ROUTES: RouteInfo[] = [
     extralink: false,
     submenu: []
   },
-  {
-    path: 'resource',
-    title: 'Resource',
-    icon: 'bi bi-menu-button-wide',
-    class: '',
-    extralink: false,
-    submenu: []
-  },
+  // {
+  //   path: 'resource',
+  //   title: 'Resource',
+  //   icon: 'bi bi-menu-button-wide',
+  //   class: '',
+  //   extralink: false,
+  //   submenu: []
+  // },
   {
     path: 'schedule',
     title: 'Schedules',
