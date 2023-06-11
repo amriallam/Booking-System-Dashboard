@@ -16,19 +16,18 @@ export class ServiceService {
 
   constructor(private httpClient: HttpClient) {
 
-    
+
   }
 
   getAll(): Observable<DataResponse<Service>> {
     return this.httpClient.get<DataResponse<Service>>(`${apiUrl}Service`)
   }
-  getById(id : number): Observable<DataResponse<Service>> {
+  getById(id: number): Observable<DataResponse<Service>> {
     return this.httpClient.get<DataResponse<Service>>(`${apiUrl}Service?Id=${id}`)
   }
-  getByResourceType(status : ServiceStatus): Observable<DataResponse<Service>> {
+  getByResourceType(status: ServiceStatus): Observable<DataResponse<Service>> {
     return this.httpClient.get<DataResponse<Service>>(`${apiUrl}Service?Status=${status}`)
   }
-
   getServiceByName(serviceName: String): Observable<DataResponse<Service>> {
     return this.httpClient.get<DataResponse<Service>>(`${apiUrl}Service?Name=${serviceName}`)
   }
@@ -36,11 +35,11 @@ export class ServiceService {
   AddService(service: Service): Observable<DataResponseObeject<Service>> {
     return this.httpClient.post<DataResponseObeject<Service>>(`${apiUrl}Service`, service);
   }
- 
-  UpdateService(id : number, service: Service): Observable<Service> {
+
+  UpdateService(id: number, service: Service): Observable<Service> {
     return this.httpClient.put<Service>(`${[apiUrl]}Service?id=${id}`, service);
   }
-  DeleteService(id : number) {
+  DeleteService(id: number) {
     return this.httpClient.delete<Service>(`${apiUrl}Service?id=${id}`);
   }
 
