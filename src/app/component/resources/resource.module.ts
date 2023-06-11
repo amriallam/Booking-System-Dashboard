@@ -7,6 +7,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ListResourcesComponent } from './list-resources/list-resources.component';
 import { CreateResourceComponent } from './create-resource/create-resource.component';
 import { ResourceDetailsComponent } from './resource-details/resource-details.component';
+import { UpdateResourceComponent } from './update-resource/update-resource.component';
 
 const routes: Routes = [
   { path: "", component: ListResourcesComponent }
@@ -18,6 +19,7 @@ const routes: Routes = [
     ListResourcesComponent,
     CreateResourceComponent,
     ResourceDetailsComponent,
+    UpdateResourceComponent
   ],
   imports: [
     NgbModule,

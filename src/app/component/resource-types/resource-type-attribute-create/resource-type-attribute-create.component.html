@@ -1,0 +1,19 @@
+<div>
+  <form class="d-flex flex-column gap-2" [formGroup]="createResourceTypeAttr">
+    <div class="d-flex gap-2">
+      <input
+        class="form-control"
+        type="text"
+        formControlName="attributeName"
+        placeholder="Enter attribute name"
+      />
+      <select class="form-select" formControlName="attributeType">
+        <option value="string">String</option>
+        <option value="number">Number</option>
+        <option value="boolean">Boolean</option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary" (click)="onSubmit()">Create Resource Data Attribute</button>
+  </form>
+</div>

@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { FormArray, FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
+import { ResourseService } from 'src/app/services/resourse.service';
 
 @Component({
   selector: "app-create-resource",
@@ -12,7 +13,9 @@ export class CreateResourceComponent {
   TitleEdit: boolean;
   constructor(
     private formBuilder: FormBuilder,
-    public activeModal: NgbActiveModal
+    public activeModal: NgbActiveModal,
+    private resourceService: ResourseService
+  
   ) {
     this.form = formBuilder.group({});
     this.ResourceName = "New Resource Name";
@@ -50,4 +53,5 @@ export class CreateResourceComponent {
   closeModal() {
     this.activeModal.close();
   }
+
 }
