@@ -4,7 +4,6 @@ import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { ResourceTypeAttributeDetailsComponent } from "../resource-type-attribute-details/resource-type-attribute-details.component";
 import { ResourceTypeService } from "../../../services/resource-type.service";
 import { CreateResourceTypeComponent } from "src/app/component/resource-types/create-resource-type/create-resource-type.component";
-import { EditResourceTypeComponent } from "../edit-resource-type/edit-resource-type.component";
 
 @Component({
   selector: "app-list-reousrce-types",
@@ -24,7 +23,6 @@ export class ListReousrceTypesComponent implements OnInit {
   getAllResourceTypes() {
     this.ResourceTypeService.getResourceTypes().subscribe((response: any) => {
       this.ResourceTypes = response.data;
-      // console.log(this.ResourceTypes);
     });
   }
 
@@ -48,7 +46,6 @@ export class ListReousrceTypesComponent implements OnInit {
 
   deleteResourceType(id: number) {
     this.ResourceTypeService.deleteResourceType(id).subscribe((response) => {
-      // console.log(response);
       this.getAllResourceTypes();
     });
   }
@@ -60,7 +57,7 @@ export class ListReousrceTypesComponent implements OnInit {
     if (!this.searchTerm) {
       return true; // If no search term provided, show all resources
     }
-    const name = rt.Name.toLowerCase();
+    const name = rt.name.toLowerCase();
     const searchTerm = this.searchTerm.toLowerCase();
     return name.includes(searchTerm); // Check if resource name includes the search term
   }

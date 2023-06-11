@@ -6,7 +6,6 @@ import { authGuard } from "./shared/utility/auth.guard";
 import { EditResourceTypeComponent } from "./component/resource-types/edit-resource-type/edit-resource-type.component";
 import { ListResourcesComponent } from "./component/resources/list-resources/list-resources.component";
 import { UpdateResourceComponent } from "./component/resources/update-resource/update-resource.component";
-import { Component } from "@angular/core";
 import { ResourceTypeAttributeCreateComponent } from "./component/resource-types/resource-type-attribute-create/resource-type-attribute-create.component";
 import { NotfoundComponent } from "./component/notfound/notfound.component";
 export const Approutes: Routes = [
@@ -54,10 +53,6 @@ export const Approutes: Routes = [
         loadChildren: () => import('./component/service/service.module').then(m => m.ServiceModule)
       },
       {
-        path: 'service',
-        loadChildren: () => import('./component/service/service.module').then(m => m.ServiceModule)
-      },
-      {
         path: "resources/:id/updateresource/:resourceId",
         component: UpdateResourceComponent,
 
@@ -65,9 +60,7 @@ export const Approutes: Routes = [
       {
         path: "resourcetype/:id/addAttribute",
         component: ResourceTypeAttributeCreateComponent,
-      }
-      ,
-
+      },
       {
         path: "resource",
         loadChildren: () =>
@@ -80,13 +73,6 @@ export const Approutes: Routes = [
         loadChildren: () =>
           import("./component/ticket/ticket.module").then(
             (m) => m.TicketModule
-          ),
-      },
-      {
-        path: "schedule",
-        loadChildren: () =>
-          import("./component/schedule/schedule.module").then(
-            (m) => m.ScheduleModule
           ),
       },
       {
