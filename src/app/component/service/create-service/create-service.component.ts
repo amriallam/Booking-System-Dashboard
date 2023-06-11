@@ -80,11 +80,6 @@ export class CreateServiceComponent {
     this.activeModal.close();
   }
 
-  AddServiceMD(serviceMd :ServiceMetadata) {
-    this.serviceService.AddServiceMetaData(serviceMd).subscribe(res => {
-      console.log(res.resourceTypeId);
-    });
-  }
   showToast() {
     this.toastr.success('add Service', 'Success');
   }
