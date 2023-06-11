@@ -1,4 +1,4 @@
-import { Component , OnInit , OnChanges, Input, Inject } from '@angular/core';
+import { Component, OnInit, OnChanges, Input, Inject } from '@angular/core';
 import { ServiceService } from 'src/app/shared/service/service.service';
 import { Service } from '../../models/Service';
 import { ServiceStatus } from '../../models/ServiceStatus';
@@ -13,49 +13,49 @@ import { DetailsServiceComponent } from '../details-service/details-service.comp
   styleUrls: ['./list-service.component.css']
 })
 export class ListServiceComponent {
-  services : Service[]=[];
-  selectedStatus? : ServiceStatus ;
-  dataExist:boolean = true;
-  constructor(@Inject(ServiceService) private serviceService :ServiceService ,private modal: NgbModal){}
-  ngOnInit(){
+  services: Service[] = [];
+  selectedStatus?: ServiceStatus;
+  dataExist: boolean = true;
+  constructor(@Inject(ServiceService) private serviceService: ServiceService, private modal: NgbModal) { }
+  ngOnInit() {
     this.loadServices();
   }
   ngOnChanges() {
     this.loadServices();
   }
-  loadServices(){
-    if(this.selectedStatus ==null){
-      this.serviceService.getAll().subscribe((res)=>{
-        this.services= res.data;
-        if(this.services==null ||this.services.length ==0){
+  loadServices() {
+    if (this.selectedStatus == null) {
+      this.serviceService.getAll().subscribe((res) => {
+        this.services = res.data;
+        if (this.services == null || this.services.length == 0) {
           this.dataExist = false;
         }
       })
     }
-    else{
-      this.serviceService.getByResourceType(this.selectedStatus).subscribe((res)=>{
-        this.services= res.data;
-        if(this.services.length ==0){
+    else {
+      this.serviceService.getByResourceType(this.selectedStatus).subscribe((res) => {
+        this.services = res.data;
+        if (this.services.length == 0) {
           this.dataExist = false;
         }
       })
     }
-    
+
   }
 
-  openDetailsModal(service :Service){
+  openDetailsModal(service: Service) {
     const modelRef = this.modal.open(DetailsServiceComponent, {
       centered: true,
     });
     modelRef.componentInstance.serviceId = service.id;
   }
-  openUpdateModal(service :Service){
+  openUpdateModal(service: Service) {
     const modelRef = this.modal.open(UpdateServiceComponent, {
       centered: true,
     });
     modelRef.componentInstance.serviceId = service.id;
   }
-  openDeleteModal(service :Service){
+  openDeleteModal(service: Service) {
     const modelRef = this.modal.open(DeleteServiceComponent, {
       centered: true,
     });

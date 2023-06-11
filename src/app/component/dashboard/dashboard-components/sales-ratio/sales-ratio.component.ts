@@ -95,27 +95,29 @@ export class SalesRatioComponent implements OnInit {
 
   private updateSeries(yearStart: string, yearEnd: string,) {
     this.measureService.GetResourceTypesSalesPerMonth(yearStart, yearEnd).subscribe(data => {
-      const result: Result = {};
-      data.data.forEach(item => {
-        const resourceType = item.resourceType;
-        const month = item.month;
-        const totalPrice = item.totalPrice;
+      const resultMap = new Map();
+      // Iterate over the data array
+      data.data.forEach((item) => {
+        const { resourceType, month, totalPrice } = item;
 
-        if (!result[resourceType]) {
-          result[resourceType] = {
+        // If the resourceType is not already in the resultMap, add it with an empty data array
+        if (!resultMap.has(resourceType)) {
+          resultMap.set(resourceType, {
             name: resourceType,
-            data: []
-          };
+            data: Array(12).fill(0),
+          });
         }
 
-        while (result[resourceType].data.length < month) {
-          result[resourceType].data.push(0);
-        }
-
-        result[resourceType].data.push(totalPrice);
+        // Assign the total price to the corresponding month
+        resultMap.get(resourceType).data[month - 1] = totalPrice;
       });
-      this.salesChartOptions.series = Object.values(result);
+
+      // Convert the resultMap to an array of objects
+      this.salesChartOptions.series = Array.from(resultMap.values());
     })
   }
 }
+
+
+
 
