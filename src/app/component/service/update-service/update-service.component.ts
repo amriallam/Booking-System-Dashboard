@@ -42,13 +42,11 @@ export class UpdateServiceComponent {
       });
       this.serviceService.GetResourceType().subscribe(res =>{
         this.resourceTypes= res.data;
-        // console.log(this.resourceTypes);
       });
   }
   onSubmit() {
     if (this.addServiceForm.invalid) {
       return;
-
     }
     console.log(this.addServiceForm.value);
     this.updateService= new Service(this.addServiceForm.get('name')?.value,

@@ -20,6 +20,11 @@ export class ResourceTypeService {
     return this.http.get(this.baseurl);
   }
 
+  getResourceTypesByServiceId(id : number): Observable<any> {
+    return this.http.get(this.baseurl + `?ServiceId=${id}`);
+  }
+
+
   createResourceType(data: any): Observable<any> {
     return this.http.post(
       `${this.baseurl}?name=${data}`,

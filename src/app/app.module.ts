@@ -38,10 +38,10 @@ import { RetryInterceptor } from './shared/utility/retry.interceptor';
     RouterModule.forRoot(Approutes)
   ],
   providers: [
-    // {
-    //   provide: LocationStrategy,
-    //   useClass: PathLocationStrategy,
-    // },
+    {
+      provide: LocationStrategy,
+      useClass: PathLocationStrategy,
+    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: RetryInterceptor,

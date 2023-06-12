@@ -53,6 +53,10 @@ export const Approutes: Routes = [
         loadChildren: () => import('./component/service/service.module').then(m => m.ServiceModule)
       },
       {
+        path: 'service/details/:id',
+        loadChildren: () => import('./component/service/service.module').then(m => m.ServiceModule)
+      },
+      {
         path: "resources/:id/updateresource/:resourceId",
         component: UpdateResourceComponent,
 
