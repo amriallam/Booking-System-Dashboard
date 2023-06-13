@@ -7,6 +7,7 @@ import { ServiceService } from 'src/app/shared/service/service.service';
 import { ResourceType } from '../../models/ResourceType';
 import { ServiceMetadata } from '../../models/ServiceMetadata';
 import { ToastrService } from 'ngx-toastr';
+import { ResourceMetaDataService } from 'src/app/shared/service/resource-meta-data.service';
 
 @Component({
   selector: 'app-create-service',
@@ -23,6 +24,7 @@ export class CreateServiceComponent {
 
   constructor(private formBuilder: FormBuilder,
     @Inject(ServiceService) private serviceService : ServiceService,
+    @Inject(ResourceMetaDataService) private resourceMetaDataService :ResourceMetaDataService,
     public activeModal: NgbActiveModal,
     private toastr: ToastrService) {
     this.addServiceForm = this.formBuilder.group({
@@ -33,7 +35,7 @@ export class CreateServiceComponent {
     });
   }
   ngOnInit(){
-    this.serviceService.GetResourceType().subscribe(res =>{
+    this.resourceMetaDataService.GetResourceType().subscribe(res =>{
       this.resourceTypes= res.data;
       console.log(this.resourceTypes);
     });
@@ -54,10 +56,11 @@ export class CreateServiceComponent {
               const ids: number[] = this.addServiceForm.get('resourceType')?.value;
             
               ids.forEach((element) => {
-                this.serviceMd?.push(new ServiceMetadata(res.data.id as number , +element));
+                // this.serviceMd?.push(new ServiceMetadata(res.data.id as number , +element));
+                 this.serviceMd?.push(new ServiceMetadata( +element));
               });
               console.log(this.serviceMd);
-              this.serviceService.AddServiceBulkMetaData(this.serviceMd).subscribe(res =>{
+              this.resourceMetaDataService.AddServiceBulkMetaData(res.data.id ,this.serviceMd).subscribe(res =>{
                 this.serviceAdded.emit();
                 this.closeModal();
                 this.showToast();

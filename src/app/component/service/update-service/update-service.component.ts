@@ -6,6 +6,8 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ServiceService } from 'src/app/shared/service/service.service';
 import { ResourceType } from '../../models/ResourceType';
 import { ToastrService } from 'ngx-toastr';
+import { ResourceTypeService } from 'src/app/services/resource-type.service';
+import { ResourceMetaDataService } from 'src/app/shared/service/resource-meta-data.service';
 
 @Component({
   selector: 'app-update-service',
@@ -17,31 +19,51 @@ export class UpdateServiceComponent {
   @Output() serviceAdded: EventEmitter<void> = new EventEmitter<void>();
   addServiceForm: FormGroup ;
   serviceStatus: ServiceStatus = ServiceStatus.Active;
-  resourceTypes : ResourceType[]=[];
-
+  allResourceTypes : ResourceType[]=[];
+  oldresourceType : ResourceType[]=[];
+  defaultSelectedRTY : number[]=[];
+  
   updateService?: Service;
   service?:Service ;
   constructor(private formBuilder: FormBuilder,
     @Inject(ServiceService) private serviceService : ServiceService,
-    public activeModal: NgbActiveModal,
+    @Inject(ResourceMetaDataService) private resourceMetaDataService: ResourceMetaDataService,
+      public activeModal: NgbActiveModal,
     private toastr: ToastrService
     ) {
+
     this.addServiceForm = this.formBuilder.group({
       id: [''],
       name: ['', Validators.required],
       description: ['', [Validators.required]],
       status: ['', [Validators.required]],
-      // resourceType: ['',[Validators.required]]
+      resourceType: ['',[Validators.required]]
     });
   }
   ngOnInit(){
+        // this.addServiceForm.get('resourceType')?.setValue();
+
     this.serviceService.getById(+this.serviceId).subscribe(res =>
       {
         this.service= res.data[0];
-        this.addServiceForm.setValue(this.service);
+        // this.addServiceForm.setValue(this.service);
+
       });
-      this.serviceService.GetResourceType().subscribe(res =>{
-        this.resourceTypes= res.data;
+      this.resourceMetaDataService.GetResourceType().subscribe(res =>{
+        this.allResourceTypes= res.data;
+        this.resourceMetaDataService.GetResourceTypeByserviceId(+this.serviceId).subscribe(res =>
+          {
+            console.log(res.data);
+            res.data.forEach((element ) => {
+              if(element.id != undefined){
+                this.defaultSelectedRTY.push(element.id);
+              }
+            });
+            console.log(this.defaultSelectedRTY);
+            this.addServiceForm.get('resourceType')?.setValue(this.defaultSelectedRTY);
+            
+            // console.log(this.addServiceForm.get('resourceType')?.value);
+          })
       });
   }
   onSubmit() {
@@ -57,8 +79,8 @@ export class UpdateServiceComponent {
     {
       this.serviceService.UpdateService(+this.serviceId , this.updateService).subscribe(res=>{
         this.serviceAdded.emit();
-        this.showToast();
         location.reload();
+        this.showToast();
       })
     }
     else

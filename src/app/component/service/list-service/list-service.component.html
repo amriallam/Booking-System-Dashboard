@@ -26,8 +26,7 @@
             <td>{{ service.name }}</td>
             <td>{{ getServiceStatusText(service.status) }}</td>
             <td class="d-flex gap-2">
-              <!-- <a class="btn btn-primary" (click)="openDetailsModal(service)">Details</a> -->
-              <li><a [routerLink]="['/service/details', service.id]">Service {{ service.id }}</a></li>
+              <a class="btn btn-info"[routerLink]="['/service/details', service.id]">Details</a>
               <a class="btn btn-primary" (click)="openUpdateModal(service)">Update</a>
               <a class="btn btn-danger" (click)="openDeleteModal(service)">Delete</a>
             </td>

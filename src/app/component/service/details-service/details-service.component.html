@@ -16,6 +16,31 @@
     </section>
     <section>
       <!-- <app-list-reousrce-types></app-list-reousrce-types> -->
-   </section>   
+      <!-- <h2>Resources type for {{service?.name}}</h2> -->
+      <table class="table align-middle text-nowrap" >
+        <thead>
+          <tr>
+            <th class="text-dark font-medium fs-4">Name</th>
+            <th class="text-dark font-medium fs-4"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let resourecType of resourceTypes">
+            <td>{{resourecType.name}}</td>
+            <td class="d-flex gap-2">
+              <a (click)="openModal(resourecType)" class="btn btn-primary me-2 mb-2">Attributes</a>
+              <a [routerLink]="'/resourcetype/'+ resourecType.id +'/resources'"
+                class="btn btn-primary  me-2 mb-2">Resources</a>
+              <a [routerLink]="'/editresourcetype/' + resourecType.id"
+                class="btn btn-info me-2 mb-2">Edit</a>
+              <a class="btn btn-danger me-2 mb-2"
+                (click)="deleteResourceType(resourecType.id)">
+                Delete
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>   
   </div>
 </div>

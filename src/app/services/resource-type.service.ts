@@ -1,6 +1,8 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
+import { ResourceType } from "../component/models/ResourceType";
+import { DataResponse } from "../component/models/data-response";
 
 @Injectable({
   providedIn: "root",
@@ -19,11 +21,6 @@ export class ResourceTypeService {
   getResourceTypes(): Observable<any> {
     return this.http.get(this.baseurl);
   }
-
-  getResourceTypesByServiceId(id : number): Observable<any> {
-    return this.http.get(this.baseurl + `?ServiceId=${id}`);
-  }
-
 
   createResourceType(data: any): Observable<any> {
     return this.http.post(
