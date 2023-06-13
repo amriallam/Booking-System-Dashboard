@@ -45,14 +45,13 @@ export class CreateServiceComponent {
     if (this.addServiceForm.invalid) {
       return;
     }
-    // this.serviceService.getServiceByName(this.addServiceForm.get('name')?.value).subscribe(res => {
-    //   if (res.data == null || res.data.length == 0) {
+    this.serviceService.getServiceByName(this.addServiceForm.get('name')?.value).subscribe(res => {
+      if (res.data == null || res.data.length == 0) {
         this.service = new Service(this.addServiceForm.get('name')?.value,
           this.addServiceForm.get('description')?.value,
           +this.addServiceForm.get('status')?.value);
 
         if (this.service != null) {
-
           this.serviceService.AddService(this.service).subscribe(res => {
 
 
@@ -70,11 +69,12 @@ export class CreateServiceComponent {
              })
             }
           });
-        }
-      // } else {
-      //   this.isNameExists = true;
-      // }
-  //  })
+      }
+      } else {
+        alert("kjdfn")
+        this.isNameExists = true;
+      }
+   })
 
   }
   getControl(fullName: any) {

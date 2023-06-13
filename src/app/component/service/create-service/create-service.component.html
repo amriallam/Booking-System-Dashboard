@@ -10,8 +10,11 @@
       <div class="m-3">
         <input type="text" id="name" formControlName="name" class="form-control" placeholder="Name">
         <div *ngIf="getControl('name')?.errors && getControl('name')?.touched">
-          <small class="text-danger d-flex align-items-center fs-5" *ngIf="getControl('name')?.errors?.['required']">
+          <small class="text-danger d-flex align-items-center fs-3" *ngIf="getControl('name')?.errors?.['required']">
             Please Enter name</small>
+        </div>
+        <div *ngIf="isNameExists" class="text-danger d-flex align-items-center fs-3">
+          Service name already exists. Please enter a different name.
         </div>
       </div>
 
@@ -19,7 +22,7 @@
         <textarea id="description" formControlName="description" class="form-control" placeholder="Description"
           style="max-height: 200px;"></textarea>
         <div *ngIf="getControl('description')?.errors && getControl('description')?.touched">
-          <small class=" text-danger d-flex align-items-center fs-5"
+          <small class=" text-danger d-flex align-items-center fs-3"
             *ngIf="getControl('description')?.errors?.['required']"> Please Enter description</small>
         </div>
       </div>
@@ -32,7 +35,7 @@
           <option value="2">Pending Approval</option>
         </select>
         <div *ngIf="getControl('status')?.errors && getControl('status')?.touched">
-          <small class="text-danger d-flex align-items-center fs-5"
+          <small class="text-danger d-flex align-items-center fs-3"
             *ngIf="getControl('status')?.errors?.['required']">Please select a status</small>
         </div>
       </div>
@@ -43,7 +46,7 @@
           <option *ngFor="let type of resourceTypes " [value]="type.id">{{type.name}}</option>
         </select>
         <div *ngIf="getControl('resourceType')?.errors && getControl('resourceType')?.touched">
-          <small class="text-danger d-flex align-items-center fs-5"
+          <small class="text-danger d-flex align-items-center fs-3"
             *ngIf="getControl('resourceType')?.errors?.['required']">Please select a resourceType</small>
         </div>
       </div>
