@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ServiceService } from 'src/app/shared/service/service.service';
 import { NgModel } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-delete-service',
@@ -17,7 +18,9 @@ export class DeleteServiceComponent {
   service: Service | undefined;
   constructor(private route: ActivatedRoute,
                 @Inject(ServiceService) private serviceService :ServiceService,
-                private activeModal : NgbActiveModal){}
+                private activeModal : NgbActiveModal,    
+                private toastr: ToastrService
+                ){}
   ngOnInit(){
     this.serviceService.getById(+this.serviceId).subscribe(res =>{
         this.service=res.data[0]
@@ -27,10 +30,13 @@ export class DeleteServiceComponent {
     this.serviceService.DeleteService(id).subscribe(res => {
       this.serviceDeleted.emit();
       location.reload();
+      this.showToast();
     });
   }
   closeModal(){
     this.activeModal.close();
   }
-
+  showToast() {
+    this.toastr.success('deleted , Done!', 'success');
+  }
 }

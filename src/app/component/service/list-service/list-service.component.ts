@@ -6,6 +6,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { UpdateServiceComponent } from '../update-service/update-service.component';
 import { DeleteServiceComponent } from '../delete-service/delete-service.component';
 import { DetailsServiceComponent } from '../details-service/details-service.component';
+import { UpdateResoucetypefroserviceComponent } from '../update-resoucetypefroservice/update-resoucetypefroservice.component';
 
 @Component({
   selector: 'app-list-service',
@@ -48,6 +49,13 @@ export class ListServiceComponent {
       centered: true,
     });
     modelRef.componentInstance.serviceId = service.id;
+  }
+  openUpdateRTModal(service : Service){
+      const modelRef = this.modal.open(UpdateResoucetypefroserviceComponent, {
+        centered: true,
+      });
+      modelRef.componentInstance.serviceId = service.id;
+    
   }
   openUpdateModal(service: Service) {
     const modelRef = this.modal.open(UpdateServiceComponent, {

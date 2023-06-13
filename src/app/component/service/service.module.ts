@@ -9,7 +9,8 @@ import { DeleteServiceComponent } from './delete-service/delete-service.componen
 import { DetailsServiceComponent } from './details-service/details-service.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import {ListReousrceTypesComponent} from 'src/app/component/resource-types/list-reousrce-types/list-reousrce-types.component'
+import {ListReousrceTypesComponent} from 'src/app/component/resource-types/list-reousrce-types/list-reousrce-types.component';
+import { UpdateResoucetypefroserviceComponent } from './update-resoucetypefroservice/update-resoucetypefroservice.component'
 const routes : Routes =[
   {path:"", component: ListServiceComponent},
   {path:"details/:id" , component: DetailsServiceComponent}
@@ -22,6 +23,7 @@ const routes : Routes =[
     UpdateServiceComponent,
     DeleteServiceComponent,
     DetailsServiceComponent,
+    UpdateResoucetypefroserviceComponent,
     
   ],
   imports: [
