@@ -28,6 +28,7 @@
             <td class="d-flex gap-2">
               <a class="btn btn-info"[routerLink]="['/service/details', service.id]">Details</a>
               <a class="btn btn-primary" (click)="openUpdateModal(service)">Update</a>
+              <a class="btn btn-primary" (click)="openUpdateRTModal(service)">Update resource Type</a>
               <a class="btn btn-danger" (click)="openDeleteModal(service)">Delete</a>
             </td>
           </tr>

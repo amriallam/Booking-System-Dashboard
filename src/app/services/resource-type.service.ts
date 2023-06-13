@@ -21,7 +21,6 @@ export class ResourceTypeService {
   getResourceTypes(): Observable<any> {
     return this.http.get(this.baseurl);
   }
-
   createResourceType(data: any): Observable<any> {
     return this.http.post(
       `${this.baseurl}?name=${data}`,

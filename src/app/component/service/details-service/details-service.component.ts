@@ -26,12 +26,11 @@ export class DetailsServiceComponent implements OnInit{
             });
     }
   ngOnInit(){
-    // console.log(this.serviceId)
     if(this.serviceId != null){
       this.serviceService.getById(+this.serviceId).subscribe(res =>{
           console.log(this.service=res.data[0])
         })
-        this.getAllResourceTypes()
+        this.getAllResourceTypes();
     }
     else
     {

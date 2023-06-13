@@ -27,9 +27,9 @@ export class ServiceService {
     return this.httpClient.get<DataResponse<Service>>(`${apiUrl}Service?Status=${status}`)
   }
 
-  // getServiceByName(serviceName: String): Observable<DataResponse<Service>> {
-  //   return this.httpClient.get<DataResponse<Service>>(`${apiUrl}Service?Name=${serviceName}`)
-  // }
+  getServiceByName(serviceName: String): Observable<DataResponse<Service>> {
+    return this.httpClient.get<DataResponse<Service>>(`${apiUrl}Service?Name=${serviceName}`)
+  }
 
   AddService(service: Service): Observable<DataResponseObeject<Service>> {
     return this.httpClient.post<DataResponseObeject<Service>>(`${apiUrl}Service`, service);

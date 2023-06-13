@@ -9,7 +9,7 @@ import { apiUrl } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class ResourceMetaDataService {
+export class ServiceMetaDataService {
   constructor(private httpClient: HttpClient) {
   }
   
@@ -20,17 +20,15 @@ export class ResourceMetaDataService {
   AddServiceBulkMetaData(serviceId: number,service: ServiceMetadata[]): Observable<DataResponse<ServiceMetadata[]>> {
     return this.httpClient.post<DataResponse<ServiceMetadata[]>>(`${apiUrl}ServiceMetadata/AddBulk?serviceId=${serviceId}`, service);
   }
-  DeleteServiceMetaData(id: number): Observable<ServiceMetadata> {
-    return this.httpClient.delete<ServiceMetadata>(`${apiUrl}ServiceMetadata/AddOne?id=${id}`);
+  DeleteServiceMetaData(serviceId: number , resTypeId: number): Observable<ServiceMetadata> {
+    return this.httpClient.delete<ServiceMetadata>(`${apiUrl}ServiceMetadata/DeleteOne?serviceId=${serviceId}&resTypeId=${resTypeId}`);
   }
-
-
   GetResourceType(): Observable<DataResponse<ResourceType>> {
     return this.httpClient.get<DataResponse<ResourceType>>(`${apiUrl}ResourceType`);
   }
-  GetResourceTypeByserviceId(id : number): Observable<DataResponse<ResourceType>> {
+  GetResourceTypeByserviceId(id : number): Observable<DataResponse<ServiceMetadata>> {
     // return this.httpClient.get<DataResponse<ResourceType>>(`${apiUrl}ServiceMetadata?ServiceId=${id}`);
-    return this.httpClient.get<DataResponse<ResourceType>>(`https://localhost:7158/api/ServiceMetadata?ServiceId=${id}`);
+    return this.httpClient.get<DataResponse<ServiceMetadata>>(`https://localhost:7158/api/ServiceMetadata?ServiceId=${id}`);
   }
 
 }
