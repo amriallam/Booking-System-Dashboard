@@ -24,7 +24,6 @@
     "@popperjs/core": "^2.11.7",
     "angular-calendar": "^0.31.0",
     "angular-calendar-scheduler": "^15.0.1",
-    "angular-feather": "^6.5.0",
     "apexcharts": "^3.40.0",
     "bootstrap": "^5.2.3",
     "bootstrap-icons": "^1.10.5",

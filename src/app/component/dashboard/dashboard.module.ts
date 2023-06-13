@@ -7,9 +7,8 @@ import { DashboardComponent } from "./dashboard.component";
 import { SalesRatioComponent } from "./dashboard-components/sales-ratio/sales-ratio.component";
 import { TopSellingComponent } from "./dashboard-components/top-selling/top-selling.component";
 import { TopCardsComponent } from "./dashboard-components/top-cards/top-cards.component";
-import { NgbDatepicker, NgbInputDatepicker } from "@ng-bootstrap/ng-bootstrap";
+import { NgbInputDatepicker } from "@ng-bootstrap/ng-bootstrap";
 import { DatepickerComponent } from './dashboard-components/datepicker/datepicker.component';
-import { FeedsComponent } from "./dashboard-components/feeds/feeds.component";
 
 
 const routes: Routes = [
@@ -35,10 +34,9 @@ const routes: Routes = [
   declarations: [
     DashboardComponent,
     SalesRatioComponent,
-    FeedsComponent,
     TopSellingComponent,
     TopCardsComponent,
-    DatepickerComponent
+    DatepickerComponent,
   ],
 })
 export class DashboardModule { }

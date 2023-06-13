@@ -1,0 +1,44 @@
+<div class="card rounded-2 m-0">
+  <div class="card-body">
+    <div class="d-flex justify-content-between">
+
+      <button type="button" class="btn-close" aria-label="Close"
+        (click)="closeModal()"></button>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table align-middle text-nowrap table-hover">
+        <!-- <thead>
+          <th *ngFor="let key of objectKeys(schedule)"
+            class="text-dark font-medium fs-4"></th>
+        </thead> -->
+        <tbody>
+          <tr>
+            <td>Schedule ID</td>
+            <td>{{schedule.id}}</td>
+          </tr>
+          <tr>
+            <td>Date</td>
+            <td>{{schedule.date}}</td>
+          </tr>
+          <tr>
+            <td>Start Time</td>
+            <td>{{startTime}}</td>
+          </tr>
+          <tr>
+            <td>End Time</td>
+            <td>{{endTime}}</td>
+          </tr>
+          <tr>
+            <td>Status</td>
+            <td>{{schedule.status}}</td>
+          </tr>
+          <tr>
+            <td>Shift</td>
+            <td>{{schedule.shift}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

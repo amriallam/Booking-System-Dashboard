@@ -4,27 +4,24 @@ import {
   ApexChart,
   ChartComponent,
   ApexDataLabels,
+  ApexPlotOptions,
   ApexYAxis,
   ApexLegend,
+  ApexStroke,
   ApexXAxis,
-  ApexTooltip,
-  ApexTheme,
-  ApexGrid
+  ApexFill,
+  ApexTooltip
 } from 'ng-apexcharts';
 import { MeasuresService } from 'src/app/shared/service/measures.service';
 export type salesChartOptions = {
   series: ApexAxisChartSeries;
   chart: ApexChart;
-  xaxis: ApexXAxis;
-  yaxis: ApexYAxis;
-  stroke: any;
-  theme: ApexTheme;
-  tooltip: ApexTooltip;
   dataLabels: ApexDataLabels;
-  legend: ApexLegend;
-  colors: string[];
-  markers: any;
-  grid: ApexGrid;
+  plotOptions: ApexPlotOptions;
+  yaxis: ApexYAxis;
+  xaxis: ApexXAxis;
+  fill: ApexFill;
+  stroke: ApexStroke;
 };
 
 interface Result {
@@ -39,72 +36,75 @@ interface Result {
   templateUrl: './sales-ratio.component.html'
 })
 export class SalesRatioComponent implements OnInit {
-  @ViewChild("chart") chart: ChartComponent = Object.create(null);
-  public salesChartOptions: Partial<salesChartOptions>;
+  @ViewChild("chart") chart: ChartComponent | any;
+  public salesChartOptions: salesChartOptions;
   constructor(private measureService: MeasuresService) {
     this.salesChartOptions = {
       series: [],
       chart: {
-        fontFamily: 'Rubik,sans-serif',
-        height: 250,
-        type: 'area',
-        stacked: false,
-        zoom: {
-          type: "x",
-          enabled: true,
-          autoScaleYaxis: true
-        },
-        toolbar: {
-          autoSelected: "zoom"
+        type: "bar",
+        height: 350,
+      },
+      plotOptions: {
+        bar: {
+          horizontal: false,
+          columnWidth: "10%",
         }
       },
       dataLabels: {
-        enabled: true
+        enabled: true,
       },
-      colors: ["#137eff", "#6c757d", "#7b1aff", "#1e5eff", "#0073ff", "#00a5ff"],
       stroke: {
-        curve: 'smooth',
-        width: '2',
-      },
-      grid: {
-        strokeDashArray: 3,
-      },
-      markers: {
-        size: 3
+        show: true,
+        width: 2,
+        colors: ["transparent"]
       },
       xaxis: {
-        categories: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+        categories: [],
+        title: {
+          text: "Month"
+        }
       },
-      tooltip: {
-        theme: 'light'
-      }
-    };
+      yaxis: {
+        title: {
+          text: "Money Earned ( L.E )"
+        }
+      },
+      fill: {
+        opacity: 1
+      },
+    }
   }
 
-  ngOnInit(): void {
-    let currentYear = new Date().getFullYear();
-    const yearStart = `${currentYear}-01-01`;
-    const yearEnd = `${currentYear}-12-31`;
-    this.updateSeries(yearStart, yearEnd);
+  ngOnInit() {
     this.measureService.dateSubject.subscribe((value) => {
-      let fromDate = `${value.fromDate.year}-01-01}`;
-      let toDate = `${value.toDate.year}-12-31`;
-      this.updateSeries(fromDate, toDate);
+      this.updateSeries(value.fromDate, value.toDate);
     });
   }
 
   private updateSeries(yearStart: string, yearEnd: string,) {
     this.measureService.GetResourceTypesSalesPerMonth(yearStart, yearEnd).subscribe(data => {
+      // Setting Category Date ( X Axix Data )
+      let mappedCategory = new Set();
+
+      // Iterating through unique months in data
+      data.data.forEach(item => mappedCategory.add(new Date(2000, item.month).toLocaleString('default', { month: 'long' })));
+      // Setting chart X-Axis
+      this.salesChartOptions.xaxis!.categories = Array.from(mappedCategory)
+
+      // ----------------------------------------------------------------
+
+      // Setting Data Series
       const resultMap = new Map();
+
       // Iterate over the data array
       data.data.forEach((item) => {
         const { resourceType, month, totalPrice } = item;
-
         // If the resourceType is not already in the resultMap, add it with an empty data array
         if (!resultMap.has(resourceType)) {
           resultMap.set(resourceType, {
             name: resourceType,
-            data: Array(12).fill(0),
+            data: Array(Array.from(mappedCategory).length).fill(0),
           });
         }
 
@@ -112,7 +112,7 @@ export class SalesRatioComponent implements OnInit {
         resultMap.get(resourceType).data[month - 1] = totalPrice;
       });
 
-      // Convert the resultMap to an array of objects
+      // Convert the resultMap to an chart series array
       this.salesChartOptions.series = Array.from(resultMap.values());
     })
   }

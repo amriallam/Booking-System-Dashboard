@@ -1,0 +1,44 @@
+<div class="card rounded-2 m-0">
+  <div class="card-body">
+    <div class="d-flex justify-content-between">
+
+      <button type="button" class="btn-close" aria-label="Close"
+        (click)="closeModal()"></button>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table align-middle text-nowrap table-hover">
+        <tbody>
+          <tr>
+            <td>bookingItem ID</td>
+            <td>{{bookingItem.id}}</td>
+          </tr>
+          <tr>
+            <td>Date</td>
+            <td>{{bookingItem.date}}</td>
+          </tr>
+          <tr>
+            <td>Start Time</td>
+            <td>{{startTime}}</td>
+          </tr>
+          <tr>
+            <td>End Time</td>
+            <td>{{endTime}}</td>
+          </tr>
+          <tr>
+            <td>Status</td>
+            <td>{{bookingItem.availability}}</td>
+          </tr>
+          <tr>
+            <td>Cost</td>
+            <td>{{bookingItem.totalCost}} L.E</td>
+          </tr>
+          <tr>
+            <td>User</td>
+            <td>{{bookingItem.userEmail}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

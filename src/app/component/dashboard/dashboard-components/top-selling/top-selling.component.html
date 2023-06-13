@@ -14,10 +14,17 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor='let ts of topSelling'>
-            <td class="fs-4">{{ts.resourceName}}</td>
-            <td class="fs-4">{{ts.totalPrice}}</td>
-          </tr>
+          <ng-container *ngIf="topSelling.length > 0; else emptyDataBlock">
+            <tr *ngFor="let ts of topSelling">
+              <td class="fs-4">{{ ts.resourceName }}</td>
+              <td class="fs-4">{{ ts.totalPrice }}</td>
+            </tr>
+          </ng-container>
+          <ng-template #emptyDataBlock>
+            <tr>
+              <td colspan="2" class="text-center">No data found</td>
+            </tr>
+          </ng-template>
         </tbody>
       </table>
     </div>

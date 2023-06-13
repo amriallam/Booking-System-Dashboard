@@ -13,12 +13,12 @@ import { ResouceTypeSoldPerMonth } from 'src/app/component/models/resouce-type-s
 })
 export class MeasuresService {
 
-  public dateSubject: Subject<{ fromDate: NgbDate, toDate: NgbDate }> = new Subject<{ fromDate: NgbDate, toDate: NgbDate }>();
+  public dateSubject: Subject<{ fromDate: string, toDate: string }> = new Subject<{ fromDate: string, toDate: string }>();
   private reportController: string = "Reports/";
 
   constructor(private http: HttpClient) { }
 
-  DashboardDateChanged(fromDate: any, toDate: any) {
+  DashboardDateChanged(fromDate: string, toDate: string) {
     this.dateSubject.next({ fromDate, toDate });
   }
 

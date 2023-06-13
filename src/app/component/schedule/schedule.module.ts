@@ -5,6 +5,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { ScheduleComponent } from "./view-schedule/schedule.component";
 import { RouterModule, Routes } from "@angular/router";
 import { CommonModule } from "@angular/common";
+import { ScheduleItemDetailComponent } from "./schedule-item-detail/schedule-item-detail.component";
 
 
 const routes: Routes = [
@@ -14,6 +15,7 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     ScheduleComponent,
+    ScheduleItemDetailComponent
   ],
   imports: [
     CommonModule,

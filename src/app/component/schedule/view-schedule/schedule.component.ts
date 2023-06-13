@@ -1,10 +1,11 @@
 import { Component, ViewChild } from '@angular/core';
 import { DayPilotCalendarComponent, DayPilotMonthComponent, DayPilotNavigatorComponent, DayPilot } from '@daypilot/daypilot-lite-angular';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { DetailComponent } from '../detail/detail.component';
+import { ScheduleItemDetailComponent } from '../schedule-item-detail/schedule-item-detail.component';
 import { ScheduleService } from 'src/app/shared/service/schedule.service';
 import { ConfimMoveComponent } from '../confim-move/confim-move.component';
 import { ToastrService } from 'ngx-toastr';
+import { BookingItemDetailComponent } from '../booking-item-detail/booking-item-detail.component';
 
 @Component({
   selector: 'app-schedule',
@@ -45,8 +46,15 @@ export class ScheduleComponent {
   }
 
   private openDetailComponent = async (args: any) => {
-    const modelRef = this.modal.open(DetailComponent, { centered: true });
-    modelRef.componentInstance.schedule = args.e.data;
+    let isBookingItem = args.e.data.hasOwnProperty("userEmail");
+    if (isBookingItem) {
+      const modelRef = this.modal.open(BookingItemDetailComponent, { centered: true })
+      modelRef.componentInstance.bookingItem = args.e.data;
+    }
+    else {
+      const modelRef = this.modal.open(ScheduleItemDetailComponent, { centered: true })
+      modelRef.componentInstance.schedule = args.e.data;
+    }
   };
 
   private openConfirmMoveComponent = async (args: any) => {
@@ -81,9 +89,9 @@ export class ScheduleComponent {
           start,
           end,
           text: booking.location,
-          status: booking.status,
+          availability: booking.status,
           totalCost: booking.totalCost,
-          userId: booking.userId
+          userEmail: booking.userEmail
         }
       })
     }
@@ -91,13 +99,14 @@ export class ScheduleComponent {
   }
 
   private getSchedule() {
-    this.scheduleService.GetAllSchedules().subscribe(result =>
+    this.scheduleService.GetAllSchedules().subscribe(result => {
       this.events = result.data.map(schedule => {
-        const dayFormated = this.formatDate(schedule.day.split(' ')[0])
+        const dayFormated = schedule.day.split('T')[0];
         const start = new DayPilot.Date(new Date(`${dayFormated}T${schedule.startTime}`))
         const end = new DayPilot.Date(new Date(`${dayFormated}T${schedule.endTime}`))
-        return { id: schedule.scheduleId, start, end, text: "EventNewNo" }
+        return { id: schedule.scheduleId, start, end, text: "EventNewNo", status: schedule.available, shift: schedule.shift }
       })
+    }
     );
   }
 
@@ -140,33 +149,12 @@ export class ScheduleComponent {
     const to = this.nav.control.visibleEnd();
     this.scheduleService.GetAllSchedules().subscribe(result =>
       this.events = result.data.map(schedule => {
-        const dayFormated = this.formatDate(schedule.day.split(' ')[0])
+        const dayFormated = schedule.day.split('T')[0];
         const start = new DayPilot.Date(new Date(`${dayFormated}T${schedule.startTime}`))
         const end = new DayPilot.Date(new Date(`${dayFormated}T${schedule.endTime}`))
-        return { id: schedule.scheduleId, start, end, text: "EventNewNo" }
+        return { id: schedule.scheduleId, start, end, text: "EventNewNo", status: schedule.available, shift: schedule.shift }
       })
     );
-  }
-
-  private formatDate(dateString: string) {
-
-    var dateParts = dateString.split("/");
-
-    var day = dateParts[1];
-    var month = dateParts[0];
-    var year = dateParts[2];
-
-    if (month.length === 1) {
-      month = "0" + month;
-    }
-
-    if (day.length === 1) {
-      day = "0" + day;
-    }
-
-    var formattedDate = year + "-" + month + "-" + day;
-
-    return formattedDate;
   }
 
   viewDay(): void {
