@@ -46,7 +46,7 @@ export class CreateServiceComponent {
       return;
     }
     this.serviceService.getServiceByName(this.addServiceForm.get('name')?.value).subscribe(res => {
-      if (res.data == null || res.data.length == 0) {
+      if (res.data == null) {
         this.service = new Service(this.addServiceForm.get('name')?.value,
           this.addServiceForm.get('description')?.value,
           +this.addServiceForm.get('status')?.value);
@@ -71,7 +71,6 @@ export class CreateServiceComponent {
           });
       }
       } else {
-        alert("kjdfn")
         this.isNameExists = true;
       }
    })
