@@ -1,26 +1,28 @@
-import { ResourceType } from './../../models/ResourceType';
+import { ToastrService } from "ngx-toastr";
+import { ResourceType } from "./../../models/ResourceType";
 import { Component, OnInit } from "@angular/core";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { ResourceDetailsComponent } from "../resource-details/resource-details.component";
 import { Resource } from "../../models/Resouce";
-import { ResourseService } from 'src/app/services/resourse.service';
-import { ActivatedRoute , Route } from '@angular/router';
-import { FormGroup, FormControl } from '@angular/forms';
+import { ResourseService } from "src/app/services/resourse.service";
+import { ActivatedRoute, Route } from "@angular/router";
+import { FormGroup, FormControl, Validators , ValidationErrors } from "@angular/forms";
+import { DeleteResourceComponent } from "../delete-resource/delete-resource.component";
 
 @Component({
   selector: "a-pp-list-resources",
   templateUrl: "./list-resources.component.html",
 })
 export class ListResourcesComponent implements OnInit {
-
-  constructor(private modal: NgbModal,
+  constructor(
+    private modal: NgbModal,
     private ResourseService: ResourseService,
     private route: ActivatedRoute,
-    
-    ) { }
+    private toastr: ToastrService
+  ) {}
 
-  urlResourceTypeID : any;
-  resourceTypeID:any;
+  urlResourceTypeID: any;
+  resourceTypeID: any;
   createNewResourceTypeData: any;
   searchResourceType: string = "";
   Resources: Resource[] = [];
@@ -29,21 +31,28 @@ export class ListResourcesComponent implements OnInit {
   pageSize: number = this.Resources.length;
 
   newResourceType = new FormGroup({
-    name: new FormControl(''),
-    price: new FormControl(''),
+    name: new FormControl("", [Validators.required, Validators.minLength(3)]),
+    price: new FormControl("", [Validators.required]),
   });
-  
-  createNewResource(){
-    this.createNewResourceTypeData ={
-      name: this.newResourceType.value.name,
-      price: this.newResourceType.value.price,
-      resourceTypeId: this.urlResourceTypeID
+
+  createNewResource() {
+    if (this.newResourceType.invalid) {
+      this.toastr.error("Please fill all the fields", "Error");
+      return;
+    } else {
+      this.createNewResourceTypeData = {
+        name: this.newResourceType.value.name,
+        price: this.newResourceType.value.price,
+        resourceTypeId: this.urlResourceTypeID,
+      };
+      this.ResourseService.createNewResource(
+        this.createNewResourceTypeData
+      ).subscribe((response: any) => {
+        // console.log(response);
+        this.toastr.success("Resource created successfully", "Success");
+        this.getAllResourceTypes();
+      });
     }
-    this.ResourseService.createNewResource(this.createNewResourceTypeData).subscribe((response: any) => {
-      // console.log(response);
-      alert("Resource created successfully");
-      this.getAllResourceTypes();
-    })
   }
 
   getAllResourceTypes() {
@@ -58,25 +67,34 @@ export class ListResourcesComponent implements OnInit {
     id = +this.urlResourceTypeID;
     // console.log(id);
     // console.log(this.Resources.filter((resource) => resource.resourceTypeId === id));
-    this.filteredResources = this.Resources.filter((resource) => resource.resourceTypeId === id);
+    this.filteredResources = this.Resources.filter(
+      (resource) => resource.resourceTypeId === id
+    );
   }
 
-  deleteResource(id: number) {
-    this.ResourseService.deleteResource(id).subscribe((response: any) => {
-      alert("Resource deleted successfully");
-      this.getAllResourceTypes();
-    })
-  };
+  // deleteResource(id: number) {
+  //   this.ResourseService.deleteResource(id).subscribe((response: any) => {
+  //     alert("Resource deleted successfully");
+  //     this.getAllResourceTypes();
+  //   });
+  // }
 
-  
+  openDeleteModal(resource: Resource) {
+    const modelRef = this.modal.open(DeleteResourceComponent, {
+      centered: true,
+    });
+    modelRef.componentInstance.ResourceType = resource;
+    
+
+  }
 
   ngOnInit(): void {
     this.getAllResourceTypes();
-    this.route.paramMap.subscribe(params => {
-     this.urlResourceTypeID = params.get('id');
+    this.route.paramMap.subscribe((params) => {
+      this.urlResourceTypeID = params.get("id");
     });
     this.filterResourcesByRtID(this.resourceTypeID);
-   }
+  }
   openModal(Resource: Resource) {
     const modelRef = this.modal.open(ResourceDetailsComponent, {
       centered: true,
@@ -99,6 +117,4 @@ export class ListResourcesComponent implements OnInit {
   //     return this.Resources;
   //   }
   // }
-
-  
 }

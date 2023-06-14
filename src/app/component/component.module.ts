@@ -17,6 +17,7 @@ import { TableComponent } from "./table/table.component";
 import { NotfoundComponent } from './notfound/notfound.component';
 
 
+
 @NgModule({
   imports: [
     CommonModule,
@@ -34,6 +35,7 @@ import { NotfoundComponent } from './notfound/notfound.component';
     CardsComponent,
     TableComponent,
     NotfoundComponent,
+   
   ],
 })
 export class ComponentsModule { }
