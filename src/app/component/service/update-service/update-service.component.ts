@@ -36,10 +36,6 @@ export class UpdateServiceComponent {
   }
   
   ngOnInit() {
-    // this.serviceService.getById(+this.serviceId).subscribe(res => {
-    //   this.service = res.data[0];
-    //   this.addServiceForm.setValue(this.service);
-    // });
     this.addServiceForm.valueChanges.subscribe(() => {
       this.formValueChanged = true;
     });

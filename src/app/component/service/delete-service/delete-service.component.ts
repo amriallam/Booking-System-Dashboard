@@ -29,8 +29,8 @@ export class DeleteServiceComponent {
   deleteService(id:number){
     this.serviceService.DeleteService(id).subscribe(res => {
       this.serviceDeleted.emit();
-      location.reload();
       this.showToast();
+      location.reload();
     });
   }
   closeModal(){

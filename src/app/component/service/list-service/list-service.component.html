@@ -1,8 +1,7 @@
 
-<select class="form-control mb-2" [(ngModel)]="selectedStatus"
-  (ngModelChange)="loadServices()">
-  <option value selected>All</option>
-  <option value="0" active>Active</option>
+<select class="form-control mb-4" [(ngModel)]="selectedStatus" (ngModelChange)="loadServices()">
+  <option value="null">All</option>
+  <option value="0">Active</option>
   <option value="1">Inactive</option>
   <option value="2">Pending Approval</option>
 </select>
@@ -11,7 +10,7 @@
   <div class="card-body">
     <h4 class="card-title">Services</h4>
     <div class="table-responsive">
-      <table class="table align-middle text-nowrap" *ngIf="dataExist">
+      <table class="table align-middle  table-striped" *ngIf="dataExist">
         <thead>
           <tr>
             <th class="text-dark font-medium fs-4">No</th>
@@ -26,10 +25,10 @@
             <td>{{ service.name }}</td>
             <td>{{ getServiceStatusText(service.status) }}</td>
             <td class="d-flex gap-2">
-              <a class="btn btn-info"[routerLink]="['/service/details', service.id]">Details</a>
-              <a class="btn btn-primary" (click)="openUpdateModal(service)">Update</a>
-              <a class="btn btn-primary" (click)="openUpdateRTModal(service)">Update resource Type</a>
-              <a class="btn btn-danger" (click)="openDeleteModal(service)">Delete</a>
+              <a class="btn btn-outline-primary me-2 mb-2"[routerLink]="['/service/details', service.id]">Details</a>
+              <a class="btn btn-outline-info me-2 mb-2" (click)="openUpdateModal(service)">Update</a>
+              <a class="btn btn-outline-info me-2 mb-2" (click)="openUpdateRTModal(service)">Update Resource Type</a>
+              <a class="btn btn-outline-danger me-2 mb-2" (click)="openDeleteModal(service)">Delete</a>
             </td>
           </tr>
         </tbody>

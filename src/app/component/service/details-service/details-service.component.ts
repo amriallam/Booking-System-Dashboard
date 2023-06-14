@@ -10,11 +10,15 @@ import { ResourceTypeAttributeDetailsComponent } from '../../resource-types/reso
 import { ServiceMetaDataService } from 'src/app/shared/service/resource-meta-data.service';
 import { ServiceMetadata } from '../../models/ServiceMetadata';
 import { ToastrService } from 'ngx-toastr';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({
   selector: 'app-details-service',
   templateUrl: './details-service.component.html',
+  styleUrls: ['./details-service.component.css']
+
 })
+
 export class DetailsServiceComponent implements OnInit{
   service?: Service ;
   serviceId :number =0;

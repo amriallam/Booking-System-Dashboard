@@ -16,8 +16,8 @@ import { SidebarComponent } from './shared/components/sidebar/sidebar.component'
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RetryInterceptor } from './shared/utility/retry.interceptor';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
- 
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +35,8 @@ import { RetryInterceptor } from './shared/utility/retry.interceptor';
     HttpClientModule,
     NgbModule,
     ToastrModule.forRoot(),
-    RouterModule.forRoot(Approutes)
+    RouterModule.forRoot(Approutes),
+    FontAwesomeModule
   ],
   providers: [
     {

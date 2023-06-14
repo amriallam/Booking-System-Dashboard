@@ -62,32 +62,31 @@ export class UpdateResoucetypefroserviceComponent {
     if (this.checkboxForm?.invalid) {
       return;
     }
-    // console.log("default "+this.defaultSelectedRTY);
+    console.log("default "+this.defaultSelectedRTY);
     const selectedResourceTypeIds: number[] = this.checkboxForm.value.resourceType;
 
-    // console.log('selected' + selectedResourceTypeIds);
+    console.log('selected' + selectedResourceTypeIds);
       this.deletedResourceTypeIDs = this.defaultSelectedRTY.filter((item )=> !selectedResourceTypeIds.includes(item));
-      // console.log('deleted  ' + this.deletedResourceTypeIDs);
+      console.log('deleted  ' + this.deletedResourceTypeIDs);
       this.AddResourceTypeIDs = selectedResourceTypeIds.filter(item => !this.defaultSelectedRTY.includes(item));
-      // console.log('add ' + this.AddResourceTypeIDs);
+      console.log('add ' + this.AddResourceTypeIDs);
       this.AddResourceTypeIDs.forEach((element) => {
          AddedserviceMd?.push(new ServiceMetadata( +element));
       });
     if(AddedserviceMd.length !=0){
       this.serviceeMetaDataService.AddServiceBulkMetaData(+this.serviceId,AddedserviceMd).subscribe(res =>{
         this.serviceAdded.emit();
-        // this.showToast();
-        this.closeModal()
-        // alert("added")
+        if(this.deletedResourceTypeIDs.length != 0){
+          this.deletedResourceTypeIDs.forEach(element => {
+            this.serviceeMetaDataService.DeleteServiceMetaData(+this.serviceId, element).subscribe(()=>
+            {
+              this.showToast()
+              this.closeModal()
+            })
+          });
+        }  
       })
     } 
-    if(this.deletedResourceTypeIDs.length != 0){
-      this.deletedResourceTypeIDs.forEach(element => {
-          this.serviceeMetaDataService.DeleteServiceMetaData(+this.serviceId, element).subscribe(()=>
-            this.showToast()
-          )
-        });
-    }  
   }
   getControl(fullName:any)
   {
