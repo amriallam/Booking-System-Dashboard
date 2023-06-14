@@ -25,18 +25,14 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let resourecType of resourceTypes">
-            <td>{{resourecType.name}}</td>
+          <tr *ngFor="let serviceMD of serviceMDs">
+            <td>{{serviceMD.resourceTypeId}}</td>
             <td class="d-flex gap-2">
-              <a (click)="openModal(resourecType)" class="btn btn-primary me-2 mb-2">Attributes</a>
-              <a [routerLink]="'/resourcetype/'+ resourecType.id +'/resources'"
+              <a (click)="openModal(serviceMD)" class="btn btn-primary me-2 mb-2">Attributes</a>
+              <a [routerLink]="'/resourcetype/'+ serviceMD.resourceTypeId +'/resources'"
                 class="btn btn-primary  me-2 mb-2">Resources</a>
-              <a [routerLink]="'/editresourcetype/' + resourecType.id"
+              <a [routerLink]="'/editresourcetype/' +serviceMD.resourceTypeId"
                 class="btn btn-info me-2 mb-2">Edit</a>
-              <a class="btn btn-danger me-2 mb-2"
-                (click)="deleteResourceType(resourecType.id)">
-                Delete
-              </a>
             </td>
           </tr>
         </tbody>

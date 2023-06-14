@@ -46,7 +46,7 @@ export class CreateServiceComponent {
       return;
     }
     this.serviceService.getServiceByName(this.addServiceForm.get('name')?.value).subscribe(res => {
-      if (res.data == null) {
+      if (res.data.length ==0) {
         this.service = new Service(this.addServiceForm.get('name')?.value,
           this.addServiceForm.get('description')?.value,
           +this.addServiceForm.get('status')?.value);

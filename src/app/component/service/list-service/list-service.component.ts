@@ -14,36 +14,56 @@ import { UpdateResoucetypefroserviceComponent } from '../update-resoucetypefrose
   styleUrls: ['./list-service.component.css']
 })
 export class ListServiceComponent {
+  @Input() selectedStatus?: ServiceStatus;
   services: Service[] = [];
-  selectedStatus?: ServiceStatus;
+  // selectedStatus?: ServiceStatus;
   dataExist: boolean = true;
   constructor(@Inject(ServiceService) private serviceService: ServiceService, private modal: NgbModal) { }
   ngOnInit() {
     this.loadServices();
+    console.log(this.dataExist);
   }
-  ngOnChanges() {
-    this.loadServices();
-  }
+  // ngOnChanges() {
+  //   this.loadServices();
+  //   console.log(this.dataExist);
+  // }
+  // loadServices() {
+  //   if (this.selectedStatus == null) {
+  //     this.serviceService.getAll().subscribe((res) => {
+  //       this.services = res.data;
+  //       if (this.services.length == 0) {
+  //         this.dataExist = false;
+          
+  //       }
+  //       else{
+  //         this.dataExist= true;
+  //       }
+  //     })
+  //   }
+  //   else {
+  //     this.serviceService.getByResourceType(this.selectedStatus).subscribe((res) => {
+  //       this.services = res.data;
+  //       if (this.services.length == 0) {
+  //         this.dataExist = false;
+  //       }
+  //     })
+  //   }
+
+  // }
   loadServices() {
     if (this.selectedStatus == null) {
       this.serviceService.getAll().subscribe((res) => {
         this.services = res.data;
-        if (this.services == null || this.services.length == 0) {
-          this.dataExist = false;
-        }
-      })
-    }
-    else {
+        this.dataExist = this.services.length > 0;
+      });
+    } else {
       this.serviceService.getByResourceType(this.selectedStatus).subscribe((res) => {
         this.services = res.data;
-        if (this.services.length == 0) {
-          this.dataExist = false;
-        }
-      })
+        this.dataExist = this.services.length > 0;
+      });
     }
-
   }
-
+  
   openDetailsModal(service: Service) {
     const modelRef = this.modal.open(DetailsServiceComponent, {
       centered: true,

@@ -27,8 +27,7 @@ export class ServiceMetaDataService {
     return this.httpClient.get<DataResponse<ResourceType>>(`${apiUrl}ResourceType`);
   }
   GetResourceTypeByserviceId(id : number): Observable<DataResponse<ServiceMetadata>> {
-    // return this.httpClient.get<DataResponse<ResourceType>>(`${apiUrl}ServiceMetadata?ServiceId=${id}`);
-    return this.httpClient.get<DataResponse<ServiceMetadata>>(`https://localhost:7158/api/ServiceMetadata?ServiceId=${id}`);
+    return this.httpClient.get<DataResponse<ServiceMetadata>>(`${apiUrl}ServiceMetadata?ServiceId=${id}`);
   }
 
 }
