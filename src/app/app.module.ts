@@ -25,6 +25,7 @@ import { RetryInterceptor } from './shared/utility/retry.interceptor';
     NavigationComponent,
     SidebarComponent,
     LoginComponent,
+    
   ],
   imports: [
     CommonModule,

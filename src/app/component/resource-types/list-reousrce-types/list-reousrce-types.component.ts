@@ -4,10 +4,11 @@ import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { ResourceTypeAttributeDetailsComponent } from "../resource-type-attribute-details/resource-type-attribute-details.component";
 import { ResourceTypeService } from "../../../services/resource-type.service";
 import { CreateResourceTypeComponent } from "src/app/component/resource-types/create-resource-type/create-resource-type.component";
-
+import { DeleteResourceTypeComponent } from "../delete-resource-type/delete-resource-type.component";
 @Component({
   selector: "app-list-reousrce-types",
   templateUrl: "./list-reousrce-types.component.html",
+  styleUrls: ["./list-reousrce-types.component.scss"],
 })
 export class ListReousrceTypesComponent implements OnInit {
   constructor(
@@ -48,6 +49,13 @@ export class ListReousrceTypesComponent implements OnInit {
     this.ResourceTypeService.deleteResourceType(id).subscribe((response) => {
       this.getAllResourceTypes();
     });
+  }
+
+  openDeleteModal(ResourceType: ResourceType) {
+    const modelRef = this.modal.open(DeleteResourceTypeComponent, {
+      centered: true,
+    });
+    modelRef.componentInstance.ResourceType = ResourceType;
   }
 
 
