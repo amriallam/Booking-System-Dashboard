@@ -1,5 +1,4 @@
 
-
 <div class="card rounded-2 m-0">
   <div class="card-body">
     <section class="">
@@ -20,15 +19,16 @@
       <table class="table align-middle text-nowrap" >
         <thead>
           <tr>
-            <th class="text-dark font-medium fs-4">Name</th>
+            <th class="text-dark font-medium fs-4">Resources Types </th>
+            <i class="fas fa-thumbs-up" ></i>
             <th class="text-dark font-medium fs-4"></th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let serviceMD of serviceMDs">
-            <td>{{serviceMD.resourceTypeId}}</td>
+            <td>{{serviceMD.resourceTypeName}}</td>
             <td class="d-flex gap-2">
-              <a (click)="openModal(serviceMD)" class="btn btn-primary me-2 mb-2">Attributes</a>
+              <a (click)="openModal(serviceMD.resourceTypeId)" class="btn btn-primary me-2 mb-2">Attributes</a>
               <a [routerLink]="'/resourcetype/'+ serviceMD.resourceTypeId +'/resources'"
                 class="btn btn-primary  me-2 mb-2">Resources</a>
               <a [routerLink]="'/editresourcetype/' +serviceMD.resourceTypeId"
@@ -37,6 +37,9 @@
           </tr>
         </tbody>
       </table>
+      <div class="alert alert-info text-center " role="alert" *ngIf="!dataExist">
+        There is no data Available
+      </div>
     </section>   
   </div>
 </div>

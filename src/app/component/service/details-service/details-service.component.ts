@@ -20,6 +20,7 @@ export class DetailsServiceComponent implements OnInit{
   serviceId :number =0;
   resourceTypes : ResourceType[]=[];
   serviceMDs : ServiceMetadata[]=[];
+  dataExist : boolean =true;
   constructor(private route: ActivatedRoute,
                 @Inject(ServiceService) private serviceService :ServiceService,
                 private modal: NgbModal,
@@ -35,7 +36,7 @@ export class DetailsServiceComponent implements OnInit{
   ngOnInit(){
     if(this.serviceId != null){
       this.serviceService.getById(+this.serviceId).subscribe(res =>{
-          this.service=res.data[0]
+          this.service=res.data[0];
         })
         this.getResourceTypeByServiceId(this.serviceId);
     }
@@ -45,21 +46,27 @@ export class DetailsServiceComponent implements OnInit{
     }
   }
  
-  openModal(ResourceType: ResourceType) {
-    const modelRef = this.modal.open(ResourceTypeAttributeDetailsComponent, {
-      centered: true,
-    });
-    modelRef.componentInstance.ResourceType = ResourceType;
+  openModal(resourceTypeId: number) {
+   
+    this.resourceService.getResourceTypeById(resourceTypeId).subscribe((res)=>{
+      console.log(res.data);
+      const modelRef = this.modal.open(ResourceTypeAttributeDetailsComponent, {
+        centered: true,
+      });
+      modelRef.componentInstance.ResourceType = res.data;
+    })
 
-  }
-  getAllResourceTypes() {
-    this.resourceService.getResourceTypes().subscribe((response: any) => {
-      this.resourceTypes = response.data;
-    });
   }
   getResourceTypeByServiceId(serviceId : number){
     this.ServiceMDservice.GetResourceTypeByserviceId(serviceId).subscribe(res =>{
-      this.serviceMDs = res.data;
+      console.log(res.data);
+      if(res.data.length >0){
+        this.serviceMDs = res.data;
+        
+      }
+      else{
+        this.dataExist=false;
+      }
     })
   }
   showToast() {
