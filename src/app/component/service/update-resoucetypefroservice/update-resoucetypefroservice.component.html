@@ -1,13 +1,9 @@
 <div class="card rounded-2 m-0">
   <div class="card-body">
-    <div class="d-flex justify-content-between">
-      <h4 class="card-title d-inline">Update Resource Type for Service</h4>
-      <button
-        type="button"
-        class="btn-close"
-        aria-label="Close"
-        (click)="closeModal()"
-      ></button>
+    <div class="p-3 text-primary text-center">
+      <h3 class="m-0">
+        Update Resource Types
+      </h3>
     </div>
     <form [formGroup]="checkboxForm" (ngSubmit)="onSubmit()">
       <div class="m-3">
@@ -32,9 +28,10 @@
           </small>
         </div>
       </div>
-      <button class="btn btn-info text-center w-100 my-3" type="submit">
-        Update
-      </button>
+      <div class="m-3 row">
+        <button class="btn btn-info text-center m-3 col-5" type="submit" [disabled]="!formValueChanged || checkboxForm.invalid">Update</button>
+        <button class="btn btn-danger text-center m-3 col-5" (click)="closeModal()" >Cancel</button>
+      </div>
     </form>
   </div>
 </div>
