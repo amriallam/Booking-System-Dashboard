@@ -13,8 +13,7 @@ import { apiUrl } from 'src/environments/environment';
 export class ServiceService {
 
   constructor(private httpClient: HttpClient) {
-
-
+    
   }
 
   getAll(): Observable<DataResponse<Service>> {

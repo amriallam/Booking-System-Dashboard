@@ -8,6 +8,8 @@ import { ResourceType } from '../../models/ResourceType';
 import { Service } from '../../models/Service';
 import { ServiceMetadata } from '../../models/ServiceMetadata';
 import { ServiceStatus } from '../../models/ServiceStatus';
+import { LanguageService } from 'src/app/shared/service/language.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-update-resoucetypefroservice',
@@ -22,21 +24,23 @@ export class UpdateResoucetypefroserviceComponent {
   @Output() serviceAdded: EventEmitter<void> = new EventEmitter<void>();
   serviceStatus: ServiceStatus = ServiceStatus.Active;
   // will shown in dropdown list
-  allResourceTypes : ResourceType[]=[];
+  allResourceTypes: ResourceType[] = [];
   // selected list by defualt
-  oldresourceType : ResourceType[]=[];
-  //ids for this selected 
-  defaultSelectedRTY : number[]=[];
+  oldresourceType: ResourceType[] = [];
+  //ids for this selected
+  defaultSelectedRTY: number[] = [];
 
   //deleted resource type
-  deletedResourceTypeIDs : number[]=[];
-  AddResourceTypeIDs : number[]=[];
-  newResourceTypesMD :ServiceMetadata[] =[];
-  
+  deletedResourceTypeIDs: number[] = [];
+  AddResourceTypeIDs: number[] = [];
+  newResourceTypesMD: ServiceMetadata[] = [];
+formValueChanged: boolean = false;
   updateService?: Service;
-  service?:Service ;
+  AddedserviceMd: ServiceMetadata[] = [];
+  selectedResourceTypeIds: number[]=[];
+  service?: Service;
   constructor(private formBuilder: FormBuilder,
-    @Inject(ServiceService) private serviceService : ServiceService,
+    @Inject(ServiceService) private serviceService: ServiceService,
     @Inject(ServiceMetaDataService) private serviceeMetaDataService: ServiceMetaDataService,
       public activeModal: NgbActiveModal,
     private toastr: ToastrService
@@ -46,7 +50,7 @@ export class UpdateResoucetypefroserviceComponent {
       });
     }
   ngOnInit(){
-    
+
       this.serviceeMetaDataService.GetResourceType().subscribe(res =>{
         this.allResourceTypes= res.data;
         this.serviceeMetaDataService.GetResourceTypeByserviceId(+this.serviceId).subscribe(res =>
@@ -58,41 +62,41 @@ export class UpdateResoucetypefroserviceComponent {
       });
   }
   onSubmit() {
-    const AddedserviceMd :ServiceMetadata[]=[];
-    if (this.checkboxForm?.invalid) {
+    // AddedserviceMd: ServiceMetadata[] = [];
+    // selectedResourceTypeIds: number[]=[];
+    if (this.checkboxForm.invalid || !this.formValueChanged) {
       return;
     }
-    console.log("default "+this.defaultSelectedRTY);
-    const selectedResourceTypeIds: number[] = this.checkboxForm.value.resourceType;
 
-    console.log('selected' + selectedResourceTypeIds);
-      this.deletedResourceTypeIDs = this.defaultSelectedRTY.filter((item )=> !selectedResourceTypeIds.includes(item));
-      console.log('deleted  ' + this.deletedResourceTypeIDs);
-      this.AddResourceTypeIDs = selectedResourceTypeIds.filter(item => !this.defaultSelectedRTY.includes(item));
-      console.log('add ' + this.AddResourceTypeIDs);
-      this.AddResourceTypeIDs.forEach((element) => {
-         AddedserviceMd?.push(new ServiceMetadata( +element));
-      });
-    if(AddedserviceMd.length !=0){
-      this.serviceeMetaDataService.AddServiceBulkMetaData(+this.serviceId,AddedserviceMd).subscribe(res =>{
-        this.serviceAdded.emit();
-        if(this.deletedResourceTypeIDs.length != 0){
+    console.log("default " + this.defaultSelectedRTY);
+    this.selectedResourceTypeIds.push(...this.checkboxForm.value.resourceType) ;
+
+    console.log('selected' + this.selectedResourceTypeIds);
+    this.deletedResourceTypeIDs = this.defaultSelectedRTY.filter((item) => !this.selectedResourceTypeIds.includes(item));
+    console.log('deleted  ' + this.deletedResourceTypeIDs);
+    this.AddResourceTypeIDs = this.selectedResourceTypeIds.filter(item => !this.defaultSelectedRTY.includes(item));
+    console.log('add ' + this.AddResourceTypeIDs);
+    this.AddResourceTypeIDs.forEach((element) => {
+      this.AddedserviceMd?.push(new ServiceMetadata(+element));
+    });
+
+    if (this.AddedserviceMd.length != 0 || this.deletedResourceTypeIDs.length != 0) {
+      this.serviceeMetaDataService.AddServiceBulkMetaData(+this.serviceId, this.AddedserviceMd).subscribe(res => {
+        if (this.deletedResourceTypeIDs.length != 0) {
           this.deletedResourceTypeIDs.forEach(element => {
-            this.serviceeMetaDataService.DeleteServiceMetaData(+this.serviceId, element).subscribe(()=>
-            {
-              this.showToast()
-              this.closeModal()
+            this.serviceeMetaDataService.DeleteServiceMetaData(+this.serviceId, element).subscribe((res) => {
+              // this.showToast()
             })
           });
-        }  
+        }
       })
-    } 
+    }
   }
-  getControl(fullName:any)
-  {
+
+  getControl(fullName: any) {
     return this.checkboxForm.get(fullName);
   }
-  closeModal(){
+  closeModal() {
     this.activeModal.close();
   }
   showToast() {

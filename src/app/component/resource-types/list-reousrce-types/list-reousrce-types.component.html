@@ -1,17 +1,16 @@
 <div class="row justify-content-between align-items-center mb-4">
   <div class="col-12  col-md-8 ">
-    <input type="text" [(ngModel)]="searchTerm" placeholder="Search by Name"
+    <input type="text"  #search placeholder="{{'Search by Name' | translate}}"
       class="form-control">
   </div>
   <div class="col-12 col-md-4 ">
-    <button class="btn btn-primary" (click)="createResourceType()"> Add Resource
-      Type </button>
+    <button class="btn btn-primary" (click)="createResourceType()"> {{'Add Resource Type' | translate}} </button>
   </div>
 </div>
 
 <div class="row">
   <h2>
-    All Resource Types
+    {{'All Resource Types' | translate}}
   </h2>
   <ng-container *ngFor='let rt of ResourceTypes'>
     <div class="col-lg-3 col-md-6" *ngIf="matchesSearchTerm(rt)">
@@ -20,14 +19,14 @@
           alt="Card image cap" />
         <div class="card-body">
           <h4 class="card-title">{{rt.name}} </h4>
-          <a (click)="openModal(rt)" class="btn btn-primary me-2 mb-2">Attributes</a>
+          <a (click)="openModal(rt)" class="btn btn-primary me-2 mb-2">{{'Attributes' | translate}}</a>
           <a [routerLink]="'/resourcetype/'+ rt.id +'/resources'"
-            class="btn btn-primary  me-2 mb-2">Resources</a>
+            class="btn btn-primary  me-2 mb-2">{{'Resources' | translate}}</a>
           <a [routerLink]="'/editresourcetype/' + rt.id"
-            class="btn btn-info me-2 mb-2">Edit</a>
+            class="btn btn-info me-2 mb-2">{{'Update' | translate}}</a>
           <a class="btn btn-danger me-2 mb-2"
             (click)="deleteResourceType(rt.id)">
-            Delete
+            {{'Delete' | translate}}
           </a>
         </div>
       </div>

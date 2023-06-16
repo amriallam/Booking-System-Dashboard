@@ -13,6 +13,19 @@ import {ListReousrceTypesComponent} from 'src/app/component/resource-types/list-
 import { UpdateResoucetypefroserviceComponent } from './update-resoucetypefroservice/update-resoucetypefroservice.component'
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
+
+
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClient } from '@angular/common/http';
+
+
+
+export function httpTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
+
+
 const routes : Routes =[
   {path:"", component: ListServiceComponent},
   {path:"details/:id" , component: DetailsServiceComponent}
@@ -26,15 +39,22 @@ const routes : Routes =[
     DeleteServiceComponent,
     DetailsServiceComponent,
     UpdateResoucetypefroserviceComponent,
-    
+
   ],
   imports: [
     CommonModule,
     FormsModule,
     RouterModule.forChild(routes),
     ReactiveFormsModule,
-    NgbModule, 
-    FontAwesomeModule
+    NgbModule,
+    FontAwesomeModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: httpTranslateLoader,
+        deps: [HttpClient]
+      }
+    })
   ]
 })
 export class ServiceModule { }

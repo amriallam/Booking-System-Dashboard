@@ -5,11 +5,13 @@ import { ServiceService } from 'src/app/shared/service/service.service';
 import { NgModel } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
+import { LanguageService } from 'src/app/shared/service/language.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-delete-service',
   templateUrl: './delete-service.component.html',
-  styleUrls: ['./delete-service.component.scss']
+  styleUrls: ['./delete-service.component.css']
 })
 export class DeleteServiceComponent {
   @Input() serviceId: string = '';
@@ -18,9 +20,15 @@ export class DeleteServiceComponent {
   service: Service | undefined;
   constructor(private route: ActivatedRoute,
                 @Inject(ServiceService) private serviceService :ServiceService,
-                private activeModal : NgbActiveModal,    
-                private toastr: ToastrService
-                ){}
+                private activeModal : NgbActiveModal,
+                private toastr: ToastrService,
+                private languageService: LanguageService,
+                public translate: TranslateService
+                ){
+                  this.languageService.selectedLanguage$.subscribe(lang => {
+                    this.translate.use(lang);
+                  });
+                }
   ngOnInit(){
     this.serviceService.getById(+this.serviceId).subscribe(res =>{
         this.service=res.data[0]

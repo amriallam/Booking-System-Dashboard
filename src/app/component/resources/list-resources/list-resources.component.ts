@@ -6,6 +6,8 @@ import { Resource } from "../../models/Resouce";
 import { ResourseService } from 'src/app/services/resourse.service';
 import { ActivatedRoute , Route } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
+import { LanguageService } from 'src/app/shared/service/language.service';
 
 @Component({
   selector: "a-pp-list-resources",
@@ -16,8 +18,15 @@ export class ListResourcesComponent implements OnInit {
   constructor(private modal: NgbModal,
     private ResourseService: ResourseService,
     private route: ActivatedRoute,
-    
-    ) { }
+    private languageService: LanguageService,
+    public translate: TranslateService
+    ) {
+      
+      this.languageService.selectedLanguage$.subscribe(lang => {
+        this.translate.use(lang);
+      });
+
+    }
 
   urlResourceTypeID : any;
   resourceTypeID:any;
@@ -32,7 +41,7 @@ export class ListResourcesComponent implements OnInit {
     name: new FormControl(''),
     price: new FormControl(''),
   });
-  
+
   createNewResource(){
     this.createNewResourceTypeData ={
       name: this.newResourceType.value.name,
@@ -68,7 +77,7 @@ export class ListResourcesComponent implements OnInit {
     })
   };
 
-  
+
 
   ngOnInit(): void {
     this.getAllResourceTypes();
@@ -100,5 +109,5 @@ export class ListResourcesComponent implements OnInit {
   //   }
   // }
 
-  
+
 }

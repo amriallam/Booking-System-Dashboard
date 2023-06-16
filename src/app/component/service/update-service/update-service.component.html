@@ -1,8 +1,8 @@
-<div class="card rounded-2 m-0">
+ <div class="card rounded-2 m-0">
     <div class="card-body">
       <div class="d-flex justify-content-between">
         <h4 class="card-title d-inline">
-            Update Service
+            {{'Update Service' | translate}}
         </h4>
         <button
           type="button"
@@ -11,38 +11,39 @@
           (click)="closeModal()"
         ></button>
       </div>
+
       <form [formGroup]="addServiceForm" (ngSubmit)="onSubmit()">
         <div>
           <input hidden formControlName="id"  value={{service?.id}} />
         </div>
+
           <div class="m-3">
-            <input type="text" id="name" formControlName="name" class="form-control" placeholder="Name" value={{service?.name}}>
+            <input type="text" id="name" formControlName="name" class="form-control" placeholder="{{'Name' | translate}}" value={{service?.name}}>
             <div *ngIf="getControl('name')?.errors && getControl('name')?.touched">
-              <small class="text-danger d-flex align-items-center fs-5" *ngIf="getControl('name')?.errors?.['required']"> Please Enter name</small>
+              <small class="text-danger d-flex align-items-center fs-5" *ngIf="getControl('name')?.errors?.['required']"> {{'Please Enter name' | translate}}</small>
             </div>
           </div>
           <div class="m-3">
-            <input type="description" id="description" formControlName="description" class="form-control" placeholder="Decription" value={{service?.description}}>
+            <input type="description" id="description" formControlName="description" class="form-control" placeholder="{{'Description' | translate}}" value={{service?.description}}>
             <div *ngIf="getControl('description')?.errors && getControl('description')?.touched">
-              <small class=" text-danger d-flex align-items-center fs-5" *ngIf="getControl('description')?.errors?.['required']"> Please Enter description</small>
+              <small class=" text-danger d-flex align-items-center fs-5" *ngIf="getControl('description')?.errors?.['required']"> {{'Please Enter description' | translate}}</small>
             </div>
           </div>
-      
+
           <div class="m-3">
               <select id="status" formControlName="status" class="form-control" value={{service?.status}} >
-                <option value="" disabled selected>Select a status</option>
-                <option value="0" active>Active</option>
-                <option value="1">Inactive</option>
-                <option value="2">Pending Approval</option>
+                <option value="" disabled selected>{{'select status' | translate}}</option>
+                <option value="0" active>{{'Active' | translate}}</option>
+                <option value="1">{{'Inactive' | translate}}</option>
+                <option value="2">{{'Pending Approval' | translate}}</option>
               </select>
               <div *ngIf="getControl('status')?.errors && getControl('status')?.touched">
-                <small class="text-danger d-flex align-items-center fs-5" *ngIf="getControl('status')?.errors?.['required']">Please select a status</small>
+                <small class="text-danger d-flex align-items-center fs-5" *ngIf="getControl('status')?.errors?.['required']">{{'Please select a status' | translate}}</small>
               </div>
             </div>
-            <button class="btn btn-info text-center w-100 my-3" type="submit" [disabled]="!formValueChanged">Update</button>
+            <button class="btn btn-info text-center w-100 my-3" type="submit" [disabled]="!formValueChanged">{{'Update' | translate}}</button>
             <!-- <button class="btn btn-info text-center w-100 my-3" type="submit" [disabled]="!formValueChanged">Update</button> -->
           </form>
-
+        </div>
     </div>
-</div>
-  
+

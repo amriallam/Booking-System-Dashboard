@@ -1,6 +1,8 @@
+import { LanguageService } from './../../service/language.service';
 import { Component, AfterViewInit, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateService } from '@ngx-translate/core';
 import { CreateResourceTypeComponent } from 'src/app/component/resource-types/create-resource-type/create-resource-type.component';
 import { CreateServiceComponent } from 'src/app/component/service/create-service/create-service.component';
 import { UserService } from 'src/app/shared/service/user.service';
@@ -12,11 +14,21 @@ import { UserService } from 'src/app/shared/service/user.service';
 })
 export class NavigationComponent implements AfterViewInit {
   @Output() toggleSidebar = new EventEmitter<void>();
-
+  @Output() toggleLanguages = new EventEmitter<string>();
 
   public showSearch = false;
 
-  constructor(private modal: NgbModal, private userService: UserService, private router: Router) {
+  constructor(private modal: NgbModal,
+              private userService: UserService,
+              private router: Router,
+              public translate: TranslateService,
+              private languageService: LanguageService) {
+    translate.addLangs(['en', 'ar']);
+    // translate.setDefaultLang('en');
+  }
+
+  switchLang(lang: string) {
+    this.languageService.setSelectedLanguage(lang);
   }
 
   // This is for Notifications
@@ -111,6 +123,11 @@ export class NavigationComponent implements AfterViewInit {
     code: 'de',
     icon: 'de'
   }]
+
+  changeLanguage(language: string) {
+    this.toggleLanguages.emit(language);
+  }
+
   createService(){
     const modelRef = this.modal.open(CreateServiceComponent, { centered: true });
   }

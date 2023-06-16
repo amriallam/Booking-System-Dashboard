@@ -1,19 +1,31 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { ResourceType } from "../../models/ResourceType";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { ResourceTypeAttributeDetailsComponent } from "../resource-type-attribute-details/resource-type-attribute-details.component";
 import { ResourceTypeService } from "../../../services/resource-type.service";
 import { CreateResourceTypeComponent } from "src/app/component/resource-types/create-resource-type/create-resource-type.component";
+import { LanguageService } from "src/app/shared/service/language.service";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: "app-list-reousrce-types",
   templateUrl: "./list-reousrce-types.component.html",
 })
 export class ListReousrceTypesComponent implements OnInit {
+  @ViewChild("search") search !: ElementRef;
+
   constructor(
     private modal: NgbModal,
-    private ResourceTypeService: ResourceTypeService
-  ) { }
+    private ResourceTypeService: ResourceTypeService,
+    private languageService: LanguageService,
+    public translate: TranslateService
+  ) {
+
+    this.languageService.selectedLanguage$.subscribe(lang => {
+      this.translate.use(lang);
+    });
+
+  }
 
   selectedCardID: any;
   searchTerm: string = "";
@@ -57,6 +69,7 @@ export class ListReousrceTypesComponent implements OnInit {
     if (!this.searchTerm) {
       return true; // If no search term provided, show all resources
     }
+    this.searchTerm = this.search.nativeElement.value;
     const name = rt.name.toLowerCase();
     const searchTerm = this.searchTerm.toLowerCase();
     return name.includes(searchTerm); // Check if resource name includes the search term

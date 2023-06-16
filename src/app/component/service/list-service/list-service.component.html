@@ -1,21 +1,23 @@
+
 <select class="form-control mb-4" [(ngModel)]="selectedStatus" (ngModelChange)="loadServices()">
-  <option value="null" i18n>All</option>
-  <option value="0" i18n>Active</option>
-  <option value="1" i18n>Inactive</option>
-  <option value="2" i18n>Pending Approval</option>
+  <option value="null">All</option>
+  <option value="0">Active</option>
+  <option value="1">Inactive</option>
+  <option value="2">Pending Approval</option>
 </select>
 
+</div>
 <div class="card">
   <div class="card-body">
-    <h4 class="card-title" i18n>Services</h4>
+    <h4 class="card-title">Services</h4>
     <div class="table-responsive">
       <table class="table align-middle  table-striped" *ngIf="dataExist">
         <thead>
           <tr>
-            <th class="text-dark font-medium fs-4" i18n>No</th>
-            <th class="text-dark font-medium fs-4" i18n>Name</th>
-            <th class="text-dark font-medium fs-4" i18n>status </th>
-            <th class="text-dark font-medium fs-4" i18n></th>
+            <th class="text-dark font-medium fs-4">No</th>
+            <th class="text-dark font-medium fs-4">Name</th>
+            <th class="text-dark font-medium fs-4">status </th>
+            <th class="text-dark font-medium fs-4"></th>
           </tr>
         </thead>
         <tbody>
@@ -24,16 +26,15 @@
             <td i18n>{{ service.name }}</td>
             <td i18n>{{ getServiceStatusText(service.status) }}</td>
             <td class="d-flex gap-2">
-              <a class="btn btn-outline-primary me-2 mb-2" [routerLink]="['/service/details', service.id]"
-                i18n>Details</a>
-              <a class="btn btn-outline-info me-2 mb-2" (click)="openUpdateModal(service)" i18n>Update</a>
-              <a class="btn btn-outline-info me-2 mb-2" (click)="openUpdateRTModal(service)" i18n>Update Resource Type</a>
-              <a class="btn btn-outline-danger me-2 mb-2" (click)="openDeleteModal(service)" i18n>Delete</a>
+              <a class="btn btn-outline-primary me-2 mb-2"[routerLink]="['/service/details', service.id]">Details</a>
+              <a class="btn btn-outline-info me-2 mb-2" (click)="openUpdateModal(service)">Update</a>
+              <a class="btn btn-outline-info me-2 mb-2" (click)="openUpdateRTModal(service)">Update Resource Type</a>
+              <a class="btn btn-outline-danger me-2 mb-2" (click)="openDeleteModal(service)">Delete</a>
             </td>
           </tr>
         </tbody>
       </table>
-      <div class="alert alert-info text-center " role="alert" *ngIf="!dataExist" i18n>
+      <div class="alert alert-info text-center " role="alert" *ngIf="!dataExist">
         There is no data Available
       </div>
     </div>

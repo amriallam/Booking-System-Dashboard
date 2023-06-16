@@ -1,46 +1,46 @@
 <div class="card">
   <div class="card-body">
-    <h4 class="card-title">Booking Resources</h4>
-    <h5 class="card-subtitle text-muted">Overview of the current available resources</h5>
+    <h4 class="card-title">{{'Booking Resources' | translate}}</h4>
+    <h5 class="card-subtitle text-muted">{{'Overview of the current available resources' | translate}}</h5>
 
     <!-- Add the filter by resource type select box -->
     <!-- <div class="mb-3">
       <select class="form-select" [(ngModel)]="searchResourceType" placeholder="Search by resource type">
         <option value="">All</option>
-        <option *ngFor="let resourceType of getResourceTypes()" [value]="resourceType">{{ resourceType }}</option> 
+        <option *ngFor="let resourceType of getResourceTypes()" [value]="resourceType">{{ resourceType }}</option>
       </select>
     </div> -->
-    
+
     <div class="border p-3 my-3">
       <h3>
-        Add New Resource Form
+        {{'Add New Resource Form' | translate}}
         </h3>
       <form class="d-flex flex-column gap-2" [formGroup]="newResourceType">
 
         <div class="d-flex gap-2">
-          <input class="form-control" type="text" formControlName="name" placeholder="Resource Name">
-          <input class="form-control" type="number" min="0" formControlName="price" placeholder="Resource Price">
+          <input class="form-control" type="text" formControlName="name" placeholder="{{'Resource Name' | translate}}">
+          <input class="form-control" type="number" min="0" formControlName="price" placeholder="{{'Resource Price' | translate}}">
         </div>
-      
-         
-      
+
+
+
         <button type="submit" class="btn btn-primary" (click)="createNewResource()">
-          Create New Resource
+          {{'Add New Resource' | translate}}
         </button>
       </form>
     </div>
 
     <div class="table-responsive">
-      <h3>Resources List</h3>
+      <h3>{{'Resources List' | translate}}</h3>
       <table class="table align-middle text-nowrap">
         <thead>
           <tr>
             <th class="text-dark font-medium fs-4">ID</th>
-            <th class="text-dark font-medium fs-4">Name</th>
-            <th class="text-dark font-medium fs-4">Resource Type</th>
-            <th class="text-dark font-medium fs-4">Price</th>
+            <th class="text-dark font-medium fs-4">{{'Name' | translate}}</th>
+            <th class="text-dark font-medium fs-4">{{'Resource Type' | translate}}</th>
+            <th class="text-dark font-medium fs-4">{{'Price' | translate}}</th>
             <th class="text-dark font-medium fs-4">
-              Actions
+              {{'Actions' | translate}}
             </th>
           </tr>
         </thead>
@@ -48,7 +48,7 @@
           <!-- <tr *ngFor="let resource of getResources() | slice: (page-1) * pageSize : page * pageSize"> -->
 
             <tr *ngIf="filteredResources.length === 0">
-              <td colspan="5" class="text-center">No resources found</td>
+              <td colspan="5" class="text-center">{{'No resources found' | translate}}</td>
             </tr>
 
             <tr *ngFor="let resource of filteredResources">
@@ -58,11 +58,11 @@
             <td>{{ resource.price }}</td>
             <td class="d-flex gap-2">
               <button class="btn btn-primary">
-                <a (click)="openModal(resource)">Details</a>
+                <a (click)="openModal(resource)">{{'Details' | translate}}</a>
               </button>
-              <button class="btn btn-warning">Schedule</button>
-              <button class="btn btn-success" [routerLink]="['/resources', urlResourceTypeID, 'updateresource', resource.id]">Update</button>
-              <button class="btn btn-danger" (click)="deleteResource(resource.id)">Delete</button>
+              <button class="btn btn-warning">{{'Schedule' | translate}}</button>
+              <button class="btn btn-success" [routerLink]="['/resources', urlResourceTypeID, 'updateresource', resource.id]">{{'Update' | translate}}</button>
+              <button class="btn btn-danger" (click)="deleteResource(resource.id)">{{'Delete' | translate}}</button>
             </td>
           </tr>
         </tbody>

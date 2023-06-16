@@ -3,13 +3,13 @@
 
       <div class="d-flex gap-2">
         <!-- <input class="form-control" type="text" formControlName="name" placeholder="Resource New Name"> -->
-        <input class="form-control" type="number" min="0" formControlName="price" placeholder="Resource New Price">
+        <input class="form-control" type="number" min="0" formControlName="price" placeholder="{{'Resource New Price' | translate}}">
       </div>
-    
-      
-    
+
+
+
       <button type="submit" class="btn btn-primary" (click)="updateResourceType()" >
-        Update Resource Data
+        {{'Update' | translate}}
       </button>
     </form>
   </div>
