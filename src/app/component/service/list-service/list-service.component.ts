@@ -8,11 +8,16 @@ import { DeleteServiceComponent } from '../delete-service/delete-service.compone
 import { DetailsServiceComponent } from '../details-service/details-service.component';
 import { UpdateResoucetypefroserviceComponent } from '../update-resoucetypefroservice/update-resoucetypefroservice.component';
 
+
+
+import { TranslateService } from '@ngx-translate/core';
+
 @Component({
   selector: 'app-list-service',
   templateUrl: './list-service.component.html',
   styleUrls: ['./list-service.component.css']
 })
+
 export class ListServiceComponent implements OnInit {
   selectedStatus?: ServiceStatus ;
   services: Service[] = [];
@@ -20,8 +25,16 @@ export class ListServiceComponent implements OnInit {
 
   constructor(
     @Inject(ServiceService) private serviceService: ServiceService,
-    private modal: NgbModal
-  ) {}
+    public translate: TranslateService, private modal: NgbModal
+  ) {
+    translate.addLangs(['en', 'ar']);
+    translate.setDefaultLang('en');
+
+  }
+
+  switchLang(lang: string) {
+    this.translate.use(lang);
+  }
 
   ngOnInit() {
     this.loadServices();
@@ -106,7 +119,7 @@ export class ListServiceComponent implements OnInit {
 // export class ListServiceComponent {
 //   // @Input() selectedStatus?: ServiceStatus ;
 //   selectedStatus?: ServiceStatus ;
-  
+
 //   services: Service[] = [];
 //   // selectedStatus?: ServiceStatus;
 //   dataExist: boolean = true;
@@ -128,7 +141,7 @@ export class ListServiceComponent implements OnInit {
 //       });
 //     }
 //   }
-  
+
 //   openDetailsModal(service: Service) {
 //     const modelRef = this.modal.open(DetailsServiceComponent, {
 //       centered: true,
@@ -140,7 +153,7 @@ export class ListServiceComponent implements OnInit {
 //         centered: true,
 //       });
 //       modelRef.componentInstance.serviceId = service.id;
-    
+
 //   }
 //   openUpdateModal(service: Service) {
 //     const modelRef = this.modal.open(UpdateServiceComponent, {
