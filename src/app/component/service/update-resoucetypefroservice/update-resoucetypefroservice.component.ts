@@ -89,23 +89,7 @@ formValueChanged: boolean = false;
             })
           });
         }
-          this.closeModal()
-        }
-        else {
-          this.showToast();
-          this.closeModal();
-        }
       })
-    }
-    }
-    else if (this.AddedserviceMd.length == 0 && this.deletedResourceTypeIDs.length != 0) {
-        this.deletedResourceTypeIDs.forEach(element => {
-          this.serviceeMetaDataService.DeleteServiceMetaData(+this.serviceId, element).subscribe((res) => {
-            this.showToast();
-            this.closeModal();
-          })
-        });
-
     }
   }
 
