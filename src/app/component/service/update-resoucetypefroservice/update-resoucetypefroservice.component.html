@@ -1,5 +1,44 @@
 <div class="card rounded-2 m-0">
   <div class="card-body">
+    <div class="p-3 text-primary text-center">
+      <h3 class="m-0">
+        Update Resource Types
+      </h3>
+    </div>
+    <form [formGroup]="checkboxForm" (ngSubmit)="onSubmit()">
+      <div class="m-3">
+        <select
+          id="resourceType"
+          formControlName="resourceType"
+          class="form-control"
+          multiple>
+          <option
+            *ngFor="let resourceType of allResourceTypes"
+            [value]="resourceType.id"
+            [selected]="defaultSelectedRTY.includes(resourceType.id)">
+            {{ resourceType.name }}
+          </option>
+        </select>
+        <div
+          *ngIf="getControl('resourceType')?.errors && getControl('resourceType')?.touched">
+          <small
+            class="text-danger d-flex align-items-center fs-5"
+            *ngIf="getControl('resourceType')?.errors?.['required']">
+            Please select at least one resource type
+          </small>
+        </div>
+      </div>
+      <div class="m-3 row">
+        <button class="btn btn-info text-center m-3 col-5" type="submit" [disabled]="!formValueChanged || checkboxForm.invalid">Update</button>
+        <button class="btn btn-danger text-center m-3 col-5" (click)="closeModal()" >Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<!-- <div class="card rounded-2 m-0">
+  <div class="card-body">
     <div class="d-flex justify-content-between">
       <h4 class="card-title d-inline">{{'Update Resource Type' | translate}}</h4>
       <button
@@ -9,7 +48,6 @@
         (click)="closeModal()"
       ></button>
     </div>
-    <!-- <form [formGroup]="checkboxForm" > -->
     <form [formGroup]="checkboxForm" (ngSubmit)="onSubmit()">
 
       <div class="m-3">
@@ -39,4 +77,4 @@
       </button>
     </form>
   </div>
-</div>
+</div> -->
