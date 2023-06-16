@@ -1,9 +1,11 @@
-import { Component, Input } from "@angular/core";
+import { Component, ElementRef, Input, ViewChild } from "@angular/core";
 import { FormArray, FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 import { ResourceTypeService } from "../../../services/resource-type.service";
 import { ActivatedRoute,Router } from "@angular/router";
 import { ListTicketsComponent } from "../../ticket/list-tickets/list-tickets.component";
+import { LanguageService } from "src/app/shared/service/language.service";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: "app-edit-resource-type",
@@ -13,6 +15,7 @@ import { ListTicketsComponent } from "../../ticket/list-tickets/list-tickets.com
 export class EditResourceTypeComponent {
   selectedCardID: any;
 
+  @ViewChild('resourceTypeName') resTypeName !: ElementRef;
   form: FormGroup;
   ResourceTypeName: string;
 
@@ -20,13 +23,21 @@ export class EditResourceTypeComponent {
     private formBuilder: FormBuilder,
     private ResourceTypeService: ResourceTypeService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private languageService: LanguageService,
+    public translate: TranslateService
   ) {
     this.form = formBuilder.group({});
     this.ResourceTypeName = "New Resource Type";
+
+    this.languageService.selectedLanguage$.subscribe(lang => {
+      this.translate.use(lang);
+    });
   }
 
   updateResourceType(id: any) {
+    this.ResourceTypeName = this.resTypeName.nativeElement.value;
+
     id = this.selectedCardID;
     const newData = {
       id: id,
@@ -54,7 +65,7 @@ export class EditResourceTypeComponent {
   createField(): FormGroup {
     return this.formBuilder.group({
       input: ["", Validators.required],
-      selectOption: ["", Validators.required],
+      selectOption: [null, Validators.required],
     });
   }
 

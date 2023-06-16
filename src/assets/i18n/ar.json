@@ -52,5 +52,10 @@
   "No attributes found": "لا يوجد خصائص",
   "Attribute": "الخاصية",
   "Resource New Price": "السعر الجديد للمورد",
-  "New Resource Type" : " نوع المورد الجديد"
+  "New Resource Type" : " نوع المورد الجديد",
+  "resourceTypeName": "اسم نوع المورد",
+  "Select Data Type": "اختر نوع البيانات",
+  "Add Resource Type": "إضافة نوع مورد جديد",
+  "All Resource Types": "انواع الموارد",
+  "Search by Name": "بحث بالاسم"
 }

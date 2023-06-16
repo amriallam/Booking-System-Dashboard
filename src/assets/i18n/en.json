@@ -50,5 +50,11 @@
   "No attributes found": "No attributes found",
   "Attribute": "Attribute",
   "Resource New Price" : "Resource New Price",
-  "New Resource Type": "New Resource Type"
+  "New Resource Type": "New Resource Type",
+  "resourceTypeName": "Resource Type Name",
+  "Select Data Type": "Select Data Type",
+  "Add Resource Type": "Add Resource Type",
+  "All Resource Types": "All Resource Types",
+  "Search by Name": "Search by Name"
+
 }
