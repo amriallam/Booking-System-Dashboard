@@ -8,6 +8,8 @@ import { ResourceType } from '../../models/ResourceType';
 import { ServiceMetadata } from '../../models/ServiceMetadata';
 import { ToastrService } from 'ngx-toastr';
 import { ServiceMetaDataService } from 'src/app/shared/service/resource-meta-data.service';
+import { LanguageService } from 'src/app/shared/service/language.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-create-service',
@@ -27,13 +29,21 @@ export class CreateServiceComponent {
     @Inject(ServiceService) private serviceService: ServiceService,
     @Inject(ServiceMetaDataService) private serviceMetaDataService: ServiceMetaDataService,
     public activeModal: NgbActiveModal,
-    private toastr: ToastrService) {
+    private toastr: ToastrService,
+    private languageService: LanguageService,
+    public translate: TranslateService
+    ) {
     this.addServiceForm = this.formBuilder.group({
       name: ['', Validators.required],
       description: ['', [Validators.required]],
       status: ['', [Validators.required]],
       resourceType: ['', [Validators.required]]
     });
+
+    this.languageService.selectedLanguage$.subscribe(lang => {
+      this.translate.use(lang);
+    });
+    
   }
   ngOnInit() {
     this.serviceMetaDataService.GetResourceType().subscribe(res => {

@@ -1,7 +1,7 @@
 <div class="card rounded-2 m-0">
   <div class="card-body">
     <div class="d-flex justify-content-between">
-      <h4 class="card-title d-inline">Update Resource Type for Service</h4>
+      <h4 class="card-title d-inline">{{'Update Resource Type' | translate}}</h4>
       <button
         type="button"
         class="btn-close"
@@ -28,12 +28,12 @@
           <small
             class="text-danger d-flex align-items-center fs-5"
             *ngIf="getControl('resourceType')?.errors?.['required']">
-            Please select at least one resource type
+            {{'Please select at least one resource type' | translate}}
           </small>
         </div>
       </div>
       <button class="btn btn-info text-center w-100 my-3" type="submit">
-        Update
+        {{'Update' | translate}}
       </button>
     </form>
   </div>

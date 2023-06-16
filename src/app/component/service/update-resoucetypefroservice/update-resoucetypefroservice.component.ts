@@ -8,6 +8,8 @@ import { ResourceType } from '../../models/ResourceType';
 import { Service } from '../../models/Service';
 import { ServiceMetadata } from '../../models/ServiceMetadata';
 import { ServiceStatus } from '../../models/ServiceStatus';
+import { LanguageService } from 'src/app/shared/service/language.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-update-resoucetypefroservice',
@@ -25,28 +27,35 @@ export class UpdateResoucetypefroserviceComponent {
   allResourceTypes : ResourceType[]=[];
   // selected list by defualt
   oldresourceType : ResourceType[]=[];
-  //ids for this selected 
+  //ids for this selected
   defaultSelectedRTY : number[]=[];
 
   //deleted resource type
   deletedResourceTypeIDs : number[]=[];
   AddResourceTypeIDs : number[]=[];
   newResourceTypesMD :ServiceMetadata[] =[];
-  
+
   updateService?: Service;
   service?:Service ;
   constructor(private formBuilder: FormBuilder,
     @Inject(ServiceService) private serviceService : ServiceService,
     @Inject(ServiceMetaDataService) private serviceeMetaDataService: ServiceMetaDataService,
       public activeModal: NgbActiveModal,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private languageService: LanguageService,
+    public translate: TranslateService
     ) {
+
       this.checkboxForm = this.formBuilder.group({
         resourceType: ['',[Validators.required]]
       });
+
+      this.languageService.selectedLanguage$.subscribe(lang => {
+        this.translate.use(lang);
+      });
     }
   ngOnInit(){
-    
+
       this.serviceeMetaDataService.GetResourceType().subscribe(res =>{
         this.allResourceTypes= res.data;
         this.serviceeMetaDataService.GetResourceTypeByserviceId(+this.serviceId).subscribe(res =>
@@ -84,9 +93,9 @@ export class UpdateResoucetypefroserviceComponent {
               this.closeModal()
             })
           });
-        }  
+        }
       })
-    } 
+    }
   }
   getControl(fullName:any)
   {

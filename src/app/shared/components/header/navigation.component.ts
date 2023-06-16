@@ -24,13 +24,13 @@ export class NavigationComponent implements AfterViewInit {
               public translate: TranslateService,
               private languageService: LanguageService) {
     translate.addLangs(['en', 'ar']);
-    translate.setDefaultLang('en');
+    // translate.setDefaultLang('en');
   }
 
   switchLang(lang: string) {
     this.languageService.setSelectedLanguage(lang);
   }
-  
+
   // This is for Notifications
   notifications: Object[] = [
     {

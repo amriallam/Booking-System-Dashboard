@@ -1,7 +1,9 @@
 import { Component } from "@angular/core";
 import { FormArray, FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
+import { TranslateService } from "@ngx-translate/core";
 import { ResourseService } from 'src/app/services/resourse.service';
+import { LanguageService } from "src/app/shared/service/language.service";
 
 @Component({
   selector: "app-create-resource",
@@ -14,12 +16,18 @@ export class CreateResourceComponent {
   constructor(
     private formBuilder: FormBuilder,
     public activeModal: NgbActiveModal,
-    private resourceService: ResourseService
-  
+    private resourceService: ResourseService,
+    private languageService: LanguageService,
+    public translate: TranslateService
   ) {
     this.form = formBuilder.group({});
     this.ResourceName = "New Resource Name";
     this.TitleEdit = false;
+
+    this.languageService.selectedLanguage$.subscribe(lang => {
+      this.translate.use(lang);
+    });
+    
   }
   ToggleTitleEdit() {
     this.TitleEdit = !this.TitleEdit;

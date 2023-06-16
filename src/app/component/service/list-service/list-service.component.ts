@@ -33,14 +33,7 @@ export class ListServiceComponent implements OnInit {
     this.languageService.selectedLanguage$.subscribe(lang => {
       this.translate.use(lang);
     });
-    // translate.addLangs(['en', 'ar']);
-    // translate.setDefaultLang('en');
-
   }
-
-  // switchLang(lang: string) {
-  //   this.translate.use(lang);
-  // }
 
   ngOnInit() {
     this.loadServices();

@@ -6,6 +6,8 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ServiceService } from 'src/app/shared/service/service.service';
 import { ToastrService } from 'ngx-toastr';
 import { ServiceMetadata } from '../../models/ServiceMetadata';
+import { LanguageService } from 'src/app/shared/service/language.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-update-service',
@@ -25,7 +27,9 @@ export class UpdateServiceComponent {
   constructor(private formBuilder: FormBuilder,
               private serviceService: ServiceService,
               public activeModal: NgbActiveModal,
-              private toastr: ToastrService) {
+              private toastr: ToastrService,
+              private languageService: LanguageService,
+              public translate: TranslateService) {
 
     this.addServiceForm = this.formBuilder.group({
       id: [''],
@@ -33,8 +37,13 @@ export class UpdateServiceComponent {
       description: ['', Validators.required],
       status: ['', Validators.required],
     });
+
+    this.languageService.selectedLanguage$.subscribe(lang => {
+      this.translate.use(lang);
+    });
+    
   }
-  
+
   ngOnInit() {
     this.addServiceForm.valueChanges.subscribe(() => {
       this.formValueChanged = true;
@@ -112,7 +121,7 @@ export class UpdateServiceComponent {
 //   serviceStatus: ServiceStatus = ServiceStatus.Active;
 //   formValueChanged: boolean = false;
 
-  
+
 //   updateService?: Service;
 //   service?:Service ;
 //   constructor(private formBuilder: FormBuilder,
@@ -145,7 +154,7 @@ export class UpdateServiceComponent {
 //     if (this.addServiceForm.invalid) {
 //       return;
 //     }
-   
+
 
 //     this.updateService= new Service(this.addServiceForm.get('name')?.value,
 //                             this.addServiceForm.get('description')?.value,
@@ -159,7 +168,7 @@ export class UpdateServiceComponent {
 //           this.showToast();
 //         })
 //       }
-  
+
 //   }
 //   getControl(fullName:any)
 //   {

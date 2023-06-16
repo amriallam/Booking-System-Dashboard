@@ -10,6 +10,17 @@ import { ResourceTypeService } from '../../services/resource-type.service';
 import { EditResourceTypeComponent } from './edit-resource-type/edit-resource-type.component';
 import { ResourceTypeAttributeCreateComponent } from './resource-type-attribute-create/resource-type-attribute-create.component';
 
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClient } from '@angular/common/http';
+
+
+
+export function httpTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
+
+
 const routes: Routes = [
   { path: "", component: ListReousrceTypesComponent }
 ];
@@ -28,7 +39,13 @@ const routes: Routes = [
     ReactiveFormsModule,
     CommonModule,
     RouterModule.forChild(routes),
-    
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: httpTranslateLoader,
+        deps: [HttpClient]
+      }
+    })
   ],
   exports:[ListReousrceTypesComponent]
 })
