@@ -1,3 +1,4 @@
+import { LanguageService } from './../../../shared/service/language.service';
 import { Component, OnInit, Input, Inject } from '@angular/core';
 import { ServiceService } from 'src/app/shared/service/service.service';
 import { Service } from '../../models/Service';
@@ -25,16 +26,21 @@ export class ListServiceComponent implements OnInit {
 
   constructor(
     @Inject(ServiceService) private serviceService: ServiceService,
-    public translate: TranslateService, private modal: NgbModal
+    private languageService: LanguageService,
+    public translate: TranslateService,
+    private modal: NgbModal
   ) {
-    translate.addLangs(['en', 'ar']);
-    translate.setDefaultLang('en');
+    this.languageService.selectedLanguage$.subscribe(lang => {
+      this.translate.use(lang);
+    });
+    // translate.addLangs(['en', 'ar']);
+    // translate.setDefaultLang('en');
 
   }
 
-  switchLang(lang: string) {
-    this.translate.use(lang);
-  }
+  // switchLang(lang: string) {
+  //   this.translate.use(lang);
+  // }
 
   ngOnInit() {
     this.loadServices();

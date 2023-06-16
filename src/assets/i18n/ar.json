@@ -1,12 +1,14 @@
 {
-  "Sitetitle": "Hoekige site met meerdere talen",
-  "Name": "Naam",
-  "NameError": "Ik weet zeker dat je een naam moet hebben",
-  "Email": "E-mailadres",
-  "PhoneNo": "Telefoon nr",
-  "Password": "Wachtwoord",
-  "Bio": "Voer bio in",
-  "TermsConditions": "Ik ga akkoord met de voorwaarden.",
-  "Submit": "voorleggen",
-  "Services": "خدمات"
+  "Services": "خدمات",
+  "#": "#",
+  "Name": "الاسم",
+  "Status": "الحاله",
+  "Details": "التفاصيل",
+  "Update": "تحديث",
+  "Update Resource Type": "تحديث انواع الموارد",
+  "Delete": "حذف",
+  "There is no data Available": "لا يوجد بيانات متاحة",
+  "Resources Types": "انواع الموارد",
+  "Attributes": "الخصائص",
+  "Resources": "الموارد"
 }

@@ -9,15 +9,16 @@ import { TranslateService } from '@ngx-translate/core';
 export class AppComponent {
   title = 'app';
 
-  constructor(
-    public translate: TranslateService
-  ) {
-    translate.addLangs(['en', 'nl']);
-    translate.setDefaultLang('en');
-  }
-  switchLang(lang: string) {
-    this.translate.use(lang);
-  }
+  // constructor(
+  //   public translate: TranslateService
+  // ) {
+  //   translate.addLangs(['en', 'ar']);
+  //   translate.setDefaultLang('en');
+  // }
+
+  // switchLang(lang: string) {
+  //   this.translate.use(lang);
+  // }
 
 }
 
