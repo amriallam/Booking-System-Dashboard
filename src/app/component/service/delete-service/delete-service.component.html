@@ -1,8 +1,9 @@
+
 <div class="card rounded-2 m-0">
   <div class="card-body">
     <div class="d-flex justify-content-between">
       <h4 class="card-title d-inline">
-          {{'Delete Service' | translate}}
+          Delete Service
       </h4>
       <button
         type="button"
@@ -20,7 +21,7 @@
             <p class="card-text">
               {{ service?.description }}
             </p>
-            <button class="btn btn-danger" (click)="deleteService(service?.id)">{{ 'Delete' |translate}} </button>
+            <button class="btn btn-danger" (click)="deleteService(service?.id)">Delete </button>
           </div>
         </div>
     </section>

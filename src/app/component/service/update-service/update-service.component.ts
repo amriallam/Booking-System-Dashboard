@@ -21,7 +21,7 @@ export class UpdateServiceComponent {
   serviceStatus: ServiceStatus = ServiceStatus.Active;
   formValueChanged: boolean = false;
 
-  updateService?: Service;
+  // updateService?: Service;
   service?: Service;
 
   constructor(private formBuilder: FormBuilder,
@@ -30,6 +30,7 @@ export class UpdateServiceComponent {
               private toastr: ToastrService,
               private languageService: LanguageService,
               public translate: TranslateService) {
+
 
     this.addServiceForm = this.formBuilder.group({
       id: [''],
@@ -41,13 +42,22 @@ export class UpdateServiceComponent {
     this.languageService.selectedLanguage$.subscribe(lang => {
       this.translate.use(lang);
     });
-    
+
   }
 
   ngOnInit() {
-    this.addServiceForm.valueChanges.subscribe(() => {
-      this.formValueChanged = true;
-    });
+    this.serviceService.getById(+this.serviceId).subscribe(res =>{
+      this.service = res.data[0];
+      this.addServiceForm.setValue({
+        id: this.service?.id || '',
+        name: this.service?.name || '',
+        description: this.service?.description || '',
+        status: this.service?.status || ''
+      });
+      this.addServiceForm.valueChanges.subscribe(() => {
+        this.formValueChanged = true;
+      });
+    })
   }
   onSubmit() {
     const AddedserviceMd: ServiceMetadata[] = [];
@@ -55,23 +65,23 @@ export class UpdateServiceComponent {
       return;
     }
 
-    this.updateService = new Service(
+    const updatedService = new Service(
       this.addServiceForm.get('name')?.value,
       this.addServiceForm.get('description')?.value,
       +this.addServiceForm.get('status')?.value,
-      this.service?.id
+      this.addServiceForm.get('id')?.value
     );
 
-    if (this.updateService != null) {
-      if (this.formValueChanged) {
-        this.serviceService.UpdateService(+this.serviceId, this.updateService).subscribe(res => {
-          this.serviceAdded.emit();
-          location.reload();
-          this.showToast();
-        });
-      } else {
-        this.showToastfornoupdates();
-      }
+    if (this.formValueChanged) {
+      this.serviceService.UpdateService(+this.serviceId, updatedService).subscribe(res => {
+        this.serviceAdded.emit();
+        this.closeModal();
+        location.reload();
+        this.showToast();
+
+      });
+    } else {
+      console.log('No changes detected');
     }
   }
 
@@ -79,7 +89,7 @@ export class UpdateServiceComponent {
     return this.addServiceForm.get(fullName);
   }
 
-  closeModal() {
+  closeModal(){
     this.activeModal.close();
   }
 
@@ -87,9 +97,6 @@ export class UpdateServiceComponent {
     this.toastr.success('Update, Done!', 'Success');
   }
 
-  showToastfornoupdates() {
-    this.toastr.info('No data changes detected.', 'Info');
-  }
 }
 
 

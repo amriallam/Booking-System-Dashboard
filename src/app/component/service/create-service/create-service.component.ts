@@ -63,20 +63,22 @@ export class CreateServiceComponent {
 
         if (this.service != null) {
           this.serviceService.AddService(this.service).subscribe(res => {
-
-
             if (res.data.id != undefined) {
               const ids: number[] = this.addServiceForm.get('resourceType')?.value;
-
+              // console.log(ids)
               ids.forEach((element) => {
                 this.serviceMd?.push(new ServiceMetadata(+element));
               });
-              console.log(this.serviceMd);
-              this.serviceMetaDataService.AddServiceBulkMetaData(res.data.id, this.serviceMd).subscribe(res => {
-                this.serviceAdded.emit();
-                this.closeModal();
-                this.showToast();
-             })
+              // console.log(res.data.name);
+              this.serviceService.getServiceByName(res.data.name).subscribe((serv)=>{
+                console.log(serv.data[0].id)
+                if(serv.data[0].id != undefined){
+                  this.serviceMetaDataService.AddServiceBulkMetaData(serv.data[0].id, this.serviceMd).subscribe(serMd => {
+                    this.closeModal();
+                    this.showToast();
+                 })       
+                }
+              })
             }
           });
       }

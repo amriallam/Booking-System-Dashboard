@@ -1,4 +1,4 @@
-<div class="card rounded-2 m-0">
+ <div class="card rounded-2 m-0">
     <div class="card-body">
       <div class="d-flex justify-content-between">
         <h4 class="card-title d-inline">
@@ -11,10 +11,12 @@
           (click)="closeModal()"
         ></button>
       </div>
+
       <form [formGroup]="addServiceForm" (ngSubmit)="onSubmit()">
         <div>
           <input hidden formControlName="id"  value={{service?.id}} />
         </div>
+
           <div class="m-3">
             <input type="text" id="name" formControlName="name" class="form-control" placeholder="{{'Name' | translate}}" value={{service?.name}}>
             <div *ngIf="getControl('name')?.errors && getControl('name')?.touched">
@@ -42,6 +44,6 @@
             <button class="btn btn-info text-center w-100 my-3" type="submit" [disabled]="!formValueChanged">{{'Update' | translate}}</button>
             <!-- <button class="btn btn-info text-center w-100 my-3" type="submit" [disabled]="!formValueChanged">Update</button> -->
           </form>
-
+        </div>
     </div>
 </div>

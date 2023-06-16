@@ -8,8 +8,7 @@ import { UpdateServiceComponent } from '../update-service/update-service.compone
 import { DeleteServiceComponent } from '../delete-service/delete-service.component';
 import { DetailsServiceComponent } from '../details-service/details-service.component';
 import { UpdateResoucetypefroserviceComponent } from '../update-resoucetypefroservice/update-resoucetypefroservice.component';
-
-
+import { CreateServiceComponent } from '../create-service/create-service.component';
 
 import { TranslateService } from '@ngx-translate/core';
 
@@ -20,7 +19,8 @@ import { TranslateService } from '@ngx-translate/core';
 })
 
 export class ListServiceComponent implements OnInit {
-  selectedStatus?: ServiceStatus ;
+  // selectedStatus?: ServiceStatus;
+  selectedStatus: ServiceStatus | null = null;
   services: Service[] = [];
   dataExist: boolean = true;
 
@@ -37,7 +37,7 @@ export class ListServiceComponent implements OnInit {
 
   ngOnInit() {
     this.loadServices();
-    console.log(this.dataExist);
+    // console.log(this.dataExist);
   }
 
   loadServices() {
@@ -54,6 +54,9 @@ export class ListServiceComponent implements OnInit {
     }
   }
 
+  createService(){
+    const modelRef = this.modal.open(CreateServiceComponent, { centered: true });
+  }
   openDetailsModal(service: Service) {
     const modelRef = this.modal.open(DetailsServiceComponent, {
       centered: true,
@@ -118,7 +121,7 @@ export class ListServiceComponent implements OnInit {
 // export class ListServiceComponent {
 //   // @Input() selectedStatus?: ServiceStatus ;
 //   selectedStatus?: ServiceStatus ;
-
+  
 //   services: Service[] = [];
 //   // selectedStatus?: ServiceStatus;
 //   dataExist: boolean = true;
@@ -140,7 +143,7 @@ export class ListServiceComponent implements OnInit {
 //       });
 //     }
 //   }
-
+  
 //   openDetailsModal(service: Service) {
 //     const modelRef = this.modal.open(DetailsServiceComponent, {
 //       centered: true,
@@ -152,7 +155,7 @@ export class ListServiceComponent implements OnInit {
 //         centered: true,
 //       });
 //       modelRef.componentInstance.serviceId = service.id;
-
+    
 //   }
 //   openUpdateModal(service: Service) {
 //     const modelRef = this.modal.open(UpdateServiceComponent, {

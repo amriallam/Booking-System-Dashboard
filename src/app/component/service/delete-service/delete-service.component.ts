@@ -11,7 +11,7 @@ import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-delete-service',
   templateUrl: './delete-service.component.html',
-  styleUrls: ['./delete-service.component.scss']
+  styleUrls: ['./delete-service.component.css']
 })
 export class DeleteServiceComponent {
   @Input() serviceId: string = '';

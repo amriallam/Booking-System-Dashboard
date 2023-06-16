@@ -9,7 +9,9 @@
         (click)="closeModal()"
       ></button>
     </div>
+    <!-- <form [formGroup]="checkboxForm" > -->
     <form [formGroup]="checkboxForm" (ngSubmit)="onSubmit()">
+
       <div class="m-3">
         <select
           id="resourceType"
