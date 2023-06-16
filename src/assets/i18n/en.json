@@ -17,7 +17,7 @@
   "Please Enter name": "Please Enter name",
   "Service name already exists. Please enter a different name.": "Service name already exists. Please enter a different name.",
   "Please Enter description": "Please enter description",
-  "select status": "Select status",
+  "Select status": "Select status",
   "Active" : "Active",
   "Inactive": "Inactive",
   "Pending Approval": "Pending Approval",
@@ -27,7 +27,8 @@
   "Add": "Add",
   "Please select at least one resource type": "Please select at least one resource type",
   "Update Service" : "Update Service",
-
+  "Cancel": "Cancel",
+  "All Services" : "All Services",
 
 
   "Field Name" : "Field Name",
@@ -55,6 +56,9 @@
   "Select Data Type": "Select Data Type",
   "Add Resource Type": "Add Resource Type",
   "All Resource Types": "All Resource Types",
-  "Search by Name": "Search by Name"
+  "Search by Name": "Search by Name",
+  "Save": "Save",
+  "Add New Attribute": "Add New Attribute",
+  "Type": "Type"
 
 }

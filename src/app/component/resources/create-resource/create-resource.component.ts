@@ -27,7 +27,7 @@ export class CreateResourceComponent {
     this.languageService.selectedLanguage$.subscribe(lang => {
       this.translate.use(lang);
     });
-    
+
   }
   ToggleTitleEdit() {
     this.TitleEdit = !this.TitleEdit;
@@ -41,7 +41,7 @@ export class CreateResourceComponent {
   createField(): FormGroup {
     return this.formBuilder.group({
       input: ["", Validators.required],
-      selectOption: ["", Validators.required],
+      selectOption: [null, Validators.required],
     });
   }
 

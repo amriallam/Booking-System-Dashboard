@@ -3,6 +3,8 @@ import { FormGroup, FormControl } from "@angular/forms";
 import { ResourceTypeAttributeService } from "src/app/services/resource-type-attribute.service";
 import { ActivatedRoute } from "@angular/router";
 import { Router } from "@angular/router";
+import { LanguageService } from "src/app/shared/service/language.service";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: "app-resource-type-attribute-create",
@@ -14,8 +16,14 @@ export class ResourceTypeAttributeCreateComponent {
   constructor(
     private ResourceTypeAttributeService: ResourceTypeAttributeService,
     private route: ActivatedRoute,
-    private router: Router
-  ) {}
+    private router: Router,
+    private languageService: LanguageService,
+    public translate: TranslateService
+  ) {
+    this.languageService.selectedLanguage$.subscribe(lang => {
+      this.translate.use(lang);
+    });
+  }
 
   createResourceTypeAttr = new FormGroup({
     attributeName: new FormControl(""),
@@ -30,7 +38,7 @@ export class ResourceTypeAttributeCreateComponent {
         attributeType: this.createResourceTypeAttr.value.attributeType,
         resourceTypeId : this.resourceTypeId
       }
-     
+
     ).subscribe((response: any) => {
       // console.log(this.resourceTypeId);
       // console.log(this.createResourceTypeAttr.value);

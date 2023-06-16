@@ -17,7 +17,7 @@
   "Please Enter name": "من فضلك قم بإدخال اسم الخدمة",
   "Service name already exists. Please enter a different name.": "اسم الخدمة موجود بالفعل , من فضلك ادخال اسم اخر",
   "Please Enter description": "من فضلك قم بإدخال وصف للخدمة",
-  "select status": "اختر حالة الخدمة",
+  "Select status": "اختر حالة الخدمة",
   "Active" : "نشط",
   "Inactive": "غير نشط",
   "Pending Approval": "قيد الإنتظار",
@@ -27,8 +27,8 @@
   "Add": "حفظ",
   "Please select at least one resource type": "من فضلك قم بإختيار مورد واحد على الأقل",
   "Update Service": "تحديث الخدمة",
-
-
+  "Cancel": "إلغاء",
+  "All Services": "كل الخدمات",
 
 
 
@@ -57,5 +57,8 @@
   "Select Data Type": "اختر نوع البيانات",
   "Add Resource Type": "إضافة نوع مورد جديد",
   "All Resource Types": "انواع الموارد",
-  "Search by Name": "بحث بالاسم"
+  "Search by Name": "بحث بالاسم",
+  "Save": "حفظ",
+  "Add New Attribute": "إضافة خاصية جديدة",
+  "Type": "النوع"
 }
