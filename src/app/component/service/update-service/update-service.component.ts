@@ -66,8 +66,10 @@ export class UpdateServiceComponent {
     if (this.formValueChanged) {
       this.serviceService.UpdateService(+this.serviceId, updatedService).subscribe(res => {
         this.serviceAdded.emit();
+        this.closeModal();
         location.reload();
         this.showToast();
+        
       });
     } else {
       console.log('No changes detected');
@@ -78,7 +80,7 @@ export class UpdateServiceComponent {
     return this.addServiceForm.get(fullName);
   }
 
-  closeModal() {
+  closeModal(){
     this.activeModal.close();
   }
 

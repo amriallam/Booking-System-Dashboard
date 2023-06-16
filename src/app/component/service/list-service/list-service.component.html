@@ -1,10 +1,20 @@
 
-<select class="form-control mb-4" [(ngModel)]="selectedStatus" (ngModelChange)="loadServices()">
-  <option value="null">All</option>
-  <option value="0">Active</option>
-  <option value="1">Inactive</option>
-  <option value="2">Pending Approval</option>
-</select>
+<div class="row">
+  <div class="col-9">
+
+    <select class="form-control mb-4" [(ngModel)]="selectedStatus" (ngModelChange)="loadServices()">
+      <option value="null" selected>All Services</option>
+      <option value="0">Active</option>
+      <option value="1">Inactive</option>
+      <option value="2">Pending Approval</option>
+    </select>
+  </div>
+  <div class="col-3">
+    <button class="btn btn-outline-info me-2 "  (click)="createService()">Add Service</button>
+  </div>
+
+</div>
+
 
 <div class="card">
   <div class="card-body">
@@ -25,10 +35,10 @@
             <td>{{ service.name }}</td>
             <td>{{ getServiceStatusText(service.status) }}</td>
             <td class="d-flex gap-2">
-              <a class="btn btn-outline-primary me-2 mb-2"[routerLink]="['/service/details', service.id]">Details</a>
-              <a class="btn btn-outline-info me-2 mb-2" (click)="openUpdateModal(service)">Update</a>
-              <a class="btn btn-outline-info me-2 mb-2" (click)="openUpdateRTModal(service)">Update Resource Type</a>
-              <a class="btn btn-outline-danger me-2 mb-2" (click)="openDeleteModal(service)">Delete</a>
+              <a class="btn btn-outline-primary me-2"[routerLink]="['/service/details', service.id]">Details</a>
+              <a class="btn btn-outline-info me-2 " (click)="openUpdateModal(service)">Update</a>
+              <a class="btn btn-outline-info me-2 " (click)="openUpdateRTModal(service)">Update Resource Type</a>
+              <a class="btn btn-outline-danger me-2 " (click)="openDeleteModal(service)">Delete</a>
             </td>
           </tr>
         </tbody>
