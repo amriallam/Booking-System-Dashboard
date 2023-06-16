@@ -4,6 +4,10 @@
   "newProjectRoot": "projects",
   "projects": {
     "nice-admin-angular": {
+      "i18n":{
+        "sourceLocale":"en-US",
+        "locales": {"ar":"src/locale/messages.ar.xlf"}
+      },
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -20,6 +24,9 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "localize":[
+              "ar-EG"
+            ],
             "outputPath": "dist/nice-admin-angular",
             "index": "src/index.html",
             "main": "src/main.ts",
