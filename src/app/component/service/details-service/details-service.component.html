@@ -11,7 +11,7 @@
       <table class="table table-striped">
         <thead>
           <tr>
-            <th class="text-dark font-medium fs-4">Resources Types</th>
+            <th class="text-dark font-medium fs-4">{{'Resources Types' | translate}}</th>
             <th class="text-dark font-medium fs-4"></th>
           </tr>
         </thead>
@@ -19,17 +19,17 @@
           <tr *ngFor="let serviceMD of serviceMDs" class="align-center">
             <td>{{ serviceMD.resourceTypeName }}</td>
             <td class="d-flex gap-2">
-              <a (click)="openModal(serviceMD.resourceTypeId)" class="btn btn-outline-info me-2 mb-2">Attributes</a>
+              <a (click)="openModal(serviceMD.resourceTypeId)" class="btn btn-outline-info me-2 mb-2">{{'Attributes' | translate}}</a>
               <a [routerLink]="'/resourcetype/' + serviceMD.resourceTypeId + '/resources'"
-                class="btn btn-outline-primary me-2 mb-2">Resources</a>
+                class="btn btn-outline-primary me-2 mb-2">{{'Resources' | translate}}</a>
               <a [routerLink]="'/editresourcetype/' + serviceMD.resourceTypeId"
-                class="btn btn-outline-danger me-2 mb-2">Edit</a>
+                class="btn btn-outline-danger me-2 mb-2">{{'Update' | translate}}</a>
             </td>
           </tr>
         </tbody>
       </table>
       <div class="alert alert-info text-center" role="alert" *ngIf="!dataExist">
-        There is no data available
+        {{'There is no data available' | translate}}
       </div>
     </section>
   </div>

@@ -1,0 +1,14 @@
+{
+  "Services": "خدمات",
+  "#": "#",
+  "Name": "الاسم",
+  "Status": "الحاله",
+  "Details": "التفاصيل",
+  "Update": "تحديث",
+  "Update Resource Type": "تحديث انواع الموارد",
+  "Delete": "حذف",
+  "There is no data Available": "لا يوجد بيانات متاحة",
+  "Resources Types": "انواع الموارد",
+  "Attributes": "الخصائص",
+  "Resources": "الموارد"
+}
