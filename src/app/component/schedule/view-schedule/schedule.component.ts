@@ -6,6 +6,8 @@ import { ScheduleService } from 'src/app/shared/service/schedule.service';
 import { ConfimMoveComponent } from '../confim-move/confim-move.component';
 import { ToastrService } from 'ngx-toastr';
 import { BookingItemDetailComponent } from '../booking-item-detail/booking-item-detail.component';
+import { TranslateService } from '@ngx-translate/core';
+import { LanguageService } from 'src/app/shared/service/language.service';
 
 @Component({
   selector: 'app-schedule',
@@ -136,7 +138,16 @@ export class ScheduleComponent {
     onEventMoved: this.openConfirmMoveComponent
   };
 
-  constructor(private scheduleService: ScheduleService, private modal: NgbModal, private toastr: ToastrService) {
+  constructor(private scheduleService: ScheduleService,
+              private modal: NgbModal,
+              private toastr: ToastrService,
+              private languageService: LanguageService,
+              public translate: TranslateService){
+
+    this.languageService.selectedLanguage$.subscribe(lang => {
+      this.translate.use(lang);
+    });
+    
     this.viewWeek();
   }
 

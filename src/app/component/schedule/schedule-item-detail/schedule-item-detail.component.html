@@ -1,4 +1,4 @@
-<div class="card rounded-2 m-0">
+<div class="card rounded-2 m-0" [dir]="'dir' | translate">
   <div class="card-body">
     <div class="d-flex justify-content-between">
 
@@ -14,27 +14,27 @@
         </thead> -->
         <tbody>
           <tr>
-            <td>Schedule ID</td>
+            <td>{{'Schedule ID' | translate}}</td>
             <td>{{schedule.id}}</td>
           </tr>
           <tr>
-            <td>Date</td>
+            <td>{{'Date' | translate}}</td>
             <td>{{schedule.date}}</td>
           </tr>
           <tr>
-            <td>Start Time</td>
+            <td>{{'Start Time' | translate}}</td>
             <td>{{startTime}}</td>
           </tr>
           <tr>
-            <td>End Time</td>
+            <td>"{{'End Time' | translate}}"</td>
             <td>{{endTime}}</td>
           </tr>
           <tr>
-            <td>Status</td>
+            <td>{{'Status' | translate}}</td>
             <td>{{schedule.status}}</td>
           </tr>
           <tr>
-            <td>Shift</td>
+            <td>{{'Shift' | translate}}</td>
             <td>{{schedule.shift}}</td>
           </tr>
         </tbody>

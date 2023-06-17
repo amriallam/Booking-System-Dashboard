@@ -1,11 +1,11 @@
-<div>
-  <form class="d-flex flex-column gap-2" [formGroup]="createResourceTypeAttr">
+<div [dir]="'dir' | translate">
+  <form class="d-flex flex-column gap-2" [formGroup]="createResourceTypeAttr" [dir]="'dir' | translate">
     <div class="d-flex gap-2">
       <input
         class="form-control"
         type="text"
         formControlName="attributeName"
-        placeholder="Enter attribute name"
+        placeholder="{{'Enter attribute name' | translate}}"
       />
       <select class="form-select" formControlName="attributeType">
         <option value="null" selected disabled>{{'Select Data Type' | translate}}</option>
@@ -15,6 +15,6 @@
       </select>
     </div>
 
-    <button type="submit" class="btn btn-primary" (click)="onSubmit()">Create Resource Data Attribute</button>
+    <button type="submit" class="btn btn-primary" (click)="onSubmit()">{{'Create Resource Data Attribute' | translate}}</button>
   </form>
 </div>

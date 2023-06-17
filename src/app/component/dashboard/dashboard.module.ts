@@ -11,6 +11,16 @@ import { NgbInputDatepicker } from "@ng-bootstrap/ng-bootstrap";
 import { DatepickerComponent } from './dashboard-components/datepicker/datepicker.component';
 
 
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClient } from '@angular/common/http';
+
+
+
+export function httpTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
+
 const routes: Routes = [
   {
     path: "",
@@ -29,7 +39,14 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     NgApexchartsModule,
-    NgbInputDatepicker
+    NgbInputDatepicker,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: httpTranslateLoader,
+        deps: [HttpClient]
+      }
+    })
   ],
   declarations: [
     DashboardComponent,

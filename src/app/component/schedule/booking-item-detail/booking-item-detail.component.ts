@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateService } from '@ngx-translate/core';
+import { LanguageService } from 'src/app/shared/service/language.service';
 
 @Component({
   selector: 'app-booking-item-detail',
@@ -10,7 +12,13 @@ export class BookingItemDetailComponent implements OnInit {
   startTime: string = "";
   endTime: string = "";
   TitleEdit: boolean = false;
-  constructor(private modalref: NgbActiveModal) { }
+  constructor(private modalref: NgbActiveModal,
+    private languageService: LanguageService,
+    public translate: TranslateService) {
+      this.languageService.selectedLanguage$.subscribe(lang => {
+        this.translate.use(lang);
+      });
+    }
 
   ngOnInit(): void {
     this.bookingItem.date = this.bookingItem.start.value.toString().split("T")[0];

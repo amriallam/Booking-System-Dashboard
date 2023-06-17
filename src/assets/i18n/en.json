@@ -1,4 +1,5 @@
 {
+  "dir": "ltr",
   "Services": "Services",
   "#": "#",
   "Name": "Name",
@@ -59,7 +60,55 @@
   "Search by Name": "Search by Name",
   "Save": "Save",
   "Add New Attribute": "Add New Attribute",
-  "Type": "Type"
+  "Type": "Type",
+  "Create Resource Data Attribute": "Create Resource Data Attribute",
+  "Enter attribute name": "Enter attribute name",
+
+
+
+
+
+  "bookingItem ID": "Booking ID",
+  "Booking Date" : "Date",
+  "Start Time": "Start Time",
+  "End Time" : "End Time",
+  "Booking Status": "Booking Status",
+  "Cost": "Cost",
+  "User": "User",
+  "Profile deletion": "Profile deletion",
+  "Are you sure you want to move schedule ?": "Are you sure you want to move schedule ?",
+  "All information associated to this scheudle will be updated": "All information associated to this scheudle will be updated",
+  "Ok": "Ok",
+  "Schedule ID": "Schedule ID",
+  "Date": "Date",
+  "Shift" : "Shift",
+  "Day" : "Day",
+  "Week": "Week",
+  "Month" : "Month",
+  "Schedules": "Schedules",
+  "Booking": "Booking",
+
+
+
+
+  "System Roles": "System Roles",
+  "Overview of the current system roles": "Overview of the current system roles",
+  "Users": "Users",
+  "Permissions": "Permissions",
+
+
+
+  "From": "From",
+  "To": "To",
+  "Sales Ratio": "Sales Ratio",
+  "Top Selling": "Top Selling",
+  "Overview of the projects": "Overview of the projects",
+  "Total Cost": "Total Cost",
+  "No data found": "No data found"
+
+
+
+
 
 
 }

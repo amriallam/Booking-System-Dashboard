@@ -1,5 +1,5 @@
-<div>
-    <form class="d-flex flex-column gap-2" [formGroup]="updateResource">
+<div [dir]="'dir' | translate">
+    <form class="d-flex flex-column gap-2" [formGroup]="updateResource" >
 
       <div class="d-flex gap-2">
         <!-- <input class="form-control" type="text" formControlName="name" placeholder="Resource New Name"> -->
@@ -12,4 +12,4 @@
         {{'Update' | translate}}
       </button>
     </form>
-  </div>
+</div>

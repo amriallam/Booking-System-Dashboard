@@ -1,5 +1,7 @@
 import { AfterViewInit, Component } from '@angular/core';
 import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateService } from '@ngx-translate/core';
+import { LanguageService } from 'src/app/shared/service/language.service';
 import { MeasuresService } from 'src/app/shared/service/measures.service';
 
 @Component({
@@ -13,11 +15,18 @@ export class DatepickerComponent implements AfterViewInit {
   currentDate: string = "";
   sevenDaysBefore: string = "";
 
-  constructor(private measureService: MeasuresService) {
+  constructor(private measureService: MeasuresService,
+              private languageService: LanguageService,
+              public translate: TranslateService) {
     var sevenDaysBefore = new Date();
     sevenDaysBefore.setDate(new Date().getDate() - 7);
     this.currentDate = new Date().toISOString().split('T')[0];
     this.sevenDaysBefore = sevenDaysBefore.toISOString().split('T')[0];
+
+    this.languageService.selectedLanguage$.subscribe(lang => {
+      this.translate.use(lang);
+    });
+    
   }
 
   ngAfterViewInit(): void {

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Schedule } from '../../models/schedule';
 import { DayPilot } from '@daypilot/daypilot-lite-angular';
+import { LanguageService } from 'src/app/shared/service/language.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-schedule-item-detail',
@@ -12,7 +14,13 @@ export class ScheduleItemDetailComponent implements OnInit {
   startTime: string = "";
   endTime: string = "";
   TitleEdit: boolean = false;
-  constructor(private modalref: NgbActiveModal) { }
+  constructor(private modalref: NgbActiveModal,
+    private languageService: LanguageService,
+    public translate: TranslateService) {
+      this.languageService.selectedLanguage$.subscribe(lang => {
+        this.translate.use(lang);
+      });
+    }
 
   ngOnInit(): void {
     let currentDate = this.schedule.start.value.split("T")[0];

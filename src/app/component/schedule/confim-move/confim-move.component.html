@@ -1,5 +1,5 @@
-<div class="modal-header">
-  <h4 class="modal-title" id="modal-title">Profile deletion</h4>
+<div class="modal-header" [dir]="'dir' | translate">
+  <h4 class="modal-title" id="modal-title">{{'Profile deletion' | translate}}</h4>
   <button
     type="button"
     class="btn-close"
@@ -7,17 +7,16 @@
     aria-describedby="modal-title"
     (click)="modal.dismiss('Cross click')"></button>
 </div>
-<div class="modal-body">
+<div class="modal-body" [dir]="'dir' | translate">
   <p>
-    <strong>Are you sure you want to move schedule <span class="text-primary">{{schedule.id}}
+    <strong>{{'Are you sure you want to move schedule ?' | translate}} <span class="text-primary">{{schedule.id}}
         : {{schedule.text}}</span>?</strong>
   </p>
-  <span class="text-danger">All information associated to this scheudle will be
-    updated</span>
+  <span class="text-danger">{{'All information associated to this scheudle will be updated' | translate }}</span>
 </div>
-<div class="modal-footer">
+<div class="modal-footer" [dir]="'dir' | translate">
   <button type="button" class="btn btn-outline-secondary"
-    (click)="modal.dismiss('cancel')">Cancel</button>
+    (click)="modal.dismiss('cancel')">{{'Cancel' | translate}}</button>
   <button type="button" ngbAutofocus class="btn btn-danger"
-    (click)="modal.close('ok')">Ok</button>
+    (click)="modal.close('ok')">{{'Ok' | translate}}</button>
 </div>

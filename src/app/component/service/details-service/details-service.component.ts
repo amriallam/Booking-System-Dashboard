@@ -57,11 +57,17 @@ export class DetailsServiceComponent implements OnInit{
       console.log("not found resource with this id ")
     }
   }
+  
+  showAlert(id : number) {
+    alert(id);
+  }
 
   openModal(resourceTypeId: number) {
 
+    alert(resourceTypeId );
     this.resourceService.getResourceTypeById(resourceTypeId).subscribe((res)=>{
       console.log(res.data);
+      alert(res.data);
       const modelRef = this.modal.open(ResourceTypeAttributeDetailsComponent, {
         centered: true,
       });

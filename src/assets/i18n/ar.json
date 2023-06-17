@@ -1,5 +1,6 @@
 {
-  "Services": "خدمات",
+  "dir": "rtl",
+  "Services": "الخدمات",
   "#": "#",
   "Name": "الاسم",
   "Description": "الوصف",
@@ -41,6 +42,7 @@
   "Resources List": "قائمة الموارد",
   "Resource Type": "نوع المورد",
   "Price": "السعر",
+  "No resources found":"لا يوجد موارد",
   "Schedule": "المواعيد",
   "Add New Resource": "إضافة مورد جديد",
   "Add New Resource Form": "نموذج لإضافة مورد جديد",
@@ -60,5 +62,47 @@
   "Search by Name": "بحث بالاسم",
   "Save": "حفظ",
   "Add New Attribute": "إضافة خاصية جديدة",
-  "Type": "النوع"
+  "Type": "النوع",
+  "Create Resource Data Attribute" : "انشاء خاصية للمورد",
+  "Enter attribute name": "قم بإدخال اسم الخاصية",
+
+
+
+  "bookingItem ID": "رقم الحجز",
+  "Booking Date": "معاد الحجز",
+  "Start Time": "من",
+  "End Time" : "الى",
+  "Booking Status": "حالة الحجز",
+  "Cost": "التكلفه",
+  "User": "العميل",
+  "Profile deletion": "حذف الملف الشخصي",
+  "Are you sure you want to move schedule ?": "هل أنت متأكد أنك تريد نقل الجدول الزمني ؟",
+  "All information associated to this scheudle will be updated": "سيتم تحديث جميع المعلومات المرتبطة بهذا الجدول الزمني",
+  "Ok": "تم",
+  "Schedule ID": "رقم الجدول",
+  "Date": "المعاد",
+  "Shift": "المناوبة",
+  "Day": "يوم",
+  "Week": "أسبوع",
+  "Month": "شهر",
+  "Schedules": "الجدول الزمني",
+  "Booking": "الحجوزات",
+
+
+
+  "System Roles": "المهام",
+  "Overview of the current system roles": "نظرة عامة عن أنواع المهام الموجده فى النظام",
+  "Users": "المسؤلون",
+  "Permissions": "الصلاحيات",
+
+
+
+  "From": "من",
+  "To": "الى",
+  "Sales Ratio": "نسبة المبيعات",
+  "Top Selling": "أعلى المبيعات",
+  "Overview of the projects": "نظرة عامة عن المشاريع",
+  "Total Cost": "التكلفة الإجمالية",
+  "No data found": "لا يوجد بيانات"
+
 }

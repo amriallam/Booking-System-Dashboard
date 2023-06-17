@@ -27,7 +27,7 @@ export class ResourceTypeAttributeCreateComponent {
 
   createResourceTypeAttr = new FormGroup({
     attributeName: new FormControl(""),
-    attributeType: new FormControl("string"),
+    attributeType: new FormControl("null"),
   });
 
   onSubmit() {
