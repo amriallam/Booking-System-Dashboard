@@ -34,6 +34,7 @@ export function httpTranslateLoader(http: HttpClient) {
     NavigationComponent,
     SidebarComponent,
     LoginComponent,
+    
   ],
   imports: [
     CommonModule,

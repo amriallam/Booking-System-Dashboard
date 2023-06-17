@@ -23,7 +23,8 @@ export class ResourceDetailsComponent implements OnInit {
   getResourceDetails(id: number) {
     this.ResourceDetailsService.getResourceDetails(id).subscribe((response: any) => {
       this.newDetails = response.data;
-      // console.log(this.newDetails);
+      console.log(this.newDetails);
+      
       return this.newDetails;
     });
   }

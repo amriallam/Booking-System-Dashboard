@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { FormArray, FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 import { ResourceTypeService } from "../../../services/resource-type.service";
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: "app-create-resource-type",
@@ -14,26 +15,36 @@ export class CreateResourceTypeComponent {
   constructor(
     private formBuilder: FormBuilder,
     public activeModal: NgbActiveModal,
-    private ResourceTypeService: ResourceTypeService
+    private ResourceTypeService: ResourceTypeService,
+    private toastr: ToastrService
   ) {
     this.form = formBuilder.group({});
     this.ResourceTypeName = "New Resource Type";
   }
 
   createResourceType() {
-    this.ResourceTypeService.createResourceType(
-      // add parameters to the function called data
-      // pass the data parameter to the post function
-      // return the result of the post function
-      this.ResourceTypeName
-    ).subscribe((response: any) => {
-      alert("Resource Type Created");
-      this.activeModal.close();
-      //refresh the list of resource types
 
-      window.location.reload();
-
-    });
+    console.log(this.ResourceTypeName);
+    
+    if(this.ResourceTypeName == null || this.ResourceTypeName == "" || this.ResourceTypeName == "null") {
+      this.toastr.error("Resource Type Name cannot be empty or null ");
+    }else{
+      this.ResourceTypeName = this.ResourceTypeName.trim();
+      this.ResourceTypeService.createResourceType(
+        // add parameters to the function called data
+        // pass the data parameter to the post function
+        // return the result of the post function
+        this.ResourceTypeName
+      ).subscribe((response: any) => {
+        this.toastr.success("Resource Type Created Successfully", "Success");
+        this.activeModal.close();
+        //refresh the list of resource types
+        setTimeout(() => {
+        window.location.reload();
+        }, 1000);
+      });
+    }
+    
   }
 
   ngOnInit() {

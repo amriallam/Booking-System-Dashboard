@@ -17,9 +17,12 @@
             <th class="text-dark font-medium fs-4">value</th>
           </tr>
         </thead>
-        <tbody>
+        <!-- <tbody>
           <ng-container *ngFor="let item of newDetails | keyvalue">
             <tr>
+              <td *ngIf="item.key == attributes">
+                <h5 class="text-dark font-medium fs-4">Attributes</h5>
+              </td>
               <td>{{ item.key }}</td>
               <td>{{ item.value }}</td>
             </tr>
@@ -41,8 +44,8 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr *ngFor="let attribute of item.value | keyvalue">
-                        <td>{{ attribute.key }}</td>
+                      <tr *ngFor="let attribute of item.value">
+                        <td>{{ attribute.name }}</td>
                         <td>{{ attribute.value }}</td>
                       </tr>
                     </tbody>
@@ -51,9 +54,57 @@
               </ng-template>
             </tr>
           </ng-container>
+        </tbody> -->
+
+        <tbody>
+          
+          <ng-container *ngFor="let item of newDetails | keyvalue">
+            
+            <ng-container *ngIf="item.key !== 'attributes'">
+              
+              <tr>
+                <td>{{ item.key }}</td>
+                <td>{{ item.value }}</td>
+              </tr>
+            </ng-container>
+
+            <tr *ngIf="item.key === 'attributes'">
+              <ng-container
+                *ngIf="item.value.length === 0; else attributesBlock"
+              >
+                <td colspan="2">
+                  <p>No attributes found</p>
+                </td>
+              </ng-container>
+
+              <ng-template #attributesBlock>
+                <td colspan="2">
+                  <table class="table table-bordered">
+                    <thead>
+                      <tr colspan="2" class="text-center bg-dark text-white">
+                        <td colspan="2" class="text-center py-2">
+                          ALL ATTRIBUTES
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>Attribute</th>
+                        <th>Value</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let attribute of item.value">
+                        <td>{{ attribute.name }}</td>
+                        <td>{{ attribute.value }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </ng-template>
+            </tr>
+
+          </ng-container>
         </tbody>
       </table>
-      
     </div>
   </div>
 </div>

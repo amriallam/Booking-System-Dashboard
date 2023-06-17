@@ -8,6 +8,7 @@ import { ListResourcesComponent } from './list-resources/list-resources.componen
 import { CreateResourceComponent } from './create-resource/create-resource.component';
 import { ResourceDetailsComponent } from './resource-details/resource-details.component';
 import { UpdateResourceComponent } from './update-resource/update-resource.component';
+import { DeleteResourceComponent } from './delete-resource/delete-resource.component';
 
 const routes: Routes = [
   { path: "", component: ListResourcesComponent }
@@ -19,7 +20,8 @@ const routes: Routes = [
     ListResourcesComponent,
     CreateResourceComponent,
     ResourceDetailsComponent,
-    UpdateResourceComponent
+    UpdateResourceComponent,
+    DeleteResourceComponent
   ],
   imports: [
     NgbModule,
