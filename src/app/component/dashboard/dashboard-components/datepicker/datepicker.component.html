@@ -1,7 +1,7 @@
-<div class="d-flex justify-content-between gap-3">
+<div class="d-flex justify-content-between gap-3" [dir]="'dir' | translate">
 
-  <div class="d-flex justify-content-center align-items-center gap-3">
-    <span>From</span>
+  <div class="d-flex justify-content-center align-items-center gap-3" [dir]="'dir' | translate">
+    <span>{{'From' | translate}}</span>
     <form class="row row-cols-sm-auto">
       <div class="col-12">
         <div class="input-group">
@@ -19,8 +19,8 @@
     </form>
   </div>
 
-  <div class="d-flex justify-content-center align-items-center gap-3">
-    <span>To</span>
+  <div class="d-flex justify-content-center align-items-center gap-3" [dir]="'dir' | translate">
+    <span>{{'To' | translate }}</span>
     <form class="row row-cols-sm-auto">
       <div class="col-12">
         <div class="input-group">

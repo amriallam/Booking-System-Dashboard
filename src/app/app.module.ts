@@ -17,6 +17,13 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RetryInterceptor } from './shared/utility/retry.interceptor';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { LOCALE_ID } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import localeEn from '@angular/common/locales/en';
+import localeAr from '@angular/common/locales/ar';
+
+registerLocaleData(localeEn);
+registerLocaleData(localeAr);
 
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -64,6 +71,10 @@ export function httpTranslateLoader(http: HttpClient) {
       provide: HTTP_INTERCEPTORS,
       useClass: RetryInterceptor,
       multi: true
+    },
+    {
+      provide: LOCALE_ID, 
+      useValue: 'en' 
     }
   ],
   bootstrap: [AppComponent],

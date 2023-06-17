@@ -3,6 +3,8 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { AttributeMetadata } from '../../models/AttributeMetadata';
 import { ResourceTypeDetailsService } from 'src/app/services/resource-type-details.service';
 import { Router } from '@angular/router';
+import { LanguageService } from 'src/app/shared/service/language.service';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-resource-type-attribute-details',
   templateUrl: './resource-type-attribute-details.component.html',
@@ -16,7 +18,9 @@ export class ResourceTypeAttributeDetailsComponent implements OnInit {
   newDetails: any;
   constructor(public activeModal: NgbActiveModal,
     private ResourceTypeDetailsService: ResourceTypeDetailsService,
-    private router: Router
+    private router: Router,
+    private languageService: LanguageService,
+    public translate: TranslateService
   ) {
     this.ResourceTypeAttributes = [
       // { Id: "1", AttributeName: "Name", AttributeType: "String" },
@@ -25,6 +29,10 @@ export class ResourceTypeAttributeDetailsComponent implements OnInit {
     ];
     // this.ResourceType = new ResourceType("", "", "", 0, "");
     this.TitleEdit = false;
+
+    this.languageService.selectedLanguage$.subscribe(lang => {
+      this.translate.use(lang);
+    });
   }
 
   getResourceTypeAttributes(id: number) {

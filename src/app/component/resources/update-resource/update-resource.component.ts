@@ -9,6 +9,8 @@ import { ResourseService } from "src/app/services/resourse.service";
 import { ActivatedRoute } from "@angular/router";
 import { Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
+import { LanguageService } from "src/app/shared/service/language.service";
+import { TranslateService } from "@ngx-translate/core";
 @Component({
   selector: "app-update-resource",
   templateUrl: "./update-resource.component.html",
@@ -21,8 +23,14 @@ export class UpdateResourceComponent {
     private ResourseService: ResourseService,
     private route: ActivatedRoute,
     private router: Router,
-    private toastr: ToastrService
-  ) {}
+    private toastr: ToastrService,
+    private languageService: LanguageService,
+    public translate: TranslateService
+  ) {
+     this.languageService.selectedLanguage$.subscribe(lang => {
+      this.translate.use(lang);
+    });
+  }
 
   updateResource = new FormGroup({
     name: new FormControl(""),

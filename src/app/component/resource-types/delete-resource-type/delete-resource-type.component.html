@@ -1,4 +1,4 @@
-<div class="card rounded-2 m-0">
+<div class="card rounded-2 m-0" [dir]="'dir' | translate">
     <div class="card-body">
       <div class="d-flex justify-content-between">
         <!-- <h4 class="card-title d-inline">{{ Resource.name }}</h4> -->
@@ -6,16 +6,15 @@
           type="button"
           class="btn-close"
           aria-label="Close"
-          
+
         ></button>
       </div>
         <h4 class="py-3">
-            Are you sure you want to delete {{ResourceType.name}}?
+            {{'Are you sure you want to delete' | translate}} {{ResourceType.name}}?
         </h4>
         <div class="d-flex justify-content-end">
-            <button class="btn btn-danger me-2 mb-2" (click)="deleteResourceType(ResourceType.id)">Delete</button>
-            <button class="btn btn-secondary me-2 mb-2" >Cancel</button>
+            <button class="btn btn-danger me-2 mb-2" (click)="deleteResourceType(ResourceType.id)">{{'Delete' | translate}}</button>
+            <button class="btn btn-secondary me-2 mb-2" >{{'Cancel' | translate}}</button>
         </div>
     </div>
   </div>
-  

@@ -1,16 +1,16 @@
-<div class="card">
+<div class="card" [dir]="'dir' | translate">
   <div class="card-body">
     <!-- title -->
-    <h4 class="card-title">Top Selling</h4>
-    <h5 class="card-subtitle">Overview of the projects</h5>
+    <h4 class="card-title">{{'Top Selling' | translate}}</h4>
+    <h5 class="card-subtitle">{{'Overview of the projects' | translate}}</h5>
 
     <!-- title -->
     <div class="table-responsive">
-      <table class="table align-middle">
+      <table class="table align-middle" [dir]="'dir' | translate">
         <thead>
           <tr>
-            <th class="text-dark font-medium fs-4">Resource Name</th>
-            <th class="text-dark font-medium fs-4">Total Cost</th>
+            <th class="text-dark font-medium fs-4">{{'Resource Name' | translate }}</th>
+            <th class="text-dark font-medium fs-4">{{'Total Cost' | translate}}</th>
           </tr>
         </thead>
         <tbody>
@@ -22,7 +22,7 @@
           </ng-container>
           <ng-template #emptyDataBlock>
             <tr>
-              <td colspan="2" class="text-center">No data found</td>
+              <td colspan="2" class="text-center">{{'No data found' | translate}}</td>
             </tr>
           </ng-template>
         </tbody>

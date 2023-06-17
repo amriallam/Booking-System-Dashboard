@@ -1,13 +1,11 @@
-<div class="card rounded-2 m-0">
+<div class="card rounded-2 m-0" [dir]="'dir' | translate">
   <div class="card-body">
     <div class="p-3 text-primary text-center">
       <h3 class="m-0">
-        Update Resource Types
+        {{'Update Resource Type' | translate}}
       </h3>
     </div>
-    <!-- <form [formGroup]="checkboxForm" > -->
     <form [formGroup]="checkboxForm" (ngSubmit)="onSubmit()">
-
       <div class="m-3">
         <select
           id="resourceType"
@@ -26,14 +24,20 @@
           <small
             class="text-danger d-flex align-items-center fs-5"
             *ngIf="getControl('resourceType')?.errors?.['required']">
-            Please select at least one resource type
+            {{'Please select at least one resource type' | translate}}
           </small>
         </div>
       </div>
       <div class="m-3 row">
-        <button class="btn btn-info text-center m-3 col-5" type="submit" [disabled]="!formValueChanged || checkboxForm.invalid">Update</button>
-        <button class="btn btn-danger text-center m-3 col-5" (click)="closeModal()" >Cancel</button>
+        <button class="btn btn-info text-center m-3 col-5" type="submit" [disabled]="!formValueChanged || checkboxForm.invalid">
+            {{'Update' | translate}}
+        </button>
+        <button class="btn btn-danger text-center m-3 col-5" (click)="closeModal()" >
+           {{'Cancel' | translate}}
+        </button>
       </div>
     </form>
   </div>
 </div>
+
+

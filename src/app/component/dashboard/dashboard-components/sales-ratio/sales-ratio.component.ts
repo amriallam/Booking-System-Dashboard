@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import {
   ApexAxisChartSeries,
   ApexChart,
@@ -12,6 +13,7 @@ import {
   ApexFill,
   ApexTooltip
 } from 'ng-apexcharts';
+import { LanguageService } from 'src/app/shared/service/language.service';
 import { MeasuresService } from 'src/app/shared/service/measures.service';
 export type salesChartOptions = {
   series: ApexAxisChartSeries;
@@ -38,7 +40,14 @@ interface Result {
 export class SalesRatioComponent implements OnInit {
   @ViewChild("chart") chart: ChartComponent | any;
   public salesChartOptions: salesChartOptions;
-  constructor(private measureService: MeasuresService) {
+  constructor(private measureService: MeasuresService,
+              private languageService: LanguageService,
+              public translate: TranslateService) {
+
+    this.languageService.selectedLanguage$.subscribe(lang => {
+      this.translate.use(lang);
+    });
+    
     this.salesChartOptions = {
       series: [],
       chart: {

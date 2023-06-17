@@ -1,7 +1,9 @@
 {
+  "dir": "ltr",
   "Services": "Services",
   "#": "#",
   "Name": "Name",
+  "Description": "Description",
   "Status": "Status",
   "Details": "Details",
   "Update": "Update",
@@ -11,5 +13,103 @@
   "Resources Types": "Resources Types",
   "Attributes": "Attributes",
   "Resources": "Resources",
-  "Edit": "Edit"
+  "Delete Service": "Delete Service",
+  "Add Service": "Add Service",
+  "Please Enter name": "Please Enter name",
+  "Service name already exists. Please enter a different name.": "Service name already exists. Please enter a different name.",
+  "Please Enter description": "Please enter description",
+  "Select status": "Select status",
+  "Active" : "Active",
+  "Inactive": "Inactive",
+  "Pending Approval": "Pending Approval",
+  "Please select a status": "Please select a status",
+  "select resource Type": "select resource Type",
+  "Please select a resourceType": "Please select a resourceType",
+  "Add": "Add",
+  "Please select at least one resource type": "Please select at least one resource type",
+  "Update Service" : "Update Service",
+  "Cancel": "Cancel",
+  "All Services" : "All Services",
+
+
+  "Field Name" : "Field Name",
+  "Field Type" : "Field Type",
+  "Actions": "Actions",
+  "Remove" : "Remove",
+  "Booking Resources" : "Booking Resources",
+  "Resources List": "Resources List",
+  "Resource Type": "Resource Type",
+  "Price": "Price",
+  "No resources found": "No resources found",
+  "Schedule": "Schedule",
+  "Add New Resource": "Create New Resource",
+  "Add New Resource Form": "Add New Resource Form",
+  "Resource Price": "Resource Price",
+  "Overview of the current available resources": "Overview of the current available resources",
+  "Resource Name": "Resource Name",
+  "Item": "Item",
+  "Value": "Value",
+  "No attributes found": "No attributes found",
+  "Attribute": "Attribute",
+  "Resource New Price" : "Resource New Price",
+  "New Resource Type": "New Resource Type",
+  "resourceTypeName": "Resource Type Name",
+  "Select Data Type": "Select Data Type",
+  "Add Resource Type": "Add Resource Type",
+  "All Resource Types": "All Resource Types",
+  "Search by Name": "Search by Name",
+  "Save": "Save",
+  "Add New Attribute": "Add New Attribute",
+  "Type": "Type",
+  "Create Resource Data Attribute": "Create Resource Data Attribute",
+  "Enter attribute name": "Enter attribute name",
+  "Create Resource Type": "Create Resource Type",
+  "Are you sure you want to delete": "Are you sure you want to delete",
+  "Create": "Create",
+
+
+
+  "bookingItem ID": "Booking ID",
+  "Booking Date" : "Date",
+  "Start Time": "Start Time",
+  "End Time" : "End Time",
+  "Booking Status": "Booking Status",
+  "Cost": "Cost",
+  "User": "User",
+  "Profile deletion": "Profile deletion",
+  "Are you sure you want to move schedule ?": "Are you sure you want to move schedule ?",
+  "All information associated to this scheudle will be updated": "All information associated to this scheudle will be updated",
+  "Ok": "Ok",
+  "Schedule ID": "Schedule ID",
+  "Date": "Date",
+  "Shift" : "Shift",
+  "Day" : "Day",
+  "Week": "Week",
+  "Month" : "Month",
+  "Schedules": "Schedules",
+  "Booking": "Booking",
+
+
+
+
+  "System Roles": "System Roles",
+  "Overview of the current system roles": "Overview of the current system roles",
+  "Users": "Users",
+  "Permissions": "Permissions",
+
+
+
+  "From": "From",
+  "To": "To",
+  "Sales Ratio": "Sales Ratio",
+  "Top Selling": "Top Selling",
+  "Overview of the projects": "Overview of the projects",
+  "Total Cost": "Total Cost",
+  "No data found": "No data found"
+
+
+
+
+
+
 }

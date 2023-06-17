@@ -1,8 +1,8 @@
-<div class="card rounded-2 m-0">
+<div class="card rounded-2 m-0" [dir]="'dir' | translate">
   <div class="card-body">
     <div class="d-flex justify-content-between align-items-center">
       <h3>
-        Create Resource Type
+        {{'Create Resource Type' | translate}}
       </h3>
       <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
     </div>
@@ -33,15 +33,19 @@
               <button *ngIf="i !== formFields.controls.length - 1" class="btn btn-danger" (click)="removeField(i)">Remove</button>
             </td>
           </tr>
-        </tbody> 
-    </table> 
+        </tbody>
+    </table>
     </div> -->
     <div class="d-flex justify-content-start mt-4">
-      <input  class="form-control shadow-none  d-inline me-2" name="resourceTypeName" type="text" [(ngModel)]="ResourceTypeName">
+      <input  class="form-control shadow-none  d-inline me-2"
+      name="resourceTypeName" type="text"
+      placeholder="{{'New Resource Type' | translate}}"
+      #resourceTypeName
+      >
       <button class="btn btn-primary col-2"
-        
-        (click)="createResourceType()">Create</button>
-     
+
+        (click)="createResourceType()">{{'Create' | translate}}</button>
+
     </div>
   </div>
 </div>

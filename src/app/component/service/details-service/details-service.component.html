@@ -1,5 +1,5 @@
 
-<div class="card rounded-2 m-0">
+<div class="card rounded-2 m-0" [dir]="'dir' | translate">
   <div class="card-body">
     <div class="card text-center">
       <div class="card-body">
@@ -19,7 +19,9 @@
           <tr *ngFor="let serviceMD of serviceMDs" class="align-center">
             <td>{{ serviceMD.resourceTypeName }}</td>
             <td class="d-flex gap-2">
-              <a (click)="openModal(serviceMD.resourceTypeId)" class="btn btn-outline-info me-2 mb-2">{{'Attributes' | translate}}</a>
+
+              <a (click)="openModal(serviceMD.resourceType.Id)" class="btn btn-outline-info me-2 mb-2">{{'Attributes' | translate}}</a>
+
               <a [routerLink]="'/resourcetype/' + serviceMD.resourceTypeId + '/resources'"
                 class="btn btn-outline-primary me-2 mb-2">{{'Resources' | translate}}</a>
               <a [routerLink]="'/editresourcetype/' + serviceMD.resourceTypeId"

@@ -9,6 +9,9 @@ import { ActivatedRoute, Route } from "@angular/router";
 import { FormGroup, FormControl, Validators , ValidationErrors } from "@angular/forms";
 import { DeleteResourceComponent } from "../delete-resource/delete-resource.component";
 
+import { TranslateService } from '@ngx-translate/core';
+import { LanguageService } from 'src/app/shared/service/language.service';
+
 @Component({
   selector: "a-pp-list-resources",
   templateUrl: "./list-resources.component.html",
@@ -18,8 +21,15 @@ export class ListResourcesComponent implements OnInit {
     private modal: NgbModal,
     private ResourseService: ResourseService,
     private route: ActivatedRoute,
-    private toastr: ToastrService
-  ) {}
+    private toastr: ToastrService,
+    private languageService: LanguageService,
+    public translate: TranslateService
+  ) {
+    this.languageService.selectedLanguage$.subscribe(lang => {
+      this.translate.use(lang);
+    });
+  }
+
 
   urlResourceTypeID: any;
   resourceTypeID: any;
@@ -84,7 +94,7 @@ export class ListResourcesComponent implements OnInit {
       centered: true,
     });
     modelRef.componentInstance.ResourceType = resource;
-    
+
 
   }
 

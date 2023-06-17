@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { topcard } from "../../../models/topcard";
 import { MeasuresService } from 'src/app/shared/service/measures.service';
+import { TranslateService } from '@ngx-translate/core';
+import { LanguageService } from 'src/app/shared/service/language.service';
 
 @Component({
   selector: 'app-top-cards',
@@ -13,7 +15,13 @@ export class TopCardsComponent implements OnInit {
   Refunds: number = 0;
   NewUsers: number = 0;
   Bookings: number = 0;
-  constructor(private measureService: MeasuresService) {
+  constructor(private measureService: MeasuresService,
+              private languageService: LanguageService,
+              public translate: TranslateService) {
+
+    this.languageService.selectedLanguage$.subscribe(lang => {
+      this.translate.use(lang);
+    });
     this.topcards = [
 
       {

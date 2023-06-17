@@ -1,27 +1,30 @@
 
-<div class="card rounded-2 m-0">
+<div class="card rounded-2 m-0" [dir]="'dir' | translate">
   <div class="card-body">
-    <div class="p-3 text-primary text-center">
-      <h3 class="m-0">
-        Delete Service 
-      </h3>
+    <div class="d-flex justify-content-between">
+      <h4 class="card-title d-inline">
+          {{'Delete Service' | translate}}
+      </h4>
+      <button
+        type="button"
+        class="btn-close"
+        aria-label="Close"
+        (click)="closeModal()"
+      ></button>
     </div>
     <section class="">
-      <div class="card text-center">
-        <div class="card-body">
-          <h4 class="card-title">
-            {{ service?.name }}
-          </h4>
-          <p class="card-text">
-            {{ service?.description }}
-          </p>
-          <div class="m-3 row">
-            <button class="btn btn-info text-center m-3 col-5" (click)="deleteService(service?.id)" >delete</button>
-            <button class="btn btn-danger text-center m-3 col-5" (click)="closeModal()" >Cancel</button>
+        <div class="card text-center">
+          <div class="card-body">
+            <h4 class="card-title">
+              {{ service?.name }}
+            </h4>
+            <p class="card-text">
+              {{ service?.description }}
+            </p>
+            <button class="btn btn-danger" (click)="deleteService(service?.id)">{{'Delete' | translate}} </button>
           </div>
         </div>
-      </div>
-  </section>
+    </section>
 
   </div>
 </div>

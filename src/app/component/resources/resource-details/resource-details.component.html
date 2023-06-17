@@ -1,4 +1,4 @@
-<div class="card rounded-2 m-0">
+<div class="card rounded-2 m-0" [dir]="'dir' | translate">
   <div class="card-body">
     <div class="d-flex justify-content-between">
       <!-- <h4 class="card-title d-inline">{{ Resource.name }}</h4> -->
@@ -13,8 +13,8 @@
       <table class="table align-middle text-nowrap table-hover">
         <thead>
           <tr>
-            <th class="text-dark font-medium fs-4">item</th>
-            <th class="text-dark font-medium fs-4">value</th>
+            <th class="text-dark font-medium fs-4">{{'Item' | translate}}</th>
+            <th class="text-dark font-medium fs-4">{{'Value' | translate}}</th>
           </tr>
         </thead>
         <!-- <tbody>
@@ -26,21 +26,21 @@
               <td>{{ item.key }}</td>
               <td>{{ item.value }}</td>
             </tr>
-      
+
             <tr *ngIf="item.key === 'attributes'">
               <ng-container *ngIf="item.value.length === 0; else attributesBlock">
                 <td colspan="2">
-                  <p>No attributes found</p>
+                  <p>{{'No attributes found' | translate}}</p>
                 </td>
               </ng-container>
-      
+
               <ng-template #attributesBlock>
                 <td colspan="2">
                   <table class="table">
                     <thead>
                       <tr>
-                        <th>Attribute</th>
-                        <th>Value</th>
+                        <th>{{'Attribute' | translate}}</th>
+                        <th>{{'Value' | translate}}</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -57,11 +57,11 @@
         </tbody> -->
 
         <tbody>
-          
+
           <ng-container *ngFor="let item of newDetails | keyvalue">
-            
+
             <ng-container *ngIf="item.key !== 'attributes'">
-              
+
               <tr>
                 <td>{{ item.key }}</td>
                 <td>{{ item.value }}</td>

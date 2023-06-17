@@ -1,4 +1,4 @@
-<div class="card rounded-2 m-0">
+<div class="card rounded-2 m-0" [dir]="'dir' | translate">
   <div class="card-body">
     <div class="d-flex justify-content-between">
       <h4 class="card-title d-inline">
@@ -25,9 +25,9 @@
         class="table align-middle text-nowrap table-hover" [formGroup]="form">
         <thead>
           <tr>
-            <th class="text-dark font-medium fs-4">Field Name</th>
-            <th class="text-dark font-medium fs-4">Field Type</th>
-            <th class="text-dark font-medium fs-4">Actions</th>
+            <th class="text-dark font-medium fs-4">{{'Field Name' | translate}}</th>
+            <th class="text-dark font-medium fs-4">{{'Field Type' | translate}}</th>
+            <th class="text-dark font-medium fs-4">{{'Actions' | translate}}</th>
           </tr>
         </thead>
         <tbody formArrayName="fields">
@@ -45,6 +45,7 @@
             </td>
             <td class="col-4">
               <select class="form-select" formControlName="selectOption">
+                <option value="null" selected disabled>Select Data Type</option>
                 <option value="Number">Number</option>
                 <option value="Text">Text</option>
                 <option value="Boolean">Boolean</option>
@@ -57,14 +58,14 @@
                 class="btn btn-warning"
                 (click)="addFields()"
               >
-                Add
+                {{'Add' | translate}}
               </button>
               <button
                 *ngIf="i !== formFields.controls.length - 1"
                 class="btn btn-danger"
                 (click)="removeField(i)"
               >
-                Remove
+                {{'Remove' | translate}}
               </button>
             </td>
           </tr>
@@ -72,7 +73,7 @@
       </table>
     </div>
     <div class="d-flex justify-content-end">
-      <button class="btn btn-primary col-2">Create</button>
+      <button class="btn btn-primary col-2">{{'Add' | translate}}</button>
     </div>
   </div>
 </div>

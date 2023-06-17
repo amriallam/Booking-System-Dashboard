@@ -1,4 +1,4 @@
-<div class="card rounded-2 m-0">
+<div class="card rounded-2 m-0" [dir]="'dir' | translate">
   <div class="card-body">
     <div class="d-flex justify-content-between">
 
@@ -7,34 +7,34 @@
     </div>
 
     <div class="table-responsive">
-      <table class="table align-middle text-nowrap table-hover">
+      <table class="table align-middle text-nowrap table-hover" [dir]="'dir' | translate">
         <tbody>
           <tr>
-            <td>bookingItem ID</td>
+            <td>{{'bookingItem ID' | translate}}</td>
             <td>{{bookingItem.id}}</td>
           </tr>
           <tr>
-            <td>Date</td>
+            <td>{{'Booking Date' | translate}}</td>
             <td>{{bookingItem.date}}</td>
           </tr>
           <tr>
-            <td>Start Time</td>
+            <td>{{'Start Time' | translate}}</td>
             <td>{{startTime}}</td>
           </tr>
           <tr>
-            <td>End Time</td>
+            <td>{{'End Time' | translate}}</td>
             <td>{{endTime}}</td>
           </tr>
           <tr>
-            <td>Status</td>
+            <td>{{'Booking Status' | translate}}</td>
             <td>{{bookingItem.availability}}</td>
           </tr>
           <tr>
-            <td>Cost</td>
+            <td>{{'Cost' | translate}}</td>
             <td>{{bookingItem.totalCost}} L.E</td>
           </tr>
           <tr>
-            <td>User</td>
+            <td>{{'User' | translate}}</td>
             <td>{{bookingItem.userEmail}}</td>
           </tr>
         </tbody>

@@ -1,24 +1,24 @@
 
-<div class="row">
+<div class="row" [dir]="'dir' | translate">
   <div class="col-9">
 
     <select class="form-control mb-4" [(ngModel)]="selectedStatus" (ngModelChange)="loadServices()">
-      <option value="null" selected>All Services</option>
-      <option value="0">Active</option>
-      <option value="1">Inactive</option>
-      <option value="2">Pending Approval</option>
+      <option value="null" selected>{{'All Services' | translate}}</option>
+      <option value="0">{{'Active' | translate}}</option>
+      <option value="1">{{'Inactive' | translate}}</option>
+      <option value="2">{{'Pending Approval' | translate}}</option>
     </select>
   </div>
   <div class="col-3">
-    <button class="btn btn-outline-info me-2 "  (click)="createService()">Add Service</button>
+    <button class="btn btn-outline-info me-2 "  (click)="createService()">{{'Add Service' | translate}}</button>
   </div>
 
 </div>
-<div class="card">
+<div class="card" [dir]="'dir' | translate">
   <div class="card-body">
     <h4 class="card-title">{{'Services' | translate}}</h4>
     <div class="table-responsive">
-      <table class="table align-middle  table-striped" *ngIf="dataExist">
+      <table class="table align-middle  table-striped" *ngIf="dataExist" [dir]="'dir' | translate">
         <thead>
           <tr>
             <th class="text-dark font-medium fs-4">{{'#' | translate}}</th>
@@ -33,7 +33,7 @@
             <td>{{ service.name }}</td>
             <td>{{ getServiceStatusText(service.status) }}</td>
             <td class="d-flex gap-2">
-              <a class="btn btn-outline-primary me-2 mb-2"[routerLink]="['/service/details', serviceid]">{{'Details' | translate}}</a>
+              <a class="btn btn-outline-primary me-2 mb-2"[routerLink]="['/service/details', service.id]">{{'Details' | translate}}</a>
               <a class="btn btn-outline-info me-2 mb-2" (click)="openUpdateModal(service)">{{'Update' | translate}}</a>
               <a class="btn btn-outline-info me-2 mb-2" (click)="openUpdateRTModal(service)">{{'Update Resource Type' | translate}}</a>
               <a class="btn btn-outline-danger me-2 mb-2" (click)="openDeleteModal(service)">{{'Delete' | translate}}</a>

@@ -35,11 +35,11 @@ export class MeasuresService {
   }
 
   getNewUsersCount(fromDate: string, toDate: string) {
-    return this.http.get<DataResponseObeject<{ newCustomerNo: number }>>(`${apiUrl + this.reportController}NewCustomerNo?startDate=${fromDate}&endDate=${toDate}`)
+    return this.http.get<DataResponseObeject<{ newCustomerNo: number }>>(`${apiUrl + this.reportController}CustomerNo?startDate=${fromDate}&endDate=${toDate}`)
   }
 
   getTop5SellingResources(fromDate: string, toDate: string) {
-    return this.http.get<DataResponse<ResourceMeasure>>(`${apiUrl + this.reportController}Top5Resources?startDate=${fromDate}&endDate=${toDate}`)
+    return this.http.get<DataResponse<ResourceMeasure>>(`${apiUrl + this.reportController}TopResources?startDate=${fromDate}&endDate=${toDate}`)
   }
 
   GetResourceTypesSalesPerMonth(fromDate: string, toDate: string) {

@@ -1,10 +1,13 @@
-import { Component, Input } from "@angular/core";
+import { Component, ElementRef, Input, ViewChild } from "@angular/core";
 import { FormArray, FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 import { ResourceTypeService } from "../../../services/resource-type.service";
 import { ActivatedRoute,Router } from "@angular/router";
 import { ListTicketsComponent } from "../../ticket/list-tickets/list-tickets.component";
+import { LanguageService } from "src/app/shared/service/language.service";
+import { TranslateService } from "@ngx-translate/core";
 import { ToastrService } from "ngx-toastr";
+
 @Component({
   selector: "app-edit-resource-type",
   templateUrl: "./edit-resource-type.component.html",
@@ -13,6 +16,7 @@ import { ToastrService } from "ngx-toastr";
 export class EditResourceTypeComponent {
   selectedCardID: any;
 
+  @ViewChild('resourceTypeName') resTypeName !: ElementRef;
   form: FormGroup;
   ResourceTypeName: string;
 
@@ -21,16 +25,22 @@ export class EditResourceTypeComponent {
     private ResourceTypeService: ResourceTypeService,
     private route: ActivatedRoute,
     private router: Router,
+    private languageService: LanguageService,
+    public translate : TranslateService,
     private toastr: ToastrService
   ) {
     this.form = formBuilder.group({});
     this.ResourceTypeName = "New Resource Type";
+
+    this.languageService.selectedLanguage$.subscribe(lang => {
+      this.translate.use(lang);
+    });
   }
 
+
   updateResourceType(id: any) {
-  if(this.ResourceTypeName == null || this.ResourceTypeName == "" || this.ResourceTypeName == "null") {
-      this.toastr.error("Resource Type Name cannot be empty or null");
-  }else{
+    this.ResourceTypeName = this.resTypeName.nativeElement.value;
+
     id = this.selectedCardID;
     const newData = {
       id: id,
@@ -46,7 +56,7 @@ export class EditResourceTypeComponent {
       }
     );
   }
-  }
+  
 
   ngOnInit() {
     this.form = this.formBuilder.group({
@@ -61,7 +71,7 @@ export class EditResourceTypeComponent {
   createField(): FormGroup {
     return this.formBuilder.group({
       input: ["", Validators.required],
-      selectOption: ["", Validators.required],
+      selectOption: [null, Validators.required],
     });
   }
 

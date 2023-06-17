@@ -5,6 +5,11 @@ import { ActivatedRoute } from "@angular/router";
 import { Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
 
+
+import { TranslateService } from '@ngx-translate/core';
+import { LanguageService } from 'src/app/shared/service/language.service';
+
+
 @Component({
   selector: "app-resource-type-attribute-create",
   templateUrl: "./resource-type-attribute-create.component.html",
@@ -17,8 +22,12 @@ export class ResourceTypeAttributeCreateComponent {
     private route: ActivatedRoute,
     private router: Router,
     private toastr: ToastrService,
- 
-  ) {}
+    private languageService: LanguageService,
+    public translate: TranslateService
+  ) {
+      this.languageService.selectedLanguage$.subscribe(lang => {
+      this.translate.use(lang);
+    });}
 
   createResourceTypeAttr = new FormGroup({
     attributeName: new FormControl("", [

@@ -1,31 +1,45 @@
-import { Component } from "@angular/core";
+import { Component, ElementRef, ViewChild } from "@angular/core";
 import { FormArray, FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 import { ResourceTypeService } from "../../../services/resource-type.service";
-import { ToastrService } from 'ngx-toastr';
+import { LanguageService } from "src/app/shared/service/language.service";
+import { TranslateService } from "@ngx-translate/core";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: "app-create-resource-type",
   templateUrl: "create-resource-type.component.html",
   styleUrls: ["create-resource-type.component.scss"],
 })
+
 export class CreateResourceTypeComponent {
   form: FormGroup;
   ResourceTypeName: string;
+  @ViewChild("resourceTypeName") resTypeName !: ElementRef;
+
   constructor(
     private formBuilder: FormBuilder,
     public activeModal: NgbActiveModal,
     private ResourceTypeService: ResourceTypeService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private languageService: LanguageService,
+    public translate: TranslateService
   ) {
+
     this.form = formBuilder.group({});
     this.ResourceTypeName = "New Resource Type";
+
+    this.languageService.selectedLanguage$.subscribe(lang => {
+      this.translate.use(lang);
+    });
+
   }
 
   createResourceType() {
 
+    this.ResourceTypeName = this.resTypeName.nativeElement.value;
     console.log(this.ResourceTypeName);
-    
+
     if(this.ResourceTypeName == null || this.ResourceTypeName == "" || this.ResourceTypeName == "null") {
       this.toastr.error("Resource Type Name cannot be empty or null ");
     }else{
@@ -44,10 +58,12 @@ export class CreateResourceTypeComponent {
         }, 1000);
       });
     }
-    
+
   }
 
+
   ngOnInit() {
+
     // this.form = this.formBuilder.group({
     //   fields: this.formBuilder.array([this.createField()]),
     // });
@@ -73,7 +89,11 @@ export class CreateResourceTypeComponent {
   //   fieldsArray.removeAt(index);
   // }
 
+
   closeModal() {
     this.activeModal.close();
   }
+
+
 }
+
