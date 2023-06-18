@@ -43,23 +43,25 @@
             <th class="text-dark font-medium fs-4">{{'#' | translate}}</th>
             <th class="text-dark font-medium fs-4"> {{'Name' | translate}}</th>
             <th class="text-dark font-medium fs-4">{{'Type' | translate}}</th>
-            <th class="text-dark font-medium fs-4">resourceTypeId</th>
+            <!-- <th class="text-dark font-medium fs-4">resourceTypeId</th> -->
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let attr of newDetails">
-            <td>
+          <tr *ngFor="let attr of newDetails;  let i = index;">
+            <!-- <td>
               {{ attr.attributeId }}
-            </td>
+            </td> -->
+            <td>
+              {{ i + 1 }}
             <td>
               {{ attr.attributeName }}
             </td>
             <td>
               {{ attr.attributeType }}
             </td>
-            <td>
+            <!-- <td>
               {{ attr.resourceTypeId }}
-            </td>
+            </td> -->
             <!-- attributeName
             attributeType
             getResourceTypeAttributes -->
@@ -79,10 +81,11 @@
               <h5 class="mb-0 fw-normal">{{ attr.AttributeType }}</h5>
             </td>
           </tr>
-          <tr *ngIf="! newDetails ">
+          <tr *ngIf='newDetails.length == []'>
             <td colspan="4" class="text-center">
               <h4 class="text-muted">No attributes found</h4>
             </td>
+          </tr>
           </tbody>
         </table>
       </div>

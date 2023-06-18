@@ -60,7 +60,7 @@
               </button>
               <button class="btn btn-warning">{{'Schedule' | translate}}</button>
               <button class="btn btn-success" [routerLink]="['/resources', urlResourceTypeID, 'updateresource', resource.id]">{{'Update' | translate}}</button>
-              <button class="btn btn-danger" (click)="deleteResource(resource.id)">{{'Delete' | translate}}</button>
+              <button class="btn btn-danger" (click)="openDeleteModal(resource)">{{'Delete' | translate}}</button>
             </td>
           </tr>
         </tbody>

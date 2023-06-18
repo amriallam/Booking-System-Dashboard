@@ -5,6 +5,7 @@ import { ResourceTypeDetailsService } from 'src/app/services/resource-type-detai
 import { Router } from '@angular/router';
 import { LanguageService } from 'src/app/shared/service/language.service';
 import { TranslateService } from '@ngx-translate/core';
+import { ca } from 'date-fns/locale';
 @Component({
   selector: 'app-resource-type-attribute-details',
   templateUrl: './resource-type-attribute-details.component.html',
@@ -36,20 +37,31 @@ export class ResourceTypeAttributeDetailsComponent implements OnInit {
   }
 
   getResourceTypeAttributes(id: number) {
+    this.newDetails = [];
+    try{
     this.ResourceTypeDetailsService.getResourceTypeDetails(id).subscribe((response: any) => {
+      console.log(response);
       // check the response
       if (response.data) {
         this.newDetails = response.data;
         // console.log(this.newDetails);
         return this.newDetails;
       } else {
-        this.newDetails = ['No data found']
+        this.newDetails = []
       }
 
       // this.newDetails = response.data;
       // console.log(this.newDetails);
       return this.newDetails;
+
+      console.log(this.newDetails);
     })
+
+    }
+    catch(error){
+      this.newDetails = []
+      console.log(error);
+    }
   }
 
   ngOnInit(): void {

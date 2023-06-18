@@ -31,4 +31,8 @@ export class DeleteResourceComponent {
       
     });
   }
+
+  cancelDelete(){
+    this.activeModal.close();
+  }
 }
