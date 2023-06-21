@@ -19,11 +19,11 @@ export class ScheduleService {
   }
 
   GetAllSchedules() {
-    return this.http.get<DataResponse<Schedule>>(apiUrl + "ScheduleItem/GetAll")
+    return this.http.get<DataResponse<Schedule>>(apiUrl + "ScheduleItem/Get All")
   }
 
   GetAllBookings() {
-    return this.http.get<DataResponse<BookingItem>>("https://localhost:7158/api/ClientBooking")
+    return this.http.get<DataResponse<BookingItem>>("https://localhost:7158/api/ClientBooking?ticks=0")
   }
 
   EditScheduleItem(scheduleId: number, day: string, newStartHour: number, newStartMinute: number, newEndHour: number, newEndMinute: number) {

@@ -32,5 +32,4 @@ export class TopSellingComponent implements OnInit {
     )
   }
 
-
 }
