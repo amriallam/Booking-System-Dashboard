@@ -1,11 +1,11 @@
 <div>
-  <div class="d-flex justify-content-end"><button routerLink="add" class=" btn btn-outline-info mb-2">Add FAQ</button></div>
+  <div class="d-flex justify-content-end"><button routerLink="add" class=" btn btn-info mb-2">+ New FAQ</button></div>
   <div class="d-flex justify-content-between align-items-center mb-2 gap-2">
     <div class="flex-grow-1">
       <input #search
         type="text"
         [(ngModel)]="searchTerm"
-        [placeholder]="searchCriteria?'Search By FAQ Answers':'Search By FAQ Question'"
+        [placeholder]="searchCriteria?'Search By Answer':'Search By Question'"
         class="form-control bg-white shadow-none" />
     </div>
     <div class="d-flex gap-2 align-items-center">
@@ -34,9 +34,9 @@
           <button class="btn btn-danger " (click)="deleteFAQ(faq)">Delete</button>
         </div>
       </h2>
-      <div class="bg-cyan flex-grow-1" ngbAccordionCollapse>
+      <div class="flex-grow-1 mt-2" ngbAccordionCollapse>
         <div ngbAccordionBody>
-          <span [innerHTML]="faq.answer "></span>
+          <span [innerHTML]="faq.answer"></span>
         </div>
       </div>
     </div>
