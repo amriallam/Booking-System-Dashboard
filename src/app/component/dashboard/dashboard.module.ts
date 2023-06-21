@@ -7,10 +7,19 @@ import { DashboardComponent } from "./dashboard.component";
 import { SalesRatioComponent } from "./dashboard-components/sales-ratio/sales-ratio.component";
 import { TopSellingComponent } from "./dashboard-components/top-selling/top-selling.component";
 import { TopCardsComponent } from "./dashboard-components/top-cards/top-cards.component";
-import { NgbDatepicker, NgbInputDatepicker } from "@ng-bootstrap/ng-bootstrap";
+import { NgbInputDatepicker } from "@ng-bootstrap/ng-bootstrap";
 import { DatepickerComponent } from './dashboard-components/datepicker/datepicker.component';
-import { FeedsComponent } from "./dashboard-components/feeds/feeds.component";
 
+
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClient } from '@angular/common/http';
+
+
+
+export function httpTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 
 const routes: Routes = [
   {
@@ -30,15 +39,21 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     NgApexchartsModule,
-    NgbInputDatepicker
+    NgbInputDatepicker,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: httpTranslateLoader,
+        deps: [HttpClient]
+      }
+    })
   ],
   declarations: [
     DashboardComponent,
     SalesRatioComponent,
-    FeedsComponent,
     TopSellingComponent,
     TopCardsComponent,
-    DatepickerComponent
+    DatepickerComponent,
   ],
 })
 export class DashboardModule { }

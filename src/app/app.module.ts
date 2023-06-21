@@ -3,7 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { Router, RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr'
@@ -16,7 +16,23 @@ import { SidebarComponent } from './shared/components/sidebar/sidebar.component'
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RetryInterceptor } from './shared/utility/retry.interceptor';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { LOCALE_ID } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import localeEn from '@angular/common/locales/en';
+import localeAr from '@angular/common/locales/ar';
 
+registerLocaleData(localeEn);
+registerLocaleData(localeAr);
+
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+
+
+export function httpTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 
 @NgModule({
   declarations: [
@@ -25,6 +41,7 @@ import { RetryInterceptor } from './shared/utility/retry.interceptor';
     NavigationComponent,
     SidebarComponent,
     LoginComponent,
+    
   ],
   imports: [
     CommonModule,
@@ -35,17 +52,29 @@ import { RetryInterceptor } from './shared/utility/retry.interceptor';
     HttpClientModule,
     NgbModule,
     ToastrModule.forRoot(),
-    RouterModule.forRoot(Approutes)
+    RouterModule.forRoot(Approutes),
+    FontAwesomeModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: httpTranslateLoader,
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [
-    // {
-    //   provide: LocationStrategy,
-    //   useClass: PathLocationStrategy,
-    // },
+    {
+      provide: LocationStrategy,
+      useClass: PathLocationStrategy,
+    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: RetryInterceptor,
       multi: true
+    },
+    {
+      provide: LOCALE_ID, 
+      useValue: 'en' 
     }
   ],
   bootstrap: [AppComponent],

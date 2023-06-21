@@ -1,50 +1,93 @@
-<div class="card rounded-2 m-0">
+<div class="card rounded-2 m-0" [dir]="'dir' | translate">
   <div class="card-body">
     <div class="d-flex justify-content-between">
-
       <div *ngIf="!TitleEdit; else EditTitleTrue">
         <h4 class="card-title d-inline">
-          {{ResourceType.Name}}
-          <i (click)="ToggleTitleEdit()" class="ms-1 fs-4 bi bi-pencil-fill"></i>
+          {{ ResourceType.Name }}
+          <i
+            (click)="ToggleTitleEdit()"
+            class="ms-1 fs-4 bi bi-pencil-fill"></i>
         </h4>
       </div>
 
       <ng-template #EditTitleTrue>
         <h4 class="card-title d-inline">
-          <input class="form-control shadow-none w-75 d-inline me-2" type="text"
-            [(ngModel)]="ResourceType.Name">
-          <button (click)="SaveTitleEdit()" class="btn btn-primary">Save</button>
+          <input
+            class="form-control shadow-none w-75 d-inline me-2"
+            type="text"
+            [(ngModel)]="ResourceType.Name" />
+          <button (click)="SaveTitleEdit()" class="btn btn-primary">
+            {{'Save' | translate}}
+          </button>
         </h4>
       </ng-template>
 
-      <button type="button" class="btn-close" aria-label="Close"
+      <button
+        type="button"
+        class="btn btn-primary "
+        aria-label="Close"
+        (click)="navigateToCreateResourceTypeAttribute()">
+        {{'Add New Attribute' | translate}}
+      </button>
+
+      <button
+        type="button"
+        class="btn-close"
+        aria-label="Close"
         (click)="closeModal()"></button>
     </div>
     <div class="table-responsive">
-      <table class="table align-middle text-nowrap table-hover">
+      <table class="table align-middle text-nowrap table-hover" [dir]="'dir' | translate">
         <thead>
           <tr>
-            <th class="text-dark font-medium fs-4">Name</th>
-            <th class="text-dark font-medium fs-4">Type</th>
+            <th class="text-dark font-medium fs-4">{{'#' | translate}}</th>
+            <th class="text-dark font-medium fs-4"> {{'Name' | translate}}</th>
+            <th class="text-dark font-medium fs-4">{{'Type' | translate}}</th>
+            <!-- <th class="text-dark font-medium fs-4">resourceTypeId</th> -->
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor='let attr of ResourceTypeAttributes'>
+          <tr *ngFor="let attr of newDetails;  let i = index;">
+            <!-- <td>
+              {{ attr.attributeId }}
+            </td> -->
+            <td>
+              {{ i + 1 }}
+            <td>
+              {{ attr.attributeName }}
+            </td>
+            <td>
+              {{ attr.attributeType }}
+            </td>
+            <!-- <td>
+              {{ attr.resourceTypeId }}
+            </td> -->
+            <!-- attributeName
+            attributeType
+            getResourceTypeAttributes -->
 
             <td *ngIf="!TitleEdit" class="fs-4">
-              {{attr.AttributeName}}
+              {{ attr.AttributeName }}
             </td>
 
             <td *ngIf="TitleEdit" class="fs-4">
-              <input class="form-control shadow-none d-inline" type="text"
-                [(ngModel)]="attr.AttributeName">
+              <input
+                class="form-control shadow-none d-inline"
+                type="text"
+                [(ngModel)]="attr.AttributeName" />
             </td>
 
-            <td> <h5 class="mb-0 fw-normal">{{attr.AttributeType}}</h5> </td>
-
+            <td>
+              <h5 class="mb-0 fw-normal">{{ attr.AttributeType }}</h5>
+            </td>
           </tr>
-        </tbody>
-      </table>
+          <tr *ngIf='newDetails.length == []'>
+            <td colspan="4" class="text-center">
+              <h4 class="text-muted">No attributes found</h4>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
-</div>

@@ -1,6 +1,6 @@
 <div class="row">
 
-  <div class="col-md-6 col-lg-3">
+  <div class="col-md-6 col-lg-3" [dir]="'dir' | translate">
     <div class="card">
       <div class="card-body">
         <div class="d-flex align-items-center">
@@ -8,7 +8,7 @@
             class="btn btn-lg rounded-circle round round-lg fs-6 d-flex align-items-center justify-content-center bg-light-{{topcards[0].bgcolor}} text-{{topcards[0].bgcolor}}">
             <i class={{topcards[0].icon}}></i>
           </div>
-          <div class="ms-3">
+          <div class="mx-3">
             <h3 class="mb-0 font-weight-bold">{{Earning}}</h3>
             <small class="text-muted fs-3">{{topcards[0].subtitle}}</small>
           </div>
@@ -17,7 +17,7 @@
     </div>
   </div>
 
-  <div class="col-md-6 col-lg-3">
+  <div class="col-md-6 col-lg-3" [dir]="'dir' | translate">
     <div class="card">
       <div class="card-body">
         <div class="d-flex align-items-center">
@@ -25,7 +25,7 @@
             class="btn btn-lg rounded-circle round round-lg fs-6 d-flex align-items-center justify-content-center bg-light-{{topcards[1].bgcolor}} text-{{topcards[1].bgcolor}}">
             <i class={{topcards[1].icon}}></i>
           </div>
-          <div class="ms-3">
+          <div class="mx-3">
             <h3 class="mb-0 font-weight-bold">{{Refunds}}</h3>
             <small class="text-muted fs-3">{{topcards[1].subtitle}}</small>
           </div>
@@ -34,7 +34,7 @@
     </div>
   </div>
 
-  <div class="col-md-6 col-lg-3">
+  <div class="col-md-6 col-lg-3" [dir]="'dir' | translate">
     <div class="card">
       <div class="card-body">
         <div class="d-flex align-items-center">
@@ -42,7 +42,7 @@
             class="btn btn-lg rounded-circle round round-lg fs-6 d-flex align-items-center justify-content-center bg-light-{{topcards[2].bgcolor}} text-{{topcards[2].bgcolor}}">
             <i class={{topcards[2].icon}}></i>
           </div>
-          <div class="ms-3">
+          <div class="mx-3">
             <h3 class="mb-0 font-weight-bold">{{NewUsers}}</h3>
             <small class="text-muted fs-3">{{topcards[2].subtitle}}</small>
           </div>
@@ -51,7 +51,7 @@
     </div>
   </div>
 
-  <div class="col-md-6 col-lg-3">
+  <div class="col-md-6 col-lg-3" [dir]="'dir' | translate">
     <div class="card">
       <div class="card-body">
         <div class="d-flex align-items-center">
@@ -59,7 +59,7 @@
             class="btn btn-lg rounded-circle round round-lg fs-6 d-flex align-items-center justify-content-center bg-light-{{topcards[3].bgcolor}} text-{{topcards[3].bgcolor}}">
             <i class={{topcards[3].icon}}></i>
           </div>
-          <div class="ms-3">
+          <div class="mx-3">
             <h3 class="mb-0 font-weight-bold">{{Bookings}}</h3>
             <small class="text-muted fs-3">{{topcards[3].subtitle}}</small>
           </div>

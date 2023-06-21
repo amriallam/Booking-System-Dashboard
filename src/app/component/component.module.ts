@@ -14,6 +14,8 @@ import { NgbdnavBasicComponent } from './nav/nav.component';
 import { ButtonsComponent } from './buttons/buttons.component';
 import { CardsComponent } from './card/card.component';
 import { TableComponent } from "./table/table.component";
+import { NotfoundComponent } from './notfound/notfound.component';
+
 
 
 @NgModule({
@@ -32,6 +34,8 @@ import { TableComponent } from "./table/table.component";
     ButtonsComponent,
     CardsComponent,
     TableComponent,
+    NotfoundComponent,
+   
   ],
 })
 export class ComponentsModule { }

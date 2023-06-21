@@ -14,22 +14,36 @@
       <span>Create</span>
     </a>
     <div ngbDropdownMenu>
+      <a class="dropdown-item" (click)="createService()">Service</a>
       <a class="dropdown-item" (click)="createResourceType()">Resource Type</a>
       <a class="dropdown-item">Resource</a>
+
       <!-- <div class="dropdown-divider"></div>
       <a class="dropdown-item" href="#">Something else here</a> -->
     </div>
   </li>
 
 </ul>
+<span class="navbar-nav float-end">
+  <select
+      class="form-control"
+      #selectedLang
+      (change)="switchLang(selectedLang.value)">
+    <option *ngFor="let language of translate.getLangs()"
+      [value]="language"
+      [selected]="language === translate.currentLang">
+      {{ language }}
+    </option>
+  </select>
+</span>
 <!-- ============================================================== -->
 <!-- Right side toggle and nav items -->
 <!-- ============================================================== -->
-<ul class="navbar-nav float-end">
+<!-- <ul class="navbar-nav float-end"> -->
   <!-- ============================================================== -->
   <!-- User profile and search -->
   <!-- ============================================================== -->
-  <li class="nav-item" ngbDropdown placement="bottom-end">
+  <!-- <li class="nav-item" ngbDropdown placement="bottom-end">
     <a ngbDropdownToggle class="nav-link waves-effect waves-dark pro-pic" href="javascript:void(0)"
       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       <img src="assets/images/users/user1.jpg" alt="user" class="rounded-circle" width="31" />
@@ -44,8 +58,8 @@
       <div class="dropdown-divider"></div>
       <a class="dropdown-item" (click)="logout()"> Logout</a>
     </div>
-  </li>
+  </li> -->
   <!-- ============================================================== -->
   <!-- User profile and search -->
   <!-- ============================================================== -->
-</ul>
+<!-- </ul> -->

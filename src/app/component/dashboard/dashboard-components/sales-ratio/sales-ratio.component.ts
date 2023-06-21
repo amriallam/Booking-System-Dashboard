@@ -1,30 +1,29 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import {
   ApexAxisChartSeries,
   ApexChart,
   ChartComponent,
   ApexDataLabels,
+  ApexPlotOptions,
   ApexYAxis,
   ApexLegend,
+  ApexStroke,
   ApexXAxis,
-  ApexTooltip,
-  ApexTheme,
-  ApexGrid
+  ApexFill,
+  ApexTooltip
 } from 'ng-apexcharts';
+import { LanguageService } from 'src/app/shared/service/language.service';
 import { MeasuresService } from 'src/app/shared/service/measures.service';
 export type salesChartOptions = {
   series: ApexAxisChartSeries;
   chart: ApexChart;
-  xaxis: ApexXAxis;
-  yaxis: ApexYAxis;
-  stroke: any;
-  theme: ApexTheme;
-  tooltip: ApexTooltip;
   dataLabels: ApexDataLabels;
-  legend: ApexLegend;
-  colors: string[];
-  markers: any;
-  grid: ApexGrid;
+  plotOptions: ApexPlotOptions;
+  yaxis: ApexYAxis;
+  xaxis: ApexXAxis;
+  fill: ApexFill;
+  stroke: ApexStroke;
 };
 
 interface Result {
@@ -39,83 +38,95 @@ interface Result {
   templateUrl: './sales-ratio.component.html'
 })
 export class SalesRatioComponent implements OnInit {
-  @ViewChild("chart") chart: ChartComponent = Object.create(null);
-  public salesChartOptions: Partial<salesChartOptions>;
-  constructor(private measureService: MeasuresService) {
+  @ViewChild("chart") chart: ChartComponent | any;
+  public salesChartOptions: salesChartOptions;
+  constructor(private measureService: MeasuresService,
+              private languageService: LanguageService,
+              public translate: TranslateService) {
+
+    this.languageService.selectedLanguage$.subscribe(lang => {
+      this.translate.use(lang);
+    });
+    
     this.salesChartOptions = {
       series: [],
       chart: {
-        fontFamily: 'Rubik,sans-serif',
-        height: 250,
-        type: 'area',
-        stacked: false,
-        zoom: {
-          type: "x",
-          enabled: true,
-          autoScaleYaxis: true
-        },
-        toolbar: {
-          autoSelected: "zoom"
+        type: "bar",
+        height: 350,
+      },
+      plotOptions: {
+        bar: {
+          horizontal: false,
+          columnWidth: "10%",
         }
       },
       dataLabels: {
-        enabled: true
+        enabled: true,
       },
-      colors: ["#137eff", "#6c757d", "#7b1aff", "#1e5eff", "#0073ff", "#00a5ff"],
       stroke: {
-        curve: 'smooth',
-        width: '2',
-      },
-      grid: {
-        strokeDashArray: 3,
-      },
-      markers: {
-        size: 3
+        show: true,
+        width: 2,
+        colors: ["transparent"]
       },
       xaxis: {
-        categories: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+        categories: [],
+        title: {
+          text: "Month"
+        }
       },
-      tooltip: {
-        theme: 'light'
-      }
-    };
+      yaxis: {
+        title: {
+          text: "Money Earned ( L.E )"
+        }
+      },
+      fill: {
+        opacity: 1
+      },
+    }
   }
 
-  ngOnInit(): void {
-    let currentYear = new Date().getFullYear();
-    const yearStart = `${currentYear}-01-01`;
-    const yearEnd = `${currentYear}-12-31`;
-    this.updateSeries(yearStart, yearEnd);
+  ngOnInit() {
     this.measureService.dateSubject.subscribe((value) => {
-      let fromDate = `${value.fromDate.year}-01-01}`;
-      let toDate = `${value.toDate.year}-12-31`;
-      this.updateSeries(fromDate, toDate);
+      this.updateSeries(value.fromDate, value.toDate);
     });
   }
 
   private updateSeries(yearStart: string, yearEnd: string,) {
     this.measureService.GetResourceTypesSalesPerMonth(yearStart, yearEnd).subscribe(data => {
-      const result: Result = {};
-      data.data.forEach(item => {
-        const resourceType = item.resourceType;
-        const month = item.month;
-        const totalPrice = item.totalPrice;
+      // Setting Category Date ( X Axix Data )
+      let mappedCategory = new Set();
 
-        if (!result[resourceType]) {
-          result[resourceType] = {
+      // Iterating through unique months in data
+      data.data.forEach(item => mappedCategory.add(new Date(2000, item.month).toLocaleString('default', { month: 'long' })));
+      // Setting chart X-Axis
+      this.salesChartOptions.xaxis!.categories = Array.from(mappedCategory)
+
+      // ----------------------------------------------------------------
+
+      // Setting Data Series
+      const resultMap = new Map();
+
+      // Iterate over the data array
+      data.data.forEach((item) => {
+        const { resourceType, month, totalPrice } = item;
+        // If the resourceType is not already in the resultMap, add it with an empty data array
+        if (!resultMap.has(resourceType)) {
+          resultMap.set(resourceType, {
             name: resourceType,
-            data: []
-          };
+            data: Array(Array.from(mappedCategory).length).fill(0),
+          });
         }
 
-        while (result[resourceType].data.length < month) {
-          result[resourceType].data.push(0);
-        }
-
-        result[resourceType].data.push(totalPrice);
+        // Assign the total price to the corresponding month
+        resultMap.get(resourceType).data[month - 1] = totalPrice;
       });
-      this.salesChartOptions.series = Object.values(result);
+
+      // Convert the resultMap to an chart series array
+      this.salesChartOptions.series = Array.from(resultMap.values());
     })
   }
 }
+
+
+
 

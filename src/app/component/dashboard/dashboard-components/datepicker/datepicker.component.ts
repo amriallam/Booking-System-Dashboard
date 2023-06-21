@@ -1,57 +1,48 @@
-import { Component } from '@angular/core';
-import { NgbDate, NgbCalendar, NgbDateParserFormatter, NgbInputDatepicker } from '@ng-bootstrap/ng-bootstrap';
+import { AfterViewInit, Component } from '@angular/core';
+import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateService } from '@ngx-translate/core';
+import { LanguageService } from 'src/app/shared/service/language.service';
 import { MeasuresService } from 'src/app/shared/service/measures.service';
+
 @Component({
   selector: 'app-datepicker',
   templateUrl: './datepicker.component.html',
-  styleUrls: ['./datepicker.component.scss']
 })
-export class DatepickerComponent {
+export class DatepickerComponent implements AfterViewInit {
 
-  hoveredDate: NgbDate | null = null;
+  fromDate: string = "";
+  toDate: string = "";
+  currentDate: string = "";
+  sevenDaysBefore: string = "";
 
-  fromDate: NgbDate | null;
-  toDate: NgbDate | null;
+  constructor(private measureService: MeasuresService,
+              private languageService: LanguageService,
+              public translate: TranslateService) {
+    var sevenDaysBefore = new Date();
+    sevenDaysBefore.setDate(new Date().getDate() - 7);
+    this.currentDate = new Date().toISOString().split('T')[0];
+    this.sevenDaysBefore = sevenDaysBefore.toISOString().split('T')[0];
 
-  constructor(private calendar: NgbCalendar, public formatter: NgbDateParserFormatter, private measureService: MeasuresService) {
-    this.fromDate = calendar.getToday();
-    this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
+    this.languageService.selectedLanguage$.subscribe(lang => {
+      this.translate.use(lang);
+    });
+    
   }
 
-  onDateSelection(date: NgbDate, datepicker: NgbInputDatepicker) {
-    if (!this.fromDate && !this.toDate) {
-      this.fromDate = date;
-    } else if (this.fromDate && !this.toDate && date && date.after(this.fromDate)) {
-      this.toDate = date;
-      datepicker.close();
+  ngAfterViewInit(): void {
+    this.measureService.DashboardDateChanged(this.sevenDaysBefore, this.currentDate);
+  }
+
+  onDateSelection(caller: string, date: NgbDate) {
+    const { year, month, day } = date;
+    const formattedMonth = month.toString().padStart(2, '0');
+    const formattedDay = day.toString().padStart(2, '0');
+    if (caller == "fromDate")
+      this.fromDate = `${year}-${formattedMonth}-${formattedDay}`;
+    else if (caller == "toDate")
+      this.toDate = `${year}-${formattedMonth}-${formattedDay}`;
+    if (this.fromDate && this.toDate) {
       this.measureService.DashboardDateChanged(this.fromDate, this.toDate);
-    } else {
-      this.toDate = null;
-      this.fromDate = date;
     }
-  }
-
-  isHovered(date: NgbDate) {
-    return (
-      this.fromDate && !this.toDate && this.hoveredDate && date.after(this.fromDate) && date.before(this.hoveredDate)
-    );
-  }
-
-  isInside(date: NgbDate) {
-    return this.toDate && date.after(this.fromDate) && date.before(this.toDate);
-  }
-
-  isRange(date: NgbDate) {
-    return (
-      date.equals(this.fromDate) ||
-      (this.toDate && date.equals(this.toDate)) ||
-      this.isInside(date) ||
-      this.isHovered(date)
-    );
-  }
-
-  validateInput(currentValue: NgbDate | null, input: string): NgbDate | null {
-    const parsed = this.formatter.parse(input);
-    return parsed && this.calendar.isValid(NgbDate.from(parsed)) ? NgbDate.from(parsed) : currentValue;
   }
 }

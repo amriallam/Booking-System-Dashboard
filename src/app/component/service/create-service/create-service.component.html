@@ -1,0 +1,120 @@
+<!-- <div class="card rounded-2 m-0">
+  <div class="card-body">
+    <div class="d-flex justify-content-between">
+      <h4 class="card-title d-inline">
+        {{'Add Service' | translate}}
+      </h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+    </div>
+    <form [formGroup]="addServiceForm" (ngSubmit)="onSubmit()">
+      <div class="m-3">
+        <input type="text" id="name" formControlName="name" class="form-control" placeholder="{{'Name' | translate}}">
+        <div *ngIf="getControl('name')?.errors && getControl('name')?.touched">
+          <small class="text-danger d-flex align-items-center fs-3" *ngIf="getControl('name')?.errors?.['required']">
+            {{'Please Enter name' | translate}}</small>
+        </div>
+        <div *ngIf="isNameExists" class="text-danger d-flex align-items-center fs-3">
+          {{'Service name already exists. Please enter a different name.| translate'}}
+        </div>
+      </div>
+
+      <div class="m-3">
+        <textarea id="description" formControlName="description" class="form-control" placeholder="{{'Description' | translate}}"></textarea
+          style="max-height: 200px;"></textarea>
+        <div *ngIf="getControl('description')?.errors && getControl('description')?.touched">
+          <small class=" text-danger d-flex align-items-center fs-3"
+            *ngIf="getControl('description')?.errors?.['required']"> {{'Please Enter description' | translate}}</small>
+        </div>
+      </div>
+
+      <div class="m-3">
+        <select id="status" formControlName="status" class="form-control">
+          <option value="" disabled>{{'select status' | translate}}</option>
+          <option value="0">{{'Active' | translate }}</option>
+          <option value="1">{{'Inactive' | translate}}</option>
+          <option value="2">{{'Pending Approval' | translate}}</option>
+        </select>
+        <div *ngIf="getControl('status')?.errors && getControl('status')?.touched">
+          <small class="text-danger d-flex align-items-center fs-3"
+            *ngIf="getControl('status')?.errors?.['required']">{{'Please select a status' | translate}}</small>
+        </div>
+      </div>
+
+      <div class="m-3">
+        <select class="form-select" formControlName="resourceType" multiple>
+          <option value="" disabled>{{'select resource Type' | translate}} </option>
+          <option *ngFor="let type of resourceTypes " [value]="type.id">{{type.name}}</option>
+        </select>
+        <div *ngIf="getControl('resourceType')?.errors && getControl('resourceType')?.touched">
+          <small class="text-danger d-flex align-items-center fs-3"
+            *ngIf="getControl('resourceType')?.errors?.['required']">{{'Please select a resourceType' | translate}}</small>
+        </div>
+      </div>
+
+      <button class="btn btn-info text-center w-100 my-3" type="submit">{{'Add' | translate}}</button>
+    </form>
+
+  </div>
+</div>
+
+</div> -->
+
+
+<div class="card rounded-2 m-0" [dir]="'dir' | translate">
+  <div class="card-body">
+    <div class="p-3 text-primary text-center">
+      <h3 class="m-0">
+        {{'Add Service' | translate}}
+      </h3>
+    </div>
+
+    <form [formGroup]="addServiceForm" (ngSubmit)="onSubmit()">
+
+        <div class="m-3">
+          <input type="text" id="name" formControlName="name" class="form-control" placeholder="{{'Name' | translate}}" value={{service?.name}}>
+          <div *ngIf="getControl('name')?.errors && getControl('name')?.touched">
+            <small class="d-flex alert alert-danger mt-1 p-1 " *ngIf="getControl('name')?.errors?.['required']"> {{'Please Enter name' | translate}}</small>
+          </div>
+          <div *ngIf="isNameExists" class="text-danger d-flex align-items-center fs-3">
+            {{'Service name already exists. Please enter a different name.' | translate}}
+          </div>
+        </div>
+        <div class="m-3">
+          <textarea id="description" formControlName="description" class="form-control" placeholder="{{'Description' | translate}}"
+          style="max-height: 200px;"></textarea>
+          <div *ngIf="getControl('description')?.errors && getControl('description')?.touched">
+          <small class="d-flex alert alert-danger mt-1 p-1 "
+            *ngIf="getControl('description')?.errors?.['required']"> {{'Please Enter description' | translate}}</small>
+        </div>
+        </div>
+
+        <div class="m-3">
+            <select id="status" formControlName="status" class="form-control" value={{service?.status}} >
+              <option value="" disabled selected>{{'Select status' | translate}}</option>
+              <option value="0" active>{{'Active' | translate}}</option>
+              <option value="1">{{'Inactive' | translate}}</option>
+              <option value="2">{{'Pending Approval' | translate}}</option>
+            </select>
+            <div *ngIf="getControl('status')?.errors && getControl('status')?.touched">
+              <small class="d-flex alert alert-danger mt-1 p-1 " *ngIf="getControl('status')?.errors?.['required']">{{'Please select a status' | translate}}</small>
+            </div>
+          </div>
+          <div class="m-3">
+            <select class="form-select" formControlName="resourceType" multiple>
+              <option value="" disabled>{{'select resource Type' | translate}} </option>
+              <option *ngFor="let type of resourceTypes " [value]="type.id">{{type.name}}</option>
+            </select>
+            <div *ngIf="getControl('resourceType')?.errors && getControl('resourceType')?.touched">
+              <small class="text-danger d-flex align-items-center fs-3"
+                *ngIf="getControl('resourceType')?.errors?.['required']">{{'Please select a resourceType' | translate}}</small>
+            </div>
+          </div>
+          <div class="m-3 row">
+            <button class="btn btn-info text-center m-3  col-5" type="submit">{{'Add' | translate}}</button>
+            <button class="btn btn-danger text-center m-3 col-5" (click)="closeModal()" >{{'Cancel' | translate}}</button>
+          </div>
+        </form>
+      </div>
+  </div>
+
+

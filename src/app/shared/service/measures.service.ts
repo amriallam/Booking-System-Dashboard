@@ -13,12 +13,12 @@ import { ResouceTypeSoldPerMonth } from 'src/app/component/models/resouce-type-s
 })
 export class MeasuresService {
 
-  public dateSubject: Subject<{ fromDate: NgbDate, toDate: NgbDate }> = new Subject<{ fromDate: NgbDate, toDate: NgbDate }>();
+  public dateSubject: Subject<{ fromDate: string, toDate: string }> = new Subject<{ fromDate: string, toDate: string }>();
   private reportController: string = "Reports/";
 
   constructor(private http: HttpClient) { }
 
-  DashboardDateChanged(fromDate: any, toDate: any) {
+  DashboardDateChanged(fromDate: string, toDate: string) {
     this.dateSubject.next({ fromDate, toDate });
   }
 
@@ -35,11 +35,11 @@ export class MeasuresService {
   }
 
   getNewUsersCount(fromDate: string, toDate: string) {
-    return this.http.get<DataResponseObeject<{ newCustomerNo: number }>>(`${apiUrl + this.reportController}NewCustomerNo?startDate=${fromDate}&endDate=${toDate}`)
+    return this.http.get<DataResponseObeject<{ newCustomerNo: number }>>(`${apiUrl + this.reportController}CustomerNo?startDate=${fromDate}&endDate=${toDate}`)
   }
 
   getTop5SellingResources(fromDate: string, toDate: string) {
-    return this.http.get<DataResponse<ResourceMeasure>>(`${apiUrl + this.reportController}Top5Resources?startDate=${fromDate}&endDate=${toDate}`)
+    return this.http.get<DataResponse<ResourceMeasure>>(`${apiUrl + this.reportController}TopResources?startDate=${fromDate}&endDate=${toDate}`)
   }
 
   GetResourceTypesSalesPerMonth(fromDate: string, toDate: string) {

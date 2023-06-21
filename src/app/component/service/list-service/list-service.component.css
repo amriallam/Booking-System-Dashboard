@@ -1,0 +1,14 @@
+
+select.form-control {
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    color: #333;
+    padding: 8px;
+    border-radius: 4px;
+  }
+  
+  select.form-control:focus {
+    outline: none;
+    box-shadow: 0 0 4px #999;
+  }
+  

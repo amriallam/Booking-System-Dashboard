@@ -8,5 +8,5 @@ export interface BookingItem {
   serviceId: number;
   status: number;
   totalCost: number;
-  userId: string;
+  userEmail: string;
 }

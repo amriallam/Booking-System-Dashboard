@@ -1,14 +1,14 @@
-<div class="card">
+<div class="card" [dir]="'dir' | translate">
   <div class="card-body">
-    <h4 class="card-title">System Roles</h4>
-    <h5 class="card-subtitle text-muted">Overview of the current system roles</h5>
+    <h4 class="card-title">{{'System Roles' | translate}}</h4>
+    <h5 class="card-subtitle text-muted">{{'Overview of the current system roles' | translate}}</h5>
     <div class="table-responsive">
       <table class="table align-middle text-nowrap">
         <thead>
           <tr>
-            <th class="text-dark font-medium fs-4">Id</th>
-            <th class="text-dark font-medium fs-4">Name</th>
-            <th class="text-dark font-medium fs-4">Action</th>
+            <th class="text-dark font-medium fs-4">{{'#' | translate}}</th>
+            <th class="text-dark font-medium fs-4">{{'Name' | translate }}</th>
+            <th class="text-dark font-medium fs-4"></th>
           </tr>
         </thead>
         <tbody>
@@ -21,9 +21,9 @@
             </td>
             <td>
               <div class="d-flex gap-2">
-                <button class="btn btn-primary">Users</button>
-                <button *ngIf="role.name.toLowerCase()!='admin'" class="btn btn-warning">Permissions</button>
-                <button *ngIf="role.name.toLowerCase()!='admin'" class="btn btn-danger">Delete</button>
+                <button class="btn btn-primary">{{'Users' | translate}}</button>
+                <button *ngIf="role.name.toLowerCase()!='admin'" class="btn btn-warning">{{'Permissions' | translate }}</button>
+                <button *ngIf="role.name.toLowerCase()!='admin'" class="btn btn-danger">{{'Delete' | translate}}</button>
               </div>
             </td>
           </tr>
