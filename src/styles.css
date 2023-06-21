@@ -13,4 +13,8 @@ body {
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
-}/*# sourceMappingURL=styles.css.map */
+}
+
+.cursor-pointer{
+  cursor: pointer;
+}

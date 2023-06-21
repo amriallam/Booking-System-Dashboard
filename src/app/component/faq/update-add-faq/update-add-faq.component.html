@@ -1,1 +1,6 @@
-<editor apiKey="shawadk8iobaq97uyhm8yjf22ewgesrpt3t3mp66jj9h9ubd" [toolbar]="toolbar" [plugins]="plugins"></editor>
+<input class="form-control mb-2 bg-white shadow-none" placeholder="Ener Question Title" [(ngModel)]="faq.question" type="text">
+<editor apiKey="shawadk8iobaq97uyhm8yjf22ewgesrpt3t3mp66jj9h9ubd" [(ngModel)]="faq.answer" [toolbar]="toolbar" [plugins]="plugins"></editor>
+<div class="d-flex justify-content-end mt-2">
+<button *ngIf="addFlag" (click)="addFAQ()" class="btn btn-primary shadow-none">Add Question</button>
+<button *ngIf="!addFlag" (click)="updateFAQ()" class="btn btn-primary shadow-none">Save Changes</button>
+</div>

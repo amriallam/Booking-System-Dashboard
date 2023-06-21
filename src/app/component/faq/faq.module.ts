@@ -5,7 +5,7 @@ import { ListFaqComponent } from './list-faq/list-faq.component';
 import { NgbAccordionModule } from "@ng-bootstrap/ng-bootstrap";
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { UpdateAddFaqComponent } from './update-add-faq/update-add-faq.component';
-
+import { FormsModule } from '@angular/forms';
 
 const routes: Routes = [
   { path: "", component: ListFaqComponent},
@@ -22,7 +22,7 @@ const routes: Routes = [
   imports: [
     EditorModule,
     CommonModule,
-    RouterModule,
+    FormsModule,
     RouterModule.forChild(routes),
     NgbAccordionModule
   ]

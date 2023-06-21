@@ -41,7 +41,7 @@ export function httpTranslateLoader(http: HttpClient) {
     NavigationComponent,
     SidebarComponent,
     LoginComponent,
-    
+
   ],
   imports: [
     CommonModule,
@@ -73,8 +73,8 @@ export function httpTranslateLoader(http: HttpClient) {
       multi: true
     },
     {
-      provide: LOCALE_ID, 
-      useValue: 'en' 
+      provide: LOCALE_ID,
+      useValue: 'en'
     }
   ],
   bootstrap: [AppComponent],
