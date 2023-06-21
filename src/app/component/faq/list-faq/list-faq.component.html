@@ -1,14 +1,25 @@
+<div>
+  <button routerLink="add" class="align-self-end mb-2 btn btn-outline-info">Add FAQ</button>
+</div>
 <div class="d-flex flex-column gap-2" ngbAccordion [closeOthers]="true">
-	<div ngbAccordionItem *ngFor="let faq of faqs" >
-		<h2 ngbAccordionHeader>
-			<button class="bg-light" ngbAccordionButton>{{ faq.question }}</button>
-		</h2>
-		<div class="card" ngbAccordionCollapse>
-			<div ngbAccordionBody>
-				<ng-template>
-          {{faq.answer}}
-				</ng-template>
-			</div>
-		</div>
-	</div>
+  <div ngbAccordionItem *ngFor="let faq of faqs">
+    <h2 ngbAccordionHeader class="d-flex align-items-center">
+      <div class="flex-grow-1">
+        <button class="bg-light" ngbAccordionButton>
+          <div>
+            {{ faq.question }}
+          </div>
+        </button>
+      </div>
+      <div class="d-flex gap-2 ms-2">
+        <button class="btn btn-primary" (click)="editFaq(faq)">Edit</button>
+        <button class="btn btn-danger " (click)="deleteFAQ(faq)">Delete</button>
+      </div>
+    </h2>
+    <div class="bg-cyan flex-grow-1" ngbAccordionCollapse>
+      <div ngbAccordionBody>
+        <span>{{ faq.answer }}</span>
+      </div>
+    </div>
+  </div>
 </div>
