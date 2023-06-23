@@ -1,0 +1,38 @@
+<h2>Edit Role</h2>
+
+<div *ngIf="role">
+  <form (ngSubmit)="onSave()">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" id="name" required [(ngModel)]="role.name" name="name">
+    </div>
+
+    <h3>Permissions</h3>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Resource</th>
+          <th>View</th>
+          <th>Edit</th>
+          <th>Create</th>
+          <th>Delete</th>
+          <th>Index</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let resource of resources">
+          <td>{{ resource }}</td>
+          <td><input type="checkbox" [checked]="isChecked(resource, 'View')" (change)="onPermissionChange(resource, 'View', $event.target.checked)"></td>
+          <td><input type="checkbox" [checked]="isChecked(resource, 'Edit')" (change)="onPermissionChange(resource, 'Edit', $event.target.checked)"></td>
+          <td><input type="checkbox" [checked]="isChecked(resource, 'Create')" (change)="onPermissionChange(resource, 'Create', $event.target.checked)"></td>
+          <td><input type="checkbox" [checked]="isChecked(resource, 'Delete')" (change)="onPermissionChange(resource, 'Delete', $event.target.checked)"></td>
+          <td><input type="checkbox" [checked]="isChecked(resource, 'Index')" (change)="onPermissionChange(resource, 'Index', $event.target.checked)"></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <button type="submit" class="btn btn-primary w-25">Save</button>
+    <button type="button" class="btn btn-secondary ms-2 w-25" (click)="onCancel()">Cancel</button>
+  </form>
+</div>

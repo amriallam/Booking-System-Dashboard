@@ -81,6 +81,14 @@ export const ROUTES: RouteInfo[] = [
     extralink: false,
     submenu: []
   },
+  // {
+  //   path: 'UserRoles',
+  //   title: 'User Roles',
+  //   icon: 'bi bi-menu-app',
+  //   class: '',
+  //   extralink: false,
+  //   submenu: []
+  // },
   {
     path: 'resourcetype',
     title: 'Resources Types',

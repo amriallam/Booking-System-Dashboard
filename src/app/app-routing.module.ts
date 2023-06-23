@@ -8,6 +8,8 @@ import { ListResourcesComponent } from "./component/resources/list-resources/lis
 import { UpdateResourceComponent } from "./component/resources/update-resource/update-resource.component";
 import { ResourceTypeAttributeCreateComponent } from "./component/resource-types/resource-type-attribute-create/resource-type-attribute-create.component";
 import { NotfoundComponent } from "./component/notfound/notfound.component";
+import { ListRolesComponent } from "./component/roles/list-roles/list-roles.component";
+import { EditRoleComponent } from "./component/roles/edit-role/edit-role.component";
 export const Approutes: Routes = [
   {
     path: "",
@@ -26,6 +28,9 @@ export const Approutes: Routes = [
             (m) => m.DashboardModule
           ),
       },
+      { path: 'roles', loadChildren: () => import('./component/roles/role.module').then(m => m.RoleModule) },
+      // { path: '', component: ListRolesComponent },
+      // { path: 'edit/:id', component: EditRoleComponent },
       {
         path: "component",
         loadChildren: () =>

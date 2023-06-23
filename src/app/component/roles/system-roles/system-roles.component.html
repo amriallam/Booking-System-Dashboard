@@ -1,0 +1,12 @@
+<ul class="nav text-center">
+    <li class="nav-item col-6 bg-light">
+        <a class="nav-link active" aria-current="page" (click)="switchTabs(false)">System Roles</a>
+    </li>
+    <li class="nav-item col-6">
+        <a class="nav-link"  (click)="switchTabs(true)">User Roles</a>
+    </li>
+</ul>
+<div class="my-2">
+    <app-list-roles *ngIf="!showUserRoles"></app-list-roles>
+    <app-user-roles *ngIf="showUserRoles"></app-user-roles>
+</div>
