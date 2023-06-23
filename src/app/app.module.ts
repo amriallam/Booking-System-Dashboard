@@ -4,7 +4,7 @@ import { CommonModule, LocationStrategy, PathLocationStrategy } from '@angular/c
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
-import { Router, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr'
 
@@ -16,7 +16,6 @@ import { SidebarComponent } from './shared/components/sidebar/sidebar.component'
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RetryInterceptor } from './shared/utility/retry.interceptor';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LOCALE_ID } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
 import localeEn from '@angular/common/locales/en';
@@ -53,7 +52,6 @@ export function httpTranslateLoader(http: HttpClient) {
     NgbModule,
     ToastrModule.forRoot(),
     RouterModule.forRoot(Approutes),
-    FontAwesomeModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

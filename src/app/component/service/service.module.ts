@@ -9,9 +9,7 @@ import { DeleteServiceComponent } from './delete-service/delete-service.componen
 import { DetailsServiceComponent } from './details-service/details-service.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import {ListReousrceTypesComponent} from 'src/app/component/resource-types/list-reousrce-types/list-reousrce-types.component';
 import { UpdateResoucetypefroserviceComponent } from './update-resoucetypefroservice/update-resoucetypefroservice.component'
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 
@@ -47,7 +45,6 @@ const routes : Routes =[
     RouterModule.forChild(routes),
     ReactiveFormsModule,
     NgbModule,
-    FontAwesomeModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

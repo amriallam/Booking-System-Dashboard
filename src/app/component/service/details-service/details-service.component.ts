@@ -3,14 +3,12 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { ServiceService } from 'src/app/shared/service/service.service';
 import { Service } from '../../models/Service';
 import { ResourceType } from '../../models/ResourceType';
-import { ResourceTypeDetailsService } from 'src/app/services/resource-type-details.service';
 import { ResourceTypeService } from 'src/app/services/resource-type.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ResourceTypeAttributeDetailsComponent } from '../../resource-types/resource-type-attribute-details/resource-type-attribute-details.component';
 import { ServiceMetaDataService } from 'src/app/shared/service/resource-meta-data.service';
 import { ServiceMetadata } from '../../models/ServiceMetadata';
 import { ToastrService } from 'ngx-toastr';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LanguageService } from 'src/app/shared/service/language.service';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -57,7 +55,7 @@ export class DetailsServiceComponent implements OnInit{
       console.log("not found resource with this id ")
     }
   }
-  
+
   showAlert(id : number) {
     alert(id);
   }
