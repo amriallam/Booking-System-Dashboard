@@ -89,6 +89,14 @@ export const ROUTES: RouteInfo[] = [
     extralink: false,
     submenu: []
   },
+  {
+    path: 'setAvailability',
+    title: 'Set Resource availability',
+    icon: 'bi bi-menu-app',
+    class: '',
+    extralink: false,
+    submenu: []
+  },
   // {
   //   path: 'resource',
   //   title: 'Resource',

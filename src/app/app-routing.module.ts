@@ -8,6 +8,8 @@ import { ListResourcesComponent } from "./component/resources/list-resources/lis
 import { UpdateResourceComponent } from "./component/resources/update-resource/update-resource.component";
 import { ResourceTypeAttributeCreateComponent } from "./component/resource-types/resource-type-attribute-create/resource-type-attribute-create.component";
 import { NotfoundComponent } from "./component/notfound/notfound.component";
+
+
 export const Approutes: Routes = [
   {
     path: "",
@@ -91,6 +93,10 @@ export const Approutes: Routes = [
       }, {
         path: 'schedule',
         loadChildren: () => import('./component/schedule/schedule.module').then(m => m.ScheduleModule)
+      },
+      {
+        path: 'setAvailability',
+        loadChildren: () => import('./component/resource-special-charactarictic/resource-special-charactarictic.module').then(m => m.ResourceSpecialCharactaricticModule)
       },
     ],
   },
