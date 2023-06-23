@@ -1,12 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 @import url("https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800");
-@import "~@fortawesome/fontawesome-free/css/all.min.css";
-@import "~bootstrap/dist/css/bootstrap.min.css";
-
 body {
   width: 100vw;
   height: 100vh;
-  background-color: #f2f4f5;
+  background-color: #ffffff;
 }
 
 * {
