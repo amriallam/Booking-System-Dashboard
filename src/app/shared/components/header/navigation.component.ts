@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { CreateResourceTypeComponent } from 'src/app/component/resource-types/create-resource-type/create-resource-type.component';
+import { CreateResourceComponent } from 'src/app/component/resources/create-resource/create-resource.component';
 import { CreateServiceComponent } from 'src/app/component/service/create-service/create-service.component';
 import { UserService } from 'src/app/shared/service/user.service';
 
@@ -133,6 +134,9 @@ export class NavigationComponent implements AfterViewInit {
   }
   createResourceType() {
     const modelRef = this.modal.open(CreateResourceTypeComponent, { centered: true });
+  }
+  createResource() {
+    const modelRef = this.modal.open(CreateResourceComponent, { centered: true });
   }
 
   logout() {

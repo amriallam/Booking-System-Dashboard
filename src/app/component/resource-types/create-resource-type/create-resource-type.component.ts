@@ -64,30 +64,30 @@ export class CreateResourceTypeComponent {
 
   ngOnInit() {
 
-    // this.form = this.formBuilder.group({
-    //   fields: this.formBuilder.array([this.createField()]),
-    // });
+    this.form = this.formBuilder.group({
+      fields: this.formBuilder.array([this.createField()]),
+    });
   }
 
-  // createField(): FormGroup {
-  //   return this.formBuilder.group({
-  //     input: ["", Validators.required],
-  //     selectOption: ["", Validators.required],
-  //   });
-  // }
+  createField(): FormGroup {
+    return this.formBuilder.group({
+      input: ["", Validators.required],
+      selectOption: ["", Validators.required],
+    });
+  }
 
-  // get formFields() {
-  //   return this.form.get("fields") as FormArray;
-  // }
+  get formFields() {
+    return this.form.get("fields") as FormArray;
+  }
 
-  // addFields() {
-  //   this.formFields.push(this.createField());
-  // }
+  addFields() {
+    this.formFields.push(this.createField());
+  }
 
-  // removeField(index: number) {
-  //   const fieldsArray = this.form.get("fields") as FormArray;
-  //   fieldsArray.removeAt(index);
-  // }
+  removeField(index: number) {
+    const fieldsArray = this.form.get("fields") as FormArray;
+    fieldsArray.removeAt(index);
+  }
 
 
   closeModal() {
