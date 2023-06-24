@@ -1,1 +1,24 @@
-<p>resource-special-charactarictic-delete works!</p>
+
+<div class="card rounded-2 m-0" [dir]="'dir'">
+    <div class="card-body">
+      <div class="d-flex justify-content-between">
+        <h4 class="card-title d-inline">
+            {{'Delete This RSC' }}
+        </h4>
+        <button
+          type="button"
+          class="btn-close"
+          aria-label="Close"
+          (click)="closeModal()"
+        ></button>
+      </div>
+      <section class="">
+          <div class="card text-center">
+            <div class="card-body">
+              <button class="btn btn-danger" (click)="deleteRSC(ResourceSpecialCharactaristics.id)">{{'Delete'}} </button>
+            </div>
+          </div>
+      </section>
+    </div>
+  </div>
+  

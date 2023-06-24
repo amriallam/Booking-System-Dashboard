@@ -1,1 +1,31 @@
-<p>resource-special-charactarictic-list works!</p>
+<div>
+    <h2>Resource Special Characteristics</h2>
+
+</div>
+<table class="table mt-3" style="box-shadow:  5px 5px 5px 5px rgb(180, 212, 223);" >
+    <thead class="t_header" style="background-color:  rgb(180, 212, 223);">
+        <tr>
+            <th>#</th>
+           <th>Total capacity</th>
+           <th>Availabe capacity</th>
+           <th>Schedule ID</th>
+           <th>Resource ID</th>
+           <th>Edit</th>
+           <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody >
+        <tr *ngFor="let RSC of ResourceSpecialCharactaristics; let i = index">
+            <td>{{i+1}}</td>
+            <td>{{RSC.totalCapacity}}</td>
+            <td>{{RSC.availableCapacity}}</td>
+            <td>{{ RSC.scheduleID ? RSC.scheduleID : 'No Schedule' }}</td>
+            <td>{{RSC.resourceID}}</td>
+
+            <!-- <td> <a class="btn btn-success" role="button"[routerLink]="[ResourceSpecialCharactaristics.id]">Details</a></td> -->
+            <td> <a class="btn btn-primary" role="button">Edit</a></td> 
+            <td> <a class="btn btn-danger" role="button" (click)="openDeleteModal(RSC)" >Delete</a></td>  
+        </tr>
+    </tbody>
+</table>
+
