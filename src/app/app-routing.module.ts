@@ -8,6 +8,8 @@ import { ListResourcesComponent } from "./component/resources/list-resources/lis
 import { UpdateResourceComponent } from "./component/resources/update-resource/update-resource.component";
 import { ResourceTypeAttributeCreateComponent } from "./component/resource-types/resource-type-attribute-create/resource-type-attribute-create.component";
 import { NotfoundComponent } from "./component/notfound/notfound.component";
+
+
 import { ListRolesComponent } from "./component/roles/list-roles/list-roles.component";
 import { EditRoleComponent } from "./component/roles/edit-role/edit-role.component";
 export const Approutes: Routes = [
@@ -100,6 +102,10 @@ export const Approutes: Routes = [
       { path: "profile", 
       loadChildren: () => import("./component/profile/profile.module")
       .then(m => m.ProfileModule) },
+      {
+        path: 'setAvailability',
+        loadChildren: () => import('./component/resource-special-charactarictic/resource-special-charactarictic.module').then(m => m.ResourceSpecialCharactaricticModule)
+      },
     ],
   },
   {
