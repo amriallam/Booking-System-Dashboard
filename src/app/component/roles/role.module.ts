@@ -17,7 +17,7 @@ export function httpTranslateLoader(http: HttpClient) {
 
 const routes: Routes = [
   { path: "", component: SystemRolesComponent },
-  // { path: 'edit/:id', component: EditRoleComponent },
+  { path: 'edit/:id', component: EditRoleComponent },
 ];
 
 @NgModule({
