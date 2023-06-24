@@ -3,6 +3,7 @@ import { Component, AfterViewInit, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { User } from 'src/app/component/models/user';
 import { CreateResourceTypeComponent } from 'src/app/component/resource-types/create-resource-type/create-resource-type.component';
 import { CreateResourceComponent } from 'src/app/component/resources/create-resource/create-resource.component';
 import { CreateServiceComponent } from 'src/app/component/service/create-service/create-service.component';
@@ -16,6 +17,9 @@ import { UserService } from 'src/app/shared/service/user.service';
 export class NavigationComponent implements AfterViewInit {
   @Output() toggleSidebar = new EventEmitter<void>();
   @Output() toggleLanguages = new EventEmitter<string>();
+
+ user:User=new User("userID", "ZienabHesham100", "Zienab", "Hesham", "Zienab.hesham199@gmail.com", "Almansoura", "01024258847",  new Date());
+
 
   public showSearch = false;
 
