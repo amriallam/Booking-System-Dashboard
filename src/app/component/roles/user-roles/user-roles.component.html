@@ -1,0 +1,34 @@
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <h2>User Roles</h2>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>User Name</th>
+              <th *ngFor="let role of roles">{{role.name}}</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of users">
+              <td>{{ user.userName }}</td>
+              <td *ngFor="let role of roles"><input type="checkbox" [checked]="isChecked(user.userName, role.name)"
+                 (change)="onRoleChange(user.id, role.name, $event.target.checked)"> </td>
+              <td class="text-center">
+                <button (click)="onSave(user.id)" class="btn btn-primary w-100 float-end">Save</button>
+              </td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td>
+                <button type="button" class="btn btn-secondary w-75" (click)="onCancel()">Cancel</button>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+  
