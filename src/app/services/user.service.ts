@@ -12,9 +12,10 @@ export class UserService {
 
   constructor(private httpClient:HttpClient) { }
   GetUserById(id:string): Observable<DataResponseObeject<User>> {
-    return this.httpClient.get<DataResponseObeject<User>>(this.baseurl +'/id')
+    return this.httpClient.get<DataResponseObeject<User>>(`${this.baseurl}/GetUser/${id}`)
+
   }
   EditUser(user: User): Observable<DataResponseObeject<User>> {
-    return this.httpClient.patch<DataResponseObeject<User>>(this.baseurl + user.id , user)
+    return this.httpClient.patch<DataResponseObeject<User>>(`${this.baseurl}/${user.id}`,user)
   }
 }

@@ -9,37 +9,70 @@
         </div>
         <div class="col-md-8">
             <div class="p-3 py-5 ">             
-                <form [formGroup]="editForm"  class="row">
-
+                <form [formGroup]="editForm" (ngSubmit)="save(editForm)" class="row">
                     <div class="row mt-2">
                     
                         <div class="col-md-6 mt-1">
                             <h3>First Name</h3>
-                            <input type="text" class="form-control" placeholder="first name" value={{user.firstName}} >
-                        </div>                    
+                            <input type="text" class="form-control" placeholder="Jone" [value]="user.firstName"
+                            formControlName="firstName" [ngClass]="{error:getControl('firstName')?.errors&&getControl('firstName')?.dirty}">
+                            <div *ngIf="getControl('firstName')?.errors && getControl('firstName')?.dirty" >
+                                <small class="text-danger" *ngIf="getControl('firstName')?.errors?.['required']">First Name shouldn't be empty</small>
+                            </div>
+                        </div>       
+
                         <div class="col-md-6 mt-1">
                             <h3>Last Name</h3>
-                            <input type="text" class="form-control" value={{user.lastName}} placeholder="Last Name" >
+                            <input type="text" class="form-control" placeholder="Doe"  [value]="user.lastName" 
+                            formControlName="lastName" [ngClass]="{error:getControl('lastName')?.errors&&getControl('lastName')?.dirty}">
+                            <div *ngIf="getControl('lastName')?.errors && getControl('lastName')?.dirty">
+                                <small class="text-danger" *ngIf="getControl('lastName')?.errors?.['required']">Last Name shouldn't be empty</small>
+                            </div>
                         </div>
                     </div>
+
                     <div class="row mt-4">
                         <div class="col-md-6 mt-1">
                             <h3>Email Address</h3>
                             <input type="text" class="form-control" placeholder="example-123@email.com" value={{user.email}} disabled>
                         </div>
+
                         <div class="col-md-6 mt-1">
                             <h3>Phone number</h3>
-                            <input type="text" class="form-control" value={{user.phoneNumber}} placeholder="Phone number" >
+                            <input type="text" class="form-control" value={{user.phoneNumber}} placeholder="Phone number" 
+                            formControlName="phoneNumber" [ngClass]="{error:getControl('phoneNumber')?.errors&&getControl('phoneNumber')?.dirty}">
+                            <div *ngIf="getControl('phoneNumber')?.errors && getControl('phoneNumber')?.dirty">
+                                <small class="text-danger" *ngIf="getControl('phoneNumber')?.errors?.['required']"> Phone shouldn't be empty</small>
+                                <small class="text-danger" *ngIf="getControl('phoneNumber')?.errors?.['pattern']"> Phone must be 0xx-xxx-xxx-xx </small>
+                            </div>
                         </div>
                     </div>
+
                     <div class="row mt-4">
                         <div class="col-md-6 mt-1">
                             <h3>Address</h3>
-                            <input type="text" class="form-control" placeholder="address" value={{user.address}} >
+                            <input type="text" class="form-control" placeholder="City, Street, Building" value={{user.address}} 
+                            formControlName="address" [ngClass]="{error:getControl('address')?.errors&&getControl('address')?.dirty}">
+                            <div *ngIf="getControl('address')?.errors && getControl('address')?.dirty">
+                                <small class="text-danger" *ngIf="getControl('address')?.errors?.['required']">Address shouldn't be empty</small>
+                            </div>
                         </div>
                     </div>
-                    <div class="mt-5 text-right"><button class="btn btn-primary profile-button" type="button">Save Profile</button></div>
+
+                    <div *ngIf="editForm.invalid && (editForm.dirty || editForm.touched)" class="mt-4">
+                        <small class="text-danger" *ngIf="getControl('firstName')?.errors?.required">First Name shouldn't be empty</small>
+                        <small class="text-danger" *ngIf="getControl('lastName')?.errors?.required">Last Name shouldn't be empty</small>
+                        <small class="text-danger" *ngIf="getControl('phoneNumber')?.errors?.required">Phone shouldn't be empty</small>
+                        <small class="text-danger" *ngIf="getControl('phoneNumber')?.errors?.pattern">Phone must be 0xx-xxx-xxxxx</small>
+                        <small class="text-danger" *ngIf="getControl('address')?.errors?.required">Address shouldn't be empty</small>
+                      </div>
+
+                    <div class="mt-5 text-right">
+                        <button class="btn btn-primary profile-button" type="submit">Save Profile</button>
+                    </div>
     
+
+                    
                 </form>
                 
             </div>

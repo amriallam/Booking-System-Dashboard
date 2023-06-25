@@ -3,8 +3,11 @@
         <div class="col-md-4 border-right">
             <div class="d-flex flex-column align-items-center text-center p-3 py-5">
                 <img class="rounded-circle mt-5" src="assets/images/users/user1.jpg" width="90">
-                <span class="font-weight-bold">{{user.firstName}} {{user.lastName}}</span>
-                <span class="text-black-50">{{user.userName}}</span>
+                <span style="font-weight:bolder;" class="font-weight-bold">{{user.firstName}} {{user.lastName}}</span>
+                <div  class="text-black-50 ">
+                    <span>userName:</span>
+                    <span style="font-weight:bold ;">{{user.userName}}</span>
+                </div>
             </div>
         </div>
         <div class="col-md-8">
