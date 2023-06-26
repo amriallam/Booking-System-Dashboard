@@ -4,7 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ResourceSpecialCharactaristicsService } from 'src/app/shared/service/resource-special-charactaristics.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {ResourceSpecialCharactaricticDeleteComponent} from '../resource-special-charactarictic-delete/resource-special-charactarictic-delete.component';
-
+import {ResourseService} from 'src/app/services/resourse.service'
+import { Resource } from '../../models/Resouce';
 @Component({
   selector: 'app-resource-special-charactarictic-list',
   templateUrl: './resource-special-charactarictic-list.component.html',
@@ -12,12 +13,20 @@ import {ResourceSpecialCharactaricticDeleteComponent} from '../resource-special-
 })
 export class ResourceSpecialCharactaricticListComponent {
   ResourceSpecialCharactaristics:ResourceSpecialCharactaristics[] = [];
-
+  resourceName!:string 
+  resourceIds:number []=[];
+  resourceNames:string []=[];
+  formatDate(date: string): string {
+    return date ? new Date(date).toLocaleDateString() : 'Without Date';
+  }
+  
+  resource!:Resource;
   constructor(
     public ResourceSpecialCharactaristicsService:ResourceSpecialCharactaristicsService,
     private router:Router, 
     public activatedRouter:ActivatedRoute,
-    private modal: NgbModal)
+    private modal: NgbModal,
+    public ResourseService:ResourseService)
   {
  
   }
@@ -28,8 +37,10 @@ export class ResourceSpecialCharactaricticListComponent {
         {
           this.ResourceSpecialCharactaristics = RSC.data;
           console.log(RSC.data);
+
         });
     }
+    
     openDeleteModal(RSC: ResourceSpecialCharactaristics) {
       const modelRef = this.modal.open(ResourceSpecialCharactaricticDeleteComponent, {
         centered: true,

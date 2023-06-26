@@ -32,10 +32,6 @@ export class ListRolesComponent implements OnInit  {
   
     getRolePermissions(roleid: any): void {
       this.router.navigate(['/roles/edit', roleid]);
-      // this.selectedRole = role;
-      // this.rolesService.getRolePermissionsById(role.id).subscribe(permissions => {
-      //   this.permissions = permissions.data.permissions;
-      // });
     }
   
     updateRole(): void {
@@ -56,21 +52,4 @@ export class ListRolesComponent implements OnInit  {
     }
   
   }
-
-  // Roles: Role[];
-  // constructor( private languageService: LanguageService,
-  //             public translate: TranslateService,public rolesService:RolesService){
-                
-  //   this.languageService.selectedLanguage$.subscribe(lang => {
-  //     this.translate.use(lang);
-  //   });
-
-  //   this.Roles = [
-  //     { id: 1, name: "Admin" },
-  //     { id: 2, name: "User" },
-  //     { id: 3, name: "Assistant" }
-  //   ];
-  // }
-
-
 

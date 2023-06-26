@@ -6,21 +6,24 @@
     <thead class="t_header" style="background-color:  rgb(180, 212, 223);">
         <tr>
             <th>#</th>
-           <th>Total capacity</th>
-           <th>Availabe capacity</th>
-           <th>Schedule ID</th>
-           <th>Resource ID</th>
-           <th>Edit</th>
-           <th>Delete</th>
+            <th>Resource Name</th>
+            <th>Day</th>
+            <th>Total capacity</th>
+            <th>Availabe capacity</th>
+            <th>Schedule ID</th>
+            <th>Edit</th>
+            <th>Delete</th>
         </tr>
     </thead>
     <tbody >
         <tr *ngFor="let RSC of ResourceSpecialCharactaristics; let i = index">
             <td>{{i+1}}</td>
+            <td>{{RSC.resourceName}}</td>
+            <td>{{ formatDate(RSC.day) }}</td>
             <td>{{RSC.totalCapacity}}</td>
             <td>{{RSC.availableCapacity}}</td>
-            <td>{{ RSC.scheduleID ? RSC.scheduleID : 'No Schedule' }}</td>
-            <td>{{RSC.resourceID}}</td>
+            <td>{{ RSC.scheduleID ? RSC.scheduleID : ' Without Schedule' }}</td>
+            
 
             <!-- <td> <a class="btn btn-success" role="button"[routerLink]="[ResourceSpecialCharactaristics.id]">Details</a></td> -->
             <td> <a class="btn btn-outline-info me-2 mb-2" role="button">Edit</a></td> 
