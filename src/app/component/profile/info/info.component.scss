@@ -1,0 +1,24 @@
+input[type="text"]{
+    background-color: lightgray ;
+}
+
+  .profile-button {
+    background: #915a9b;
+    box-shadow: none;
+    border: none;
+  }
+  
+  .profile-button:hover {
+    background: #682773;
+  }
+  
+  .profile-button:focus {
+    background: #682773;
+    box-shadow: none;
+  }
+  
+  .profile-button:active {
+    background: #682773;
+    box-shadow: none;
+  }
+  

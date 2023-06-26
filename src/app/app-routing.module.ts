@@ -99,6 +99,9 @@ export const Approutes: Routes = [
         path: 'schedule',
         loadChildren: () => import('./component/schedule/schedule.module').then(m => m.ScheduleModule)
       },
+      { path: "profile", 
+      loadChildren: () => import("./component/profile/profile.module")
+      .then(m => m.ProfileModule) },
       {
         path: 'setAvailability',
         loadChildren: () => import('./component/resource-special-charactarictic/resource-special-charactarictic.module').then(m => m.ResourceSpecialCharactaricticModule)
