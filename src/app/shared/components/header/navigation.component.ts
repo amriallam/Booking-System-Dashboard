@@ -35,7 +35,7 @@ export class NavigationComponent implements AfterViewInit {
   ngOnInit(): void {
 
     this.service.GetUserById(this.userID).subscribe(res => {
-      this.user = res?.data;
+      // this.user = res?.data;
     })
    
    }
