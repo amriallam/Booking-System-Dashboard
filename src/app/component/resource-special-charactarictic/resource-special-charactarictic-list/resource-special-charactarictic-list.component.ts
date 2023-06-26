@@ -46,6 +46,7 @@ export class ResourceSpecialCharactaricticListComponent {
         centered: true,
       });
       modelRef.componentInstance.id = RSC.id;
+      console.log(RSC.id +"resently");
     }
   
 }
