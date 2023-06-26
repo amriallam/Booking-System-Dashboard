@@ -13,7 +13,7 @@ export class InfoComponent {
 
   decodedToken:any;
   encodedToken!:string;
-  user:User=new User("userID", "ZienabHesham100", "Zienab", "Hesham", "Zienab.hesham199@gmail.com", "Almansoura", "01024258847",  new Date());
+  user:User=new User();
   userID:string='13a2a123-d57d-4992-bc6a-16572ce945b3'
 
 constructor(private service:UserService) {}
@@ -34,7 +34,6 @@ ngOnInit(): void {
   //   console.error('Token verification failed:', error);
   // });
 
-  console.log(this.userID);
 
   this.service.GetUserById(this.userID).subscribe(res => {
     this.user = res?.data;

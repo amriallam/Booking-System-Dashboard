@@ -7,7 +7,7 @@ import { User } from 'src/app/component/models/user';
 import { CreateResourceTypeComponent } from 'src/app/component/resource-types/create-resource-type/create-resource-type.component';
 import { CreateResourceComponent } from 'src/app/component/resources/create-resource/create-resource.component';
 import { CreateServiceComponent } from 'src/app/component/service/create-service/create-service.component';
-import { UserService } from 'src/app/shared/service/user.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-navigation',
@@ -18,20 +18,27 @@ export class NavigationComponent implements AfterViewInit {
   @Output() toggleSidebar = new EventEmitter<void>();
   @Output() toggleLanguages = new EventEmitter<string>();
 
- user:User=new User("userID", "ZienabHesham100", "Zienab", "Hesham", "Zienab.hesham199@gmail.com", "Almansoura", "01024258847",  new Date());
+ user:User=new User();
+ userID:string='13a2a123-d57d-4992-bc6a-16572ce945b3'
 
-
+ 
   public showSearch = false;
 
   constructor(private modal: NgbModal,
-              private userService: UserService,
+              private service: UserService,
               private router: Router,
               public translate: TranslateService,
               private languageService: LanguageService) {
     translate.addLangs(['en', 'ar']);
     // translate.setDefaultLang('en');
   }
+  ngOnInit(): void {
 
+    this.service.GetUserById(this.userID).subscribe(res => {
+      this.user = res?.data;
+    })
+   
+   }
   switchLang(lang: string) {
     this.languageService.setSelectedLanguage(lang);
   }
