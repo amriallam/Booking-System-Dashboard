@@ -18,6 +18,9 @@ export class ResourceSpecialCharactaricticCreateComponent {
   totalCapacity!:number;
   availableCapacity!:number;
   resourceNames:Resource[]=[];
+  RSCResourceIDs :number []=[];
+  ResourceIDs :number []=[];
+  resultIDs: number[] = [];
 
   RSCForm = new FormGroup({
     resourceNames: new FormControl(''),
@@ -38,13 +41,44 @@ export class ResourceSpecialCharactaricticCreateComponent {
  }
  get f() { return this.RSCForm.controls; }
 
- ngOnInit(){
-    this.resourseService.getAllResources().subscribe(data=>{
-      console.log(data.data);
-      this.resourceNames = data.data;
-    });
+//  ngOnInit(){
+//     this.resourseService.getAllResources().subscribe(data=>{
+//       console.log(data.data);
+//       this.resourceNames = data.data ;
+//       data.data.forEach((element: Resource) => this.ResourceIDs.push(+element.id));
+//       console.log(this.ResourceIDs);
 
-  } 
+//       this.resourceSpecialCharactaristicsService.getAll().subscribe(data=>{
+//         data.data.forEach((element: ResourceSpecialCharactaristics) => this.RSCResourceIDs.push(+element.resourceID));
+//         console.log(this.RSCResourceIDs);
+//         this.resultIDs = this.ResourceIDs.filter((item) => !this.RSCResourceIDs.includes(item));
+//         console.log(this.resultIDs);
+//       });
+//     });
+
+//   } 
+
+ngOnInit() {
+  this.resourseService.getAllResources().subscribe(data => {
+    console.log(data.data);
+    this.resourceNames = data.data;
+    console.log(this.resourceNames);
+    this.ResourceIDs = data.data.map((element: Resource) => +element.id);
+    console.log(this.ResourceIDs);
+
+    this.resourceSpecialCharactaristicsService.getAll().subscribe(data => {
+      this.RSCResourceIDs = data.data.map((element: ResourceSpecialCharactaristics) => +element.resourceID);
+      console.log(data.data);
+      console.log(this.RSCResourceIDs);
+      this.resultIDs = this.ResourceIDs.filter(item => !this.RSCResourceIDs.includes(item));
+      console.log(this.resultIDs);
+
+      this.resourceNames = this.resourceNames.filter(element => this.resultIDs.includes(+element.id));
+      console.log(this.resourceNames);
+    });
+  });
+}
+
 
   onSubmit() {
     if (this.RSCForm.invalid) {
@@ -67,7 +101,7 @@ export class ResourceSpecialCharactaricticCreateComponent {
           console.log("from submit");
           console.log(result);
 
-          this.router.navigate(['/ResourceSpecialCharacteristics']);
+          this.router.navigate(['setAvailability']);
 
     });
   }
