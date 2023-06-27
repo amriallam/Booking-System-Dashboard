@@ -1,1 +1,40 @@
-<p>resource-special-charactarictic-edit works!</p>
+<div class="card rounded-2 m-0" [dir]="'dir'">
+    <div class="card-body">
+        <div class="p-3 text-primary text-center">
+            <h3 class="m-0">
+                {{"Update Resource Charactarictis"}}
+            </h3>
+        </div>
+        <form [formGroup]="editRSCForm" (ngSubmit)="onSubmit(editRSCForm)">
+            <div>
+                <input hidden formControlName="id"  value={{RSC.id}} />
+                <input hidden formControlName="scheduleID" [value]="RSC.scheduleID " />
+            </div>
+            
+
+            <div class="m-3">
+                <label class="font-weight-bold">Total Capacity</label>
+                <input type="number" id="totalCapacity" formControlName="totalCapacity" class="form-control" placeholder="Total capacity" value={{RSC.totalCapacity}}>
+                <div *ngIf="getControl('totalCapacity')?.errors && getControl('totalCapacity')?.touched">
+                  <small class="d-flex alert alert-danger mt-1 p-1 " *ngIf="getControl('totalCapacity')?.errors?.['required']"> {{'Total Capacity is required' }}</small>
+                </div>
+            </div>
+
+            <!-- <div class="m-3">
+                <label class="font-weight-bold">Available Capacity</label>
+                 <input type="text" id="availableCapacity" formControlName="availableCapacity" class="form-control" placeholder="Available capacity" value={{RSC.availableCapacity}}> 
+                <input type="text"  class="form-control" placeholder="Available capacity" value={{RSC.availableCapacity}} disabled>
+
+                <div *ngIf="getControl('availableCapacity')?.errors && getControl('availableCapacity')?.touched">
+                  <small class="d-flex alert alert-danger mt-1 p-1 " *ngIf="getControl('availableCapacity')?.errors?.['required']"> {{'Available Capacity is required' }}</small>
+                </div>
+            </div> -->
+
+            <div class="m-3 row">
+                <button class="btn btn-info text-center m-3 col-5 " type="submit" >{{'Update' }}</button>
+                <button class="btn btn-danger text-center m-3 col-5" (click)="closeModal()" >{{'Cancel'}}</button>
+              </div>
+        </form>
+    </div>
+</div>
+

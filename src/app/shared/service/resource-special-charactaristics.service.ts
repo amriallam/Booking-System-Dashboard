@@ -31,4 +31,10 @@ export class ResourceSpecialCharactaristicsService {
     console.log(id +"fro service");
     return this.httpClient.delete<ResourceSpecialCharactaristics>(`${apiUrl}ResourceSpecialCharacteristics?id=${id}`);
   }
+
+  edit(rsc:ResourceSpecialCharactaristics): Observable<DataResponseObeject<ResourceSpecialCharactaristics>> {
+    console.log(rsc.id +"  edit service");
+    return this.httpClient.put<DataResponseObeject<ResourceSpecialCharactaristics>>(`${apiUrl}ResourceSpecialCharacteristics/${rsc.id}`,rsc)
+   
+  }
 }

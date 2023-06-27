@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { ResourceSpecialCharactaricticRoutingModule } from './resource-special-charactarictic-routing.module';
 import { ResourceSpecialCharactaricticEditComponent } from './resource-special-charactarictic-edit/resource-special-charactarictic-edit.component';
@@ -17,6 +18,7 @@ import { ResourceSpecialCharactaricticCreateComponent } from './resource-special
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     ResourceSpecialCharactaricticRoutingModule
   ]
 })

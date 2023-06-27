@@ -6,6 +6,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {ResourceSpecialCharactaricticDeleteComponent} from '../resource-special-charactarictic-delete/resource-special-charactarictic-delete.component';
 import {ResourseService} from 'src/app/services/resourse.service'
 import { Resource } from '../../models/Resouce';
+import { ResourceSpecialCharactaricticEditComponent } from '../resource-special-charactarictic-edit/resource-special-charactarictic-edit.component';
 @Component({
   selector: 'app-resource-special-charactarictic-list',
   templateUrl: './resource-special-charactarictic-list.component.html',
@@ -47,6 +48,15 @@ export class ResourceSpecialCharactaricticListComponent {
       });
       modelRef.componentInstance.id = RSC.id;
       console.log(RSC.id +"resently");
+    }
+
+
+    openEditModal(RSC: ResourceSpecialCharactaristics) {
+      const modelRef = this.modal.open(ResourceSpecialCharactaricticEditComponent, {
+        centered: true,
+      });
+      modelRef.componentInstance.RSCId = RSC.id;
+      console.log(RSC.id +" edit");
     }
   
 }

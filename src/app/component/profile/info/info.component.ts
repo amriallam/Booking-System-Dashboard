@@ -14,7 +14,7 @@ export class InfoComponent {
   decodedToken:any;
   encodedToken!:string;
   user:User=new User();
-  userID:string='13a2a123-d57d-4992-bc6a-16572ce945b3'
+  userID:string='2f4d4152-871c-49c2-9355-0303bec672f6'
 
 constructor(private service:UserService) {}
 ngOnInit(): void {
