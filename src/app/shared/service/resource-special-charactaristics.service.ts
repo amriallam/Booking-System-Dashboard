@@ -36,4 +36,9 @@ export class ResourceSpecialCharactaristicsService {
     return this.httpClient.post<DataResponseObeject<ResourceSpecialCharactaristics>>(`${apiUrl}ResourceSpecialCharacteristics`, resourceSpecialCharactaristics);
   }
 
+  edit(rsc:ResourceSpecialCharactaristics): Observable<DataResponseObeject<ResourceSpecialCharactaristics>> {
+    console.log(rsc.id +"  edit service");
+    return this.httpClient.put<DataResponseObeject<ResourceSpecialCharactaristics>>(`${apiUrl}ResourceSpecialCharacteristics/${rsc.id}`,rsc)
+   
+  }
 }

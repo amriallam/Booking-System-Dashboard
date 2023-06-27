@@ -16,7 +16,7 @@
                             <h3>First Name</h3>
                             <input type="text" class="form-control font-weight-bold" placeholder="Enter First Name" [value]="user.firstName"
                             formControlName="firstName" [ngClass]="{error:getControl('firstName')?.errors&&getControl('firstName')?.dirty}">
-                            <div *ngIf="getControl('firstName')?.errors && getControl('firstName')?.dirty" >
+                            <div *ngIf="getControl('firstName')?.errors && getControl('firstName')?.invalid" >
                                 <small class="text-danger" *ngIf="getControl('firstName')?.errors?.['required']">First Name is required</small>
                             </div>
                         </div>       
@@ -25,7 +25,7 @@
                             <h3>Last Name</h3>
                             <input type="text" class="form-control font-weight-bold" placeholder="Enter Last Name"  [value]="user.lastName" 
                             formControlName="lastName" [ngClass]="{error:getControl('lastName')?.errors&&getControl('lastName')?.dirty}">
-                            <div *ngIf="getControl('lastName')?.errors && getControl('lastName')?.dirty">
+                            <div *ngIf="getControl('lastName')?.errors && getControl('lastName')?.invalid">
                                 <small class="text-danger" *ngIf="getControl('lastName')?.errors?.['required']">Last Name is requiredty</small>
                             </div>
                         </div>
@@ -41,7 +41,7 @@
                             <h3>Phone number</h3>
                             <input type="text" class="form-control" value={{user.phoneNumber}} placeholder="Phone number" 
                             formControlName="phoneNumber" [ngClass]="{error:getControl('phoneNumber')?.errors&&getControl('phoneNumber')?.dirty}">
-                            <div *ngIf="getControl('phoneNumber')?.errors && getControl('phoneNumber')?.dirty">
+                            <div *ngIf="getControl('phoneNumber')?.errors && getControl('phoneNumber')?.invalid">
                                 <small class="text-danger" *ngIf="getControl('phoneNumber')?.errors?.['required']"> Phone is required</small>
                                 <small class="text-danger" *ngIf="getControl('phoneNumber')?.errors?.['pattern']"> Phone must be 0xx-xxx-xxx-xx </small>
                             </div>
@@ -53,7 +53,7 @@
                             <h3>Address</h3>
                             <input type="text" class="form-control" placeholder="City, Street, Building" value={{user.address}} 
                             formControlName="address" [ngClass]="{error:getControl('address')?.errors&&getControl('address')?.dirty}">
-                            <div *ngIf="getControl('address')?.errors && getControl('address')?.dirty">
+                            <div *ngIf="getControl('address')?.errors && getControl('address')?.invalid">
                                 <small class="text-danger" *ngIf="getControl('address')?.errors?.['required']">Address is required</small>
                             </div>
                         </div>
